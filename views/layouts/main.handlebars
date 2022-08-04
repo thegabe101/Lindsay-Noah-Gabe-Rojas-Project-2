@@ -15,6 +15,28 @@
     <main>
         <header>
             
+            {{!-- navbar is below --}}
+            <nav class="navbar justify-content-end">
+                <section class="container-fluid">
+                    {{!-- hamburger menu below --}}
+                    <section class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            {{!-- possibly add a profile option here? --}}
+                            {{!-- login --}}
+                            <li><a class="dropdown-item" href="#">Login</a></li>
+                            {{!-- register --}}
+                            <li><a class="dropdown-item" href="#">New here? Register.</a></li>
+                            {{!-- about the app page --}}
+                            <li><a class="dropdown-item" href="#">About</a></li>
+                            {{!-- some simple settings for users? --}}
+                            <li><a class="dropdown-item" href="#"></a>Settings</li>
+                        </ul>
+                    </section>
+                </section>
+            </nav>
         </header>
         <footer class="foot">&#169 2022 Carralero, Lewis, Rojas, and Sowa. From one bibliophile to the rest.</footer>
     </main>
@@ -30,3 +52,5 @@
 
 {{!-- remember, designing mobile first, things that wouldn't appear on desktop can be hidden via media queries --}}
 {{!-- all pages will have a footer --}}
+
+{{!-- how to change what's in the navbar based on them being logged in or not, how the nav bar will change depending the page they're on? --}}
