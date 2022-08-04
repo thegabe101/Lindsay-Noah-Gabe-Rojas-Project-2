@@ -12,3 +12,5 @@ router.get("/booklist/:id", (req,res) => {
         res.render('singleBookList', hbsData);
     });
 });
+
+router.get("login")
