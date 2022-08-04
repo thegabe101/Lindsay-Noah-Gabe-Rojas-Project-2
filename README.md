@@ -1,2 +1,2 @@
-# Lindsey-Noah-Gabe-Rojas-Project-2
+# personal-library
 Project 2 for UW Summer Fullstack Coding Bootcamp
