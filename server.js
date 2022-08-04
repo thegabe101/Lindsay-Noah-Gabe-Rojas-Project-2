@@ -1,16 +1,13 @@
 const express = require('express');
 const session = require('express-session');
-const routes = require('./controllers');
-const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+const routes = require('./routes');
+const exphbs= require("express-handlebars")
+
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-//TODO: Determine if we need these helpers or not. 
-// const helpers = require('./utils/helpers');
-// const hbs = exphbs.create({helpers});
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 const sess = {
   secret: 'Protected access pages',
@@ -22,11 +19,12 @@ const sess = {
   })
 };
 
-app.use(session(sess));
-
-app.use(express.static(__dirname + 'public'));
+const hbs = exphbs.create({  });
+app.use(express.static("public"))
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
