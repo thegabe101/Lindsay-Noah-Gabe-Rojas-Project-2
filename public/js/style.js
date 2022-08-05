@@ -8,3 +8,4 @@ const navBar = () => {
         x.style.display = "block";
     }
 };
+
