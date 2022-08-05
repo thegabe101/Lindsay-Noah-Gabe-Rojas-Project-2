@@ -21,9 +21,7 @@ SO THAT I can keep track of what I own, what I want, and be able to sort my coll
 ## requirements
 GIVEN a URL to the website
 WHEN I visit the site for the first time
-THEN I am presented with a with a page to login or sign up
-WHEN I sign up
-THEN I am taken to a homepage with my library catalogues
+THEN I am presented with a page to login or sign up
 WHEN I choose to sign up
 THEN I am prompted to create a username and password
 WHEN I click on the sign-up button
