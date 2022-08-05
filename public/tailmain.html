@@ -14,30 +14,36 @@
         <a href="#" class="active justify-self-start lg:pl-5 hidden">Logo</a>
         <!-- nav links below -->
         <section class="navLinks lg:space-x-4 lg:pr-5">
-            <a href="#" class="burgLinks">Login</a>
-            <a href="#" class="burgLinks">Sign Up</a>
-            <a href="#" class="burgLinks">About</a>
-            <a href="#" class="burgLinks">Contact</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goLogin">Login</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goSignup">Sign Up</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a>
         </section>
         <!-- pop open hamburg -->
-        <a href="javascript:void(0);" class="icon lg:hidden">
+        <a href="javascript:void(0);" class="icon lg:hidden md:hidden">
             <i class="fa-solid fa-bars"></i>
         </a>
     </header>
 
     <!-- stuff for front page, probably will be on a different handlebars -->
     <main>
-        <hero class="firstHome">
-
-        </hero>
+        <section class="hero flex bg-fixed bg-center bg-cover bg-origin-border  justify-center content-center h-screen">
+            <section class="heroText">
+                <p class="text-6xl ">shelfspace</p>
+            </section>
+        </section>
     </main>
-    <footer class="foot flex justify-center p-0.5">
-        <p class="footText text-sm">
-            &#169 2022 Carralero, Lewis, Roja, Sowa. From one bibliophile, to the next.
+    <footer class="foot flex-col justify-center content-center p-0.5">
+        <p class="subFoot text-s">
+            From one bibliophile, to the next.
         </p>
+        <p class="footText text-xs">
+            &#169 2022 Carralero, Lewis, Roja, Sowa.
+        </p>
+   
     </footer>
 </body>
-<!-- <script src="/public/js/style.js"></script> -->
+<script src="./js/style.js"></script>
 <script src='../public/js/login.js'></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://kit.fontawesome.com/997d2a4a51.js" crossorigin="anonymous"></script>
