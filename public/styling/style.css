@@ -1,15 +1,4 @@
-:root {
-    --background: #ffd166;
-    --secondary: #ffba66;
-   --accent: #ff7497;
-    --other: #ff828f;
-    --light: #ffbad4;
-    --dark: #3B413C;
-    --hover: #B4BBB5;
-
-}
-
-/* this is to make the navbar expand */
+/* this is to make the navbar expand
 .navbar {
     overflow: hidden!important;
     position: relative!important;
@@ -29,5 +18,5 @@
 .navbar a:hover {
     background-color: var(--hover)!important;
     color: black!important;
-}
+} */
 

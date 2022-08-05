@@ -1,13 +1,24 @@
 Project 2 for UW Summer Fullstack Coding Bootcamp
 
-# Shelfspace
+# shelfspace
 
-USER STORY:
+## description
 
+## table-of-contents
+1. [user-story](#user-story)
+2. [requirements](#requirements)
+3. [composition](#composition)
+4. [usage](#usage)
+5. [reflections](#reflections)
+6. [credits](#credits)
+7. [contributors](#contributors)
+
+## user-story
 AS A book collector who has a large collection
 I WANT an app that I catalog my collection in
 SO THAT I can keep track of what I own, what I want, and be able to sort my collection.
 
+## requirements
 GIVEN a URL to the website
 WHEN I visit the site for the first time
 THEN I am presented with a with a page to login or sign up
@@ -33,3 +44,17 @@ WHEN I click a catalogue with a book in it
 THEN I am taken to a new webpage with a display of the various books inside of it
 WHEN I click a specific book
 THEN I am taken to a modal display of the book and information about it including author, title, year published, and images of the author and the book cover
+
+## composition
+
+## usage
+
+## reflections
+
+## resources
+
+## contributors
+
+
+
+
