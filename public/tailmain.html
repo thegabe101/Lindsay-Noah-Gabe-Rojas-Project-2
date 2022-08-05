@@ -1,26 +1,10 @@
-    {{!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelfspace</title>
-</head>
-<main>
-    <header>
-        {{#if logged_in}}
-            <a href="/home">Profile</a>
-            <button id="logout">Logout</button>
-        {{else}}
-             <a href="/login">Login/signup</a>
-        {{/if}}
-    </header>
-    <main>{{{body}}}</main>
-    <script src="/js/logoutBtn.js"></script>
-</body>
-</html> --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/public/styling/style.css"> -->
     <title>Shelf Space</title>
 </head>
 <body>
@@ -30,16 +14,10 @@
         <a href="#" class="active justify-self-start lg:pl-5 hidden">Logo</a>
         <!-- nav links below -->
         <section class="navLinks lg:space-x-4 lg:pr-5">
-        {{#if logged_in}}
-            <a href="#" class="burgLinks">Logout</a>
-            <a href="#" class="burgLinks">About</a>
-            <a href="#" class="burgLinks">Contact</a>
-        {{else}}
             <a href="#" class="burgLinks">Login</a>
             <a href="#" class="burgLinks">Sign Up</a>
             <a href="#" class="burgLinks">About</a>
             <a href="#" class="burgLinks">Contact</a>
-        {{/if}}
         </section>
         <!-- pop open hamburg -->
         <a href="javascript:void(0);" class="icon lg:hidden">
@@ -47,9 +25,11 @@
         </a>
     </header>
 
-
+    <!-- stuff for front page, probably will be on a different handlebars -->
     <main>
-        {{{body}}}
+        <hero class="firstHome">
+
+        </hero>
     </main>
     <footer class="foot flex justify-center p-0.5">
         <p class="footText text-sm">
@@ -57,9 +37,8 @@
         </p>
     </footer>
 </body>
-
+<!-- <script src="/public/js/style.js"></script> -->
+<script src='../public/js/login.js'></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://kit.fontawesome.com/997d2a4a51.js" crossorigin="anonymous"></script>
-<script src="/js/logoutBtn.js"></script>
-
 </html>

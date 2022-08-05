@@ -2,6 +2,7 @@
 
 document.querySelector("#login-page").addEventListener("submit",e=>{
     e.preventDefault();
+    console.log("i've been clicked");
     const userObj = {
         email: document.querySelector("#login-email").value,
         password: document.querySelector("#login-password").value,
@@ -24,6 +25,7 @@ document.querySelector("#login-page").addEventListener("submit",e=>{
 
 document.querySelector("#signup-page").addEventListener("submit",e=>{
     e.preventDefault();
+    console.log("i've been clicked");
     const signupObj = {
         email: document.querySelector("#login-email-signup").value,
         username: document.querySelector("#login-username-signup").value,
