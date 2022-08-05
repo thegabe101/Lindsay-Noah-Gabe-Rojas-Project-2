@@ -1,5 +1,6 @@
-const express = require('express').Router();
-
+const source = document.querySelector(".goLogin").innerHTML;
+const template = Handlebars.compile(source);
+document.body.innerHTML = template()
 
 // navbar action
 const navBar = () => {
