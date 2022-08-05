@@ -5,12 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/997d2a4a51.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/public/css/style.css">
     <title>Shelf Space</title>
 </head>
 <body>
     <main>
-        <header>
+        <header class="nav">
+            <!-- where we will place our logo -->
+            <a href="#" class="active">Logo</a>
+            <!-- nav links below -->
+            <section class="navLinks">
+                <a href="#">Login</a>
+                <a href="#">Sign Up</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </section>
+            <!-- pop open hamburg -->
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa-solid fa-bars"></i>
+            </a>
             
         </header>
     </main>
