@@ -1,3 +1,6 @@
+const source = document.querySelector(".goLogin").innerHTML;
+const template = Handlebars.compile(source);
+document.body.innerHTML = template()
 
 // navbar action
 const navBar = () => {
@@ -8,3 +11,7 @@ const navBar = () => {
         x.style.display = "block";
     }
 };
+
+document.querySelector(".goLogin").addEventListener("click",e=>{
+    location.href = "/login"
+})
