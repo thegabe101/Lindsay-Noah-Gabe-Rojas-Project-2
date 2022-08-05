@@ -1,38 +1,4 @@
-/* navbar */
-/* .nav {
-    overflow: hidden;
-    background-color: darkslategray;
-    position: relative;
-} */
 
-/* hiding links inside hamburg */
-/* .nav .navLinks {
-    display: none;
-} */
-
-/* .nav .burgLinks {
-    color: white;
-    text-decoration: none;
-    display: block;
-} */
-
-/* style hamburg menu */
-/* .nav a.icon {
-    background: black;
-    display: block;
-    position: absolute;
-    right: 0;
-    left: 0;
-}  */
-
-/* .nav .navLinks:hover {
-    background-color: grey;
-    color: black;
-} */
-
-/* .firstHome {
-    background-image: url(../images/background-unsplash.jpg);
-} */
 
 :root {
     --primary:#ff828f;
@@ -42,9 +8,62 @@
     --light: #ffbad4;
 }
 
+/* navbar */
+.nav {
+    overflow: hidden;
+    background-color: darkslategray;
+    position: relative;
+}
+
+/* hiding links inside hamburg */
+.nav .navLinks {
+    display: none;
+}
+
+.nav .burgLinks {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* style hamburg menu */
+.nav a.icon {
+    /* display: block; */
+    position: absolute;
+    right: 10px;
+    top: 10px;
+} 
+
+.nav .navLinks:hover {
+    background-color: grey;
+    color: black;
+}
+
+
 
 /* hero image styling */
 .hero {
     background-image: url(../images/background-unsplash.jpg);
 }
 
+
+.heroText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.foot {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.otherNav {
+    display:block;
+}
+
+@media only screen and (max-width: 760px) {
+    .otherNav {
+        display:none
+    }
+}

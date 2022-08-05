@@ -19,28 +19,35 @@
             <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a>
             <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a>
         </section>
+        <section class="otherNav lg:space-x-4 lg:pr-5">
+            <a href="#" class="hover:text-neutral-50 goLogin">Login</a>
+            <a href="#" class="hover:text-neutral-50 goSignup">Sign Up</a>
+            <a href="#" class="hover:text-neutral-50 goAbout">About</a>
+            <a href="#" class="hover:text-neutral-50 goContact">Contact</a>
+        </section>
         <!-- pop open hamburg -->
-        <a href="javascript:void(0);" class="icon lg:hidden md:hidden">
+        <a href="javascript:void(0);" class="icon lg:hidden md:hidden" onclick="navBar()">
             <i class="fa-solid fa-bars"></i>
         </a>
     </header>
 
     <!-- stuff for front page, probably will be on a different handlebars -->
     <main>
-        <section class="hero flex bg-fixed bg-center bg-cover bg-origin-border  justify-center content-center h-screen">
+        <section class="hero flex bg-fixed bg-center bg-cover bg-origin-border  justify-center h-screen">
             <section class="heroText">
-                <p class="text-6xl ">shelfspace</p>
+                <p class="text-6xl">shelfspace</p>
             </section>
         </section>
     </main>
-    <footer class="foot flex-col justify-center content-center p-0.5">
-        <p class="subFoot text-s">
-            From one bibliophile, to the next.
-        </p>
-        <p class="footText text-xs">
-            &#169 2022 Carralero, Lewis, Roja, Sowa.
-        </p>
-   
+    <footer class="foot p-0.5">
+        <section> 
+            <p class="subFoot text-s">
+                From one bibliophile, to the next.
+            </p>
+            <p class="footText text-xs">
+                &#169 2022 Carralero, Lewis, Roja, Sowa.
+            </p>
+        </section>
     </footer>
 </body>
 <script src="./js/style.js"></script>
