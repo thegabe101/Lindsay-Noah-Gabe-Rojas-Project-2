@@ -19,11 +19,14 @@
     background-color: var(--hover)!important;
     color: black!important;
 } */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
 
 /* navbar */
 .nav {
     overflow: hidden;
-    background-color: gray;
+    background-color: darkslategray;
     position: relative;
 }
 
@@ -31,3 +34,25 @@
 .nav .navLinks {
     display: none;
 }
+
+.nav .burgLinks {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* style hamburg menu */
+.nav a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+.nav .navLinks:hover {
+    background-color: grey;
+    color: black;
+}
+
+
