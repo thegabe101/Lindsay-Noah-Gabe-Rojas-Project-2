@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Book, Catalog } = require("../../models/User");
+const User   = require("../../models/User");
 const haveAuth = require('../../utils/auth');
 
 //route to get ALL users, without password attribute if we just want other user data
@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] }
     })
-        .then(dbUserData => res.json(dbUserData))
+        .then(userData => res.json(userData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -34,12 +34,12 @@ router.get('/:id', (req, res) => {
             }
         ]
     })
-        .then(dbUserData => {
-            if (!dbUserData) {
+        .then(userData => {
+            if (!userData) {
                 res.status(404).json({ message: 'No user matching this id could be found within our database.' });
                 return;
             }
-            res.json(dbUserData);
+            res.json(userData);
         })
         .catch(err => {
             console.log(err);
@@ -55,15 +55,19 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-        .then(dbUserData => {
+        .then(userData => {
             req.session.save(() => {
-                req.session.user_id = dbUserData.id;
-                req.session.username = dbUserData.username;
+                req.session.user_id = userData.id;
+                req.session.username = userData.username;
                 //log session as boolean true- logged in
+                //will refer to this as our session token 
                 req.session.loggedIn = true;
 
-                res.json(dbUserData);
+                res.json(userData);
             });
+        }).catch(err => {
+            console.log(err);
+            res.status(500).json(err); 
         })
 });
 
@@ -74,13 +78,13 @@ router.post('/login', (req, res) => {
         where: {
             email: req.body.email
         }
-    }).then(dbUserData => {
-        if (!dbUserData) {
+    }).then(userData => {
+        if (!userData) {
             res.status(400).json({ message: 'No user with that email address exists in our database.' });
             return;
         }
 
-        const validPassword = dbUserData.checkPassword(req.body.password);
+        const validPassword = userData.checkPassword(req.body.password);
         if (!validPassword) {
             res.status(400).json({ message: 'Sorry, that password is incorrect. Please try again.' });
             return;
@@ -88,11 +92,11 @@ router.post('/login', (req, res) => {
 
         req.session.save(() => {
             // this is where we save the session variables. all we should need to fetch everything else user-based is user id, username, and the logged in token. 
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
+            req.session.user_id = userData.id;
+            req.session.username = userData.username;
             req.session.loggedIn = true;
 
-            res.json({ user: dbUserData, message: 'Logged in successfully.' });
+            res.json({ user: userData, message: 'Logged in successfully.' });
         });
     });
 });
@@ -118,12 +122,12 @@ router.put('/:id', haveAuth, (req, res) => {
             id: req.params.id
         }
     })
-        .then(dbUserData => {
-            if (!dbUserData[0]) {
+        .then(userData => {
+            if (!userData[0]) {
                 res.status(404).json({ message: 'No user found with this id' });
                 return;
             }
-            res.json(dbUserData);
+            res.json(userData);
         })
         .catch(err => {
             console.log(err);
@@ -138,12 +142,12 @@ router.delete('/:id', haveAuth, (req, res) => {
         id: req.params.id
     }
 })
-    .then(dbUserData => {
-        if (!dbUserData) {
+    .then(userData => {
+        if (!userData) {
             res.status(404).json({ message: 'No user matching that id was found in our database.' });
             return;
         }
-        res.json(dbUserData);
+        res.json(userData);
     })
     .catch(err => {
         console.log(err);
@@ -151,4 +155,6 @@ router.delete('/:id', haveAuth, (req, res) => {
     });
 });
 
+
+//exporting router at end should do trick for retrieving route in user data creation
 module.exports = router;
