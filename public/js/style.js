@@ -1,4 +1,5 @@
 
+
 // navbar action
 const navBar = () => {
     let x = document.getElementsByClassName("navLinks");
@@ -9,3 +10,6 @@ const navBar = () => {
     }
 };
 
+document.querySelector(".goLogin").addEventListener("click",e=>{
+    location.href = "/login"
+})
