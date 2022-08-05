@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const User   = require("../../models/User");
 const haveAuth = require('../../utils/auth');
+const bcrypt = require('bcrypt');
 
 //route to get ALL users, without password attribute if we just want other user data
+// /api/users
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method)
     User.findAll({
-        attributes: { exclude: ['password'] }
     })
         .then(userData => res.json(userData))
         .catch(err => {
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
         });
 });
 //route to get a single user by id 
+// api/users/:id
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
@@ -53,7 +55,8 @@ router.post('/', (req, res) => {
         name: req.body.name, 
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        individualHooks: true,
     })
         .then(userData => {
             req.session.save(() => {
@@ -71,7 +74,9 @@ router.post('/', (req, res) => {
         })
 });
 
+//ROUTE IS: api/users/login
 router.post('/login', (req, res) => {
+    console.log("login attempt!", req.body)
     // this will expect input in this format: {email: 'sowag@gmail.com', password: 'password123'}
     User.findOne({
       //finds one user where an email is matching, and if not it returns with a status showing no email address
@@ -84,17 +89,20 @@ router.post('/login', (req, res) => {
             return;
         }
 
-        const validPassword = userData.checkPassword(req.body.password);
-        if (!validPassword) {
+        //can console log passwords here to check debugging
+
+        //compare password to hashed password; if not matching, return error.
+        if (!bcrypt.compareSync(req.body.password, userData.password)) {
             res.status(400).json({ message: 'Sorry, that password is incorrect. Please try again.' });
             return;
         }
 
+        //if matching, save session data.
         req.session.save(() => {
             // this is where we save the session variables. all we should need to fetch everything else user-based is user id, username, and the logged in token. 
             req.session.user_id = userData.id;
             req.session.username = userData.username;
-            req.session.loggedIn = true;
+            // req.session.loggedIn = true;
 
             res.json({ user: userData, message: 'Logged in successfully.' });
         });
@@ -102,6 +110,7 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
+    console.log("logout attempt!", req.body)
     if (req.session.loggedIn) {
       //logging out is simple- all we need to do is destroy the req.session. can send a 404 if something fails 
         req.session.destroy(() => {
