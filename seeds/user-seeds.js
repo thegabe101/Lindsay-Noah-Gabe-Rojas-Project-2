@@ -1,4 +1,4 @@
-const { User } = require('../models/User');
+const User  = require('../models/user');
 
 const userData = [
     {
@@ -9,6 +9,7 @@ const userData = [
     }
   ];
 
-  const seedUsers = () => User.bulkCreate(userData);
+  const seedUsers = () => User.bulkCreate(userData, { individualHooks: true });
 
+  //export our user seed function to be used in mass seeding index
   module.exports = seedUsers;
