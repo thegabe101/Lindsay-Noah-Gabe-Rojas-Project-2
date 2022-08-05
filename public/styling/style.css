@@ -3,38 +3,38 @@
 @tailwind utilities; */
 
 /* navbar */
-/* .nav {
+.nav {
     overflow: hidden;
     background-color: darkslategray;
     position: relative;
 }
 
 /* hiding links inside hamburg */
-/* .nav .navLinks {
+.nav .navLinks {
     display: none;
-} */
+}
 
-/* .nav .burgLinks {
+.nav .burgLinks {
     color: white;
     text-decoration: none;
     display: block;
-} */
+}
 
 /* style hamburg menu */
-/* .nav a.icon {
+.nav a.icon {
     background: black;
     display: block;
     position: absolute;
     right: 0;
     left: 0;
-} */
+} 
 
-/* .nav .navLinks:hover {
+.nav .navLinks:hover {
     background-color: grey;
     color: black;
-} */ 
+}
 
 .firstHome {
-    background-image: url(public\images\background-unsplash.jpg);
+    background-image: url(../images/background-unsplash.jpg);
 }
 

@@ -87,15 +87,18 @@ router.post('/login', (req, res) => {
         if (!userData) {
             res.status(400).json({ message: 'No user with that email address exists in our database.' });
             return;
+        }   else if (!bcrypt.compareSync(req.body.password, userData.password)) {
+            res.status(400).json({ message: 'Sorry, that password is incorrect. Please try again.' });
+            return;
         }
+        else {
+            console.log("User is logged in.")
+        
 
         //can console log passwords here to check debugging
 
         //compare password to hashed password; if not matching, return error.
-        if (!bcrypt.compareSync(req.body.password, userData.password)) {
-            res.status(400).json({ message: 'Sorry, that password is incorrect. Please try again.' });
-            return;
-        }
+
 
         //if matching, save session data.
         req.session.save(() => {
@@ -103,9 +106,12 @@ router.post('/login', (req, res) => {
             req.session.user_id = userData.id;
             req.session.username = userData.username;
             // req.session.loggedIn = true;
+            console.log(userData.id);
+            console.log(userData.username);
 
             res.json({ user: userData, message: 'Logged in successfully.' });
         });
+    };
     });
 });
 
