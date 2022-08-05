@@ -20,3 +20,14 @@
     color: black!important;
 } */
 
+/* navbar */
+.nav {
+    overflow: hidden;
+    background-color: gray;
+    position: relative;
+}
+
+/* hiding links inside hamburg */
+.nav .navLinks {
+    display: none;
+}
