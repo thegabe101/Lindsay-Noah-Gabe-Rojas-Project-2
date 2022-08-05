@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-const mongoose = require('mongoose');
-
-=======
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
@@ -46,4 +42,5 @@ User.init(
         },
     },
 )
->>>>>>> 7b5d5cadf744feba8a73971b6fcd446f1977428a
+
+module.exports = User;
