@@ -32,9 +32,10 @@ router.get('/:id', (req, res) => {
             },
             {
                 model: Book,
-                attributes: ['title', 'author', 'catalog_id', 'isbn_num', 'owned'],
-                through: Catalog,
-                as: 'catalog_books'
+                attributes: ['title', 'author', 'isbn_num', 'owned'],
+                // through: Catalog,
+                //not sure whether we need an alias here or not
+                // as: 'catalog_books'
             }
         ]
     })

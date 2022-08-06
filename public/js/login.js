@@ -2,6 +2,7 @@
 
 document.querySelector("#login-page").addEventListener("submit", e => {
     e.preventDefault();
+    console.log("i haveth beeneth clickethed");
     const userObj = {
         email: document.querySelector("#login-email").value,
         password: document.querySelector("#login-password").value,
@@ -15,7 +16,7 @@ document.querySelector("#login-page").addEventListener("submit", e => {
         }
     }).then(res => {
         if (res.ok) {
-            location.href = "/home"
+            location.href = "/"
         } else {
             alert("You have entered an invalid email or password.")
         }
