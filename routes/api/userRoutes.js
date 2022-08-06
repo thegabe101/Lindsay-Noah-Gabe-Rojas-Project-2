@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User } = require("../../models");
+const { Catalog } = require("../../models");
+const { Book } = require("../../models");
 const haveAuth = require('../../utils/auth');
 const bcrypt = require('bcrypt');
 
@@ -26,13 +28,14 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Catalog,
-                attributes: ['id', 'catalog_name']
+                attributes: ['id', 'name', 'genre_type']
             },
             {
                 model: Book,
-                attributes: ['title', 'author', 'catalog_id', 'isbn_num', 'owned'],
-                through: Catalog,
-                as: 'catalog_books'
+                attributes: ['title', 'author', 'isbn_num', 'owned'],
+                // through: Catalog,
+                //not sure whether we need an alias here or not
+                // as: 'catalog_books'
             }
         ]
     })

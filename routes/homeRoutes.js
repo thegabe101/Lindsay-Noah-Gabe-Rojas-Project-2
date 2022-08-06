@@ -3,7 +3,7 @@
 const router = require('express').Router();
 // const sequelize = require('../config/connection');
 const { User } = require('../models');
-// const Book = require('../models/Book'); 
+const { Book } = require('../models');
 const { Catalog } = require('../models');
 
 //front end routes to the login and home pages. 
@@ -37,7 +37,7 @@ router.get('/home', (req, res) => {
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/home');
+        res.redirect('/');
         return;
     }
 
@@ -50,7 +50,7 @@ router.get('/signup', (req, res) => {
         return;
     }
 
-    res.render('signup');
+    res.render('home');
 });
 
 
