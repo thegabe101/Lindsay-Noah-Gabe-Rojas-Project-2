@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-const mongoose = require('mongoose');
-=======
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -40,4 +37,3 @@ Catalog.init(
 );
 
 module.exports = Catalog;
->>>>>>> a0a1261d09a1b0c26f57a4842860769a528616ea
