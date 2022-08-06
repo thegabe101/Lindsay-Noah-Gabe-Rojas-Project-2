@@ -14,17 +14,18 @@
         <a href="#" class="active justify-self-start lg:pl-5 hidden">Logo</a>
         <!-- nav links below -->
         <section class="navLinks lg:space-x-4 lg:pr-5">
-        {{#if logged_in}}
+        {{!-- {{#if logged_in}} --}}
             <a href="/home" class="burgLinks hover:text-neutral-50 goLogout">Logout</a>
-            <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a>
-            <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a>
-        {{else}}
+            {{!-- <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a> --}}
+        {{!-- {{else}} --}}
             <a href="/login" class="burgLinks hover:text-neutral-50 goLogin">Login</a>
             <a href="/signup" class="burgLinks hover:text-neutral-50 goSignup">Sign Up</a>
-            <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a>
+            {{!-- <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a> --}}
             <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a>
-        {{/if}}
+        {{!-- {{/if}} --}}
          <section class="otherNav lg:space-x-4 lg:pr-5">
+            <a href="/home" class="hover:text-neutral-50 goLogout">Logout</a>
             <a href="/login" class="hover:text-neutral-50 goLogin">Login</a>
             <a href="/signup" class="hover:text-neutral-50 goSignup">Sign Up</a>
             <a href="#" class="hover:text-neutral-50 goAbout">About</a>
