@@ -38,8 +38,10 @@
     background-color: grey;
     color: black;
 }
-
-
+/* for horizontal menu items */
+.otherNav {
+    display:block;
+}
 
 /* hero image styling */
 .hero {
@@ -55,12 +57,11 @@
 
 .foot {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    text-align: center;
 }
-.otherNav {
-    display:block;
-}
+
 
 @media only screen and (max-width: 760px) {
     .otherNav {
