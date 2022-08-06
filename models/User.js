@@ -11,9 +11,9 @@ class User extends Model {
 User.init(
     {
         id: {
-            type: DataTypes.INTEGER, 
+            type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true, 
+            primaryKey: true,
             autoIncrement: true,
         },
         name: {
@@ -21,14 +21,14 @@ User.init(
             allowNull: false,
         },
         username: {
-            type: DataTypes.STRING, 
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true, 
+            unique: true,
             validate: {
                 isEmail: true,
             },
@@ -41,6 +41,24 @@ User.init(
             },
         },
     },
-)
+
+{
+    hooks: {
+        beforeCreate: async (newUserData) => {
+          newUserData.password = await bcrypt.hash(newUserData.password, 10);
+          return newUserData;
+        },
+        beforeUpdate: async (updatedUserData) => {
+          updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+          return updatedUserData;
+        },
+      },
+      sequelize,
+      timestamps: false,
+      freezeTableName: true,
+      underscored: true,
+      modelName: 'User',
+}
+);
 
 module.exports = User;
