@@ -8,10 +8,13 @@
     --light: #ffbad4;
 }
 
+header {
+    background-color: var(--light);    
+}
 /* navbar */
 .nav {
     overflow: hidden;
-    background-color: darkslategray;
+    /* background-color: darkslategray; */
     position: relative;
 }
 
@@ -55,7 +58,17 @@
     justify-content: center;
 }
 
+/* .learnBtn {
+    m;
+} */
+
+.learnMore {
+    background-color: var(--light);
+}
+
+/* footer obvs */
 .foot {
+    background-color: var(--light);
     display: flex;
     flex-direction: column;
     justify-content: center;
