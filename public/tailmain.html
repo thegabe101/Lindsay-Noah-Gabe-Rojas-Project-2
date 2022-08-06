@@ -45,16 +45,17 @@
         </section> -->
         <!-- login info -->
         <section class="loginPage">
-            <form class="loginForm" id="login-page" action="/">
-                <label for="email">Email</label>
+            <form class="loginForm" id="login-page">
+                <label for="login-email">Email</label>
                 <br>
-                <input type="text" id="login-email" name="login-email">
+                <input type="text" id="login-email" name="login-email" class="border rounded-md">
                 <br>
-                <label for="password">Password</label>
+                <label for="login-password">Password</label>
                 <br>
-                <input type="text" id="login-password" name="login-password">
+                <input type="text" id="login-password" name="login-password" class="border rounded-md">
                 <br><br>
-                <input type="submit" value="Login">
+                <!-- <input type="submit" value="Login"> if we do this way, needs an action label in the form field-->
+                <button class="loginBtn border rounded-md">Login</button>
             </form>
 
         </section>
