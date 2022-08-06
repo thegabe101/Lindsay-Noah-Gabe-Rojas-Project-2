@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User } = require("../../models");
+const { Catalog } = require("../../models");
+const { Book } = require("../../models");
 const haveAuth = require('../../utils/auth');
 const bcrypt = require('bcrypt');
 
@@ -26,7 +28,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Catalog,
-                attributes: ['id', 'catalog_name']
+                attributes: ['id', 'name', 'genre_type']
             },
             {
                 model: Book,
