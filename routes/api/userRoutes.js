@@ -120,6 +120,7 @@ router.post('/login', (req, res) => {
 
 router.post('/logout', (req, res) => {
     console.log("logout attempt!", req.body)
+    console.log(req.session.loggedIn)
     if (req.session.loggedIn) {
         //logging out is simple- all we need to do is destroy the req.session. can send a 404 if something fails 
         req.session.destroy(() => {
