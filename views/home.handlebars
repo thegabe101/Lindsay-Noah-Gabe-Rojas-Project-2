@@ -1,20 +1,15 @@
-<h1>Our Homepage</h1>
-<h2>Our data(test)</h2>
-{{!-- <ul>{{#each booklist}}
-    <li>{{name}}:{{description}}</li>
-</ul> --}}
-<form action="logout" id="home-page">
-    <button id="logout-button">Logout</button>
-</form>
-
 {{!-- this is the big center banner:) --}}
-<section class="hero flex bg-fixed bg-center bg-cover bg-origin-border  justify-center content-center h-screen">
-    <section class="heroText">
-        <p class="text-6xl ">shelfspace</p>
+{{!-- where users are initially taken when they open the page, not logged in --}}
+    <section class="hero flex bg-fixed bg-center bg-cover bg-origin-border  justify-center h-screen">
+            <section class="heroText">
+                <p class="text-6xl">shelfspace</p>
+                <button type="button" class="learnBtn mt-10">
+                    <a href="/about" class="learnMore border rounded border-hidden shadow-md shadow-slate-700 p-2 text-large hover:bg-zinc-50 hover:border-solid">Learn More</a>
+                </button>
+            </section>
+
     </section>
-</section>
-
-
+0
 
 <script src="/js/login.js"></script>
 <script src="/js/logout.js"></script>

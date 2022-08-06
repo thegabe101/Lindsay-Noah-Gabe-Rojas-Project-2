@@ -63,9 +63,13 @@ header {
 } */
 
 .learnMore {
+    
     background-color: var(--light);
 }
 
+.learnMore:hover {
+    border-color: var(--light);
+}
 /* footer obvs */
 .foot {
     background-color: var(--light);
