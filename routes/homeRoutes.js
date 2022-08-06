@@ -35,6 +35,7 @@ router.get('/home', (req, res) => {
     })
 });
 
+// login path
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
@@ -44,14 +45,18 @@ router.get('/login', (req, res) => {
     res.render('login', { loggedIn: false });
 });
 
+// signup path
 router.get('/signup', (req, res) => {
     if (!req.session.user_id) {
         res.redirect('/signup');
         return;
     }
 
-    res.render('home');
+    res.render('signup');
 });
 
+// router.get('/signup', (req, res) => {
+//     res.render('signup');
+// });
 
 module.exports = router;
