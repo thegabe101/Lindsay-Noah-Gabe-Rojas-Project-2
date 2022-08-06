@@ -1,8 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-<<<<<<< HEAD
-=======
 class Catalog extends Model {};
 
 Catalog.init(
@@ -39,4 +37,3 @@ Catalog.init(
 );
 
 module.exports = Catalog;
->>>>>>> dev
