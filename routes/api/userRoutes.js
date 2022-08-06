@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const User   = require("../../models/User");
+const { User } = require("../../models");
+const { Catalog } = require("../../models");
+const { Book } = require("../../models");
 const haveAuth = require('../../utils/auth');
 const bcrypt = require('bcrypt');
 
@@ -26,13 +28,14 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Catalog,
-                attributes: ['id', 'catalog_name']
+                attributes: ['id', 'name', 'genre_type']
             },
             {
                 model: Book,
-                attributes: ['title', 'author', 'catalog_id', 'isbn_num', 'owned'],
-                through: Catalog,
-                as: 'catalog_books'
+                attributes: ['title', 'author', 'isbn_num', 'owned'],
+                // through: Catalog,
+                //not sure whether we need an alias here or not
+                // as: 'catalog_books'
             }
         ]
     })
@@ -52,7 +55,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     // this will expect input in this format: {name: 'Gabe', username: 'thegabe101', email: 'sowag@gmail.com', password: 'password123'}
     User.create({
-        name: req.body.name, 
+        // name: req.body.name,
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
@@ -70,7 +73,7 @@ router.post('/', (req, res) => {
             });
         }).catch(err => {
             console.log(err);
-            res.status(500).json(err); 
+            res.status(500).json(err);
         })
 });
 
@@ -79,7 +82,7 @@ router.post('/login', (req, res) => {
     console.log("login attempt!", req.body)
     // this will expect input in this format: {email: 'sowag@gmail.com', password: 'password123'}
     User.findOne({
-      //finds one user where an email is matching, and if not it returns with a status showing no email address
+        //finds one user where an email is matching, and if not it returns with a status showing no email address
         where: {
             email: req.body.email
         }
@@ -87,38 +90,38 @@ router.post('/login', (req, res) => {
         if (!userData) {
             res.status(400).json({ message: 'No user with that email address exists in our database.' });
             return;
-        }   else if (!bcrypt.compareSync(req.body.password, userData.password)) {
+        } else if (!bcrypt.compareSync(req.body.password, userData.password)) {
             res.status(400).json({ message: 'Sorry, that password is incorrect. Please try again.' });
             return;
         }
         else {
             console.log("User is logged in.")
-        
-
-        //can console log passwords here to check debugging
-
-        //compare password to hashed password; if not matching, return error.
 
 
-        //if matching, save session data.
-        req.session.save(() => {
-            // this is where we save the session variables. all we should need to fetch everything else user-based is user id, username, and the logged in token. 
-            req.session.user_id = userData.id;
-            req.session.username = userData.username;
-            // req.session.loggedIn = true;
-            console.log(userData.id);
-            console.log(userData.username);
+            //can console log passwords here to check debugging
 
-            res.json({ user: userData, message: 'Logged in successfully.' });
-        });
-    };
+            //compare password to hashed password; if not matching, return error.
+
+
+            //if matching, save session data.
+            req.session.save(() => {
+                // this is where we save the session variables. all we should need to fetch everything else user-based is user id, username, and the logged in token. 
+                req.session.user_id = userData.id;
+                req.session.username = userData.username;
+                // req.session.loggedIn = true;
+                console.log(userData.id);
+                console.log(userData.username);
+
+                res.json({ user: userData, message: 'Logged in successfully.' });
+            });
+        };
     });
 });
 
 router.post('/logout', (req, res) => {
     console.log("logout attempt!", req.body)
     if (req.session.loggedIn) {
-      //logging out is simple- all we need to do is destroy the req.session. can send a 404 if something fails 
+        //logging out is simple- all we need to do is destroy the req.session. can send a 404 if something fails 
         req.session.destroy(() => {
             res.status(204).end();
         });
@@ -153,21 +156,21 @@ router.put('/:id', haveAuth, (req, res) => {
 //deleting a user will involve a similar process to logout except we require an authorization, which we will grab from our util folder
 router.delete('/:id', haveAuth, (req, res) => {
     User.destroy({
-    where: {
-        id: req.params.id
-    }
-})
-    .then(userData => {
-        if (!userData) {
-            res.status(404).json({ message: 'No user matching that id was found in our database.' });
-            return;
+        where: {
+            id: req.params.id
         }
-        res.json(userData);
     })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then(userData => {
+            if (!userData) {
+                res.status(404).json({ message: 'No user matching that id was found in our database.' });
+                return;
+            }
+            res.json(userData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 

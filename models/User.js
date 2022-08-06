@@ -11,24 +11,24 @@ class User extends Model {
 User.init(
     {
         id: {
-            type: DataTypes.INTEGER, 
+            type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true, 
+            primaryKey: true,
             autoIncrement: true,
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        // name: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        // },
         username: {
-            type: DataTypes.STRING, 
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true, 
+            unique: true,
             validate: {
                 isEmail: true,
             },
@@ -45,19 +45,19 @@ User.init(
         //this is where we hash our password, salt level 10
         hooks: {
             beforeCreate: async (newUserData) => {
-              newUserData.password = await bcrypt.hash(newUserData.password, 10);
-              return newUserData;
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);
+                return newUserData;
             },
             beforeUpdate: async (updatedUserData) => {
-              updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-              return updatedUserData;
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                return updatedUserData;
             },
-          },
-          sequelize,
-          timestamps: false,
-          freezeTableName: true,
-          underscored: true,
-          modelName: 'user',
+        },
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'user',
     }
 );
 
