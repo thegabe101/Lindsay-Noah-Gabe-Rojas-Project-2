@@ -8,37 +8,72 @@
     <title>Shelf Space</title>
 </head>
 <body>
-    <header class="nav flex justify-end p-5 bg-[#ffba66]">
+    <header class="nav flex justify-end p-5">
         <!-- where we will place our logo -->
         <!-- hid the logo for now -->
         <a href="#" class="active justify-self-start lg:pl-5 hidden">Logo</a>
         <!-- nav links below -->
-        <section class="navLinks lg:space-x-4 lg:pr-5">
-            <a href="#" class="burgLinks">Login</a>
-            <a href="#" class="burgLinks">Sign Up</a>
-            <a href="#" class="burgLinks">About</a>
-            <a href="#" class="burgLinks">Contact</a>
+        <section class="navLinks lg:space-x-8 pr-5 pl-5">
+            <a href="#" class="burgLinks hover:text-neutral-50 goLogin">Login</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goSignup">Sign Up</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a>
+        </section>
+        <section class="otherNav lg:space-x-8 pr-5 pl-5 ml">
+            <a href="#" class="hover:text-neutral-50 goLogin">Login</a>
+            <a href="#" class="hover:text-neutral-50 goSignup">Sign Up</a>
+            <a href="#" class="hover:text-neutral-50 goAbout">About</a>
+            <a href="#" class="hover:text-neutral-50 goContact">Contact</a>
         </section>
         <!-- pop open hamburg -->
-        <a href="javascript:void(0);" class="icon lg:hidden">
+        <a href="javascript:void(0);" class="icon lg:hidden md:hidden" onclick="navBar()">
             <i class="fa-solid fa-bars"></i>
         </a>
     </header>
 
-    <!-- stuff for front page, probably will be on a different handlebars -->
+   
     <main>
-        <hero class="firstHome">
+        <!-- below is the home while logged out -->
+        <!-- <section class="hero flex bg-fixed bg-center bg-cover bg-origin-border  justify-center h-screen">
+            <section class="heroText">
+                <p class="text-6xl">shelfspace</p>
+                <button type="button" class="learnBtn mt-10">
+                    <a href="/about" class="learnMore border rounded border-hidden shadow-md shadow-slate-700 p-2 text-large hover:bg-zinc-50 hover:border-solid">Learn More</a>
+                </button>
+            </section>
 
-        </hero>
+        </section> -->
+        <!-- login info -->
+        <section class="loginPage">
+            <form class="loginForm" id="login-page">
+                <label for="login-email">Email</label>
+                <br>
+                <input type="text" id="login-email" name="login-email" class="border rounded-md">
+                <br>
+                <label for="login-password">Password</label>
+                <br>
+                <input type="text" id="login-password" name="login-password" class="border rounded-md">
+                <br><br>
+                <!-- <input type="submit" value="Login"> if we do this way, needs an action label in the form field-->
+                <button class="loginBtn border rounded-md">Login</button>
+            </form>
+
+        </section>
+         
     </main>
-    <footer class="foot flex justify-center p-0.5">
-        <p class="footText text-sm">
-            &#169 2022 Carralero, Lewis, Roja, Sowa. From one bibliophile, to the next.
-        </p>
+    <footer class="foot p-5">
+        <section> 
+            <p class="subFoot text-s">
+                From one bibliophile, to the next.
+            </p>
+            <p class="footText text-xs">
+                &#169 2022 Carralero, Lewis, Rojas, Sowa.
+            </p>
+        </section>
     </footer>
 </body>
-<!-- <script src="/public/js/style.js"></script> -->
+<script src="./js/style.js"></script>
+<script src='../public/js/login.js'></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://kit.fontawesome.com/997d2a4a51.js" crossorigin="anonymous"></script>
-
 </html>

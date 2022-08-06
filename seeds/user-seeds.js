@@ -1,14 +1,15 @@
-const { User } = require('../models/User');
+const User = require('../models/user');
 
 const userData = [
-    {
-      "name": "Gabe",
-      "username": "thegabe101",
-      "email": "sowa332@gmail.com",
-      "password": "password"
-    }
-  ];
+  {
+    // "name": "Gabe",
+    "username": "thegabe101",
+    "email": "sowa332@gmail.com",
+    "password": "password"
+  }
+];
 
-  const seedUsers = () => User.bulkCreate(userData);
+const seedUsers = () => User.bulkCreate(userData, { individualHooks: true });
 
-  module.exports = seedUsers;
+//export our user seed function to be used in mass seeding index
+module.exports = seedUsers;

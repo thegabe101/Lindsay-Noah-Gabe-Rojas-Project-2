@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-const mongoose = require('mongoose');
-=======
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Catalog extends Model {};
+class Book extends Model {};
 
-Catalog.init(
+Book.init(
     {
         id: {
             type: DataTypes.INTEGER, 
@@ -14,14 +11,28 @@ Catalog.init(
             primaryKey: true, 
             autoIncrement: true,
         },
-        name: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        genre_type: {
+        author: {
             type: DataTypes.STRING, 
             allowNull: false,
         },
+        isbn_num: { 
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        owned: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+        catalog_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'catalog',
+              key: 'id',
+            },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -30,14 +41,14 @@ Catalog.init(
             }
         }
         },
+    },
     {
           sequelize,
           timestamps: false,
           freezeTableName: true,
           underscored: true,
-          modelName: 'catalog',
+          modelName: 'book',
     }
 );
 
-module.exports = Catalog;
->>>>>>> a0a1261d09a1b0c26f57a4842860769a528616ea
+module.exports = Book;

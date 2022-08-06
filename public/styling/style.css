@@ -1,11 +1,20 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
 
+
+:root {
+    --primary:#ff828f;
+    --background:#ffd166;
+    --secondary: #ffba66;
+    --accent: #ff7497;
+    --light: #ffbad4;
+}
+
+header {
+    background-color: var(--light);    
+}
 /* navbar */
 .nav {
     overflow: hidden;
-    background-color: darkslategray;
+    /* background-color: darkslategray; */
     position: relative;
 }
 
@@ -22,19 +31,57 @@
 
 /* style hamburg menu */
 .nav a.icon {
-    background: black;
-    display: block;
+    /* display: block; */
     position: absolute;
-    right: 0;
-    left: 0;
+    right: 10px;
+    top: 10px;
 } 
 
 .nav .navLinks:hover {
     background-color: grey;
     color: black;
 }
+/* for horizontal menu items */
+.otherNav {
+    display:block;
+}
 
-.firstHome {
+/* hero image styling */
+.hero {
     background-image: url(../images/background-unsplash.jpg);
 }
 
+
+.heroText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* .learnBtn {
+    m;
+} */
+
+.learnMore {
+    
+    background-color: var(--light);
+}
+
+.learnMore:hover {
+    border-color: var(--light);
+}
+/* footer obvs */
+.foot {
+    background-color: var(--light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 760px) {
+    .otherNav {
+        display:none
+    }
+}
