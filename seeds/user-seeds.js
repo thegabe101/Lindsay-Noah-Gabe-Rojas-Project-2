@@ -1,5 +1,6 @@
-const User = require('../models/user');
+const User = require('../models/User');
 
+//GMS no longer using name in model
 const userData = [
   {
     // "name": "Gabe",
@@ -11,5 +12,5 @@ const userData = [
 
 const seedUsers = () => User.bulkCreate(userData, { individualHooks: true });
 
-//export our user seed function to be used in mass seeding index
+//GMS export our user seed function to be used in mass seeding index
 module.exports = seedUsers;
