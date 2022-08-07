@@ -7,8 +7,9 @@ const { Book } = require("../../models");
 const haveAuth = require('../../utils/auth');
 // const bcrypt = require('bcrypt');
 
-//route to get ALL users, without password attribute if we just want other user data
-// /api/users
+//GMS route to get ALL users, without password attribute if we just want other user data
+// route = /api/users
+
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method)
     User.findAll({
@@ -19,8 +20,10 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         });
 });
-//route to get a single user by id 
-// api/users/:id
+
+//GMS route to get a single user by id- we also want to grab their catalog and book data while were at it
+// route = api/users/:id
+
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
@@ -36,12 +39,13 @@ router.get('/:id', (req, res) => {
                 model: Book,
                 attributes: ['title', 'author', 'isbn_num', 'owned'],
                 // through: Catalog,
-                //not sure whether we need an alias here or not
+                //GMS not sure whether we need an alias here or not
                 // as: 'catalog_books'
             }
         ]
     })
         .then(userData => {
+            //GMS if no user data is returned by id
             if (!userData) {
                 res.status(404).json({ message: 'No user matching this id could be found within our database.' });
                 return;
@@ -54,6 +58,8 @@ router.get('/:id', (req, res) => {
         });
 });
 
+
+//GMS this was a model route for signup in try form. i found a way to get it working without
 // router.post("/signup", async (req, res) => {
 //     try {
 //         const newUser = await User.create({
@@ -78,32 +84,33 @@ router.get('/:id', (req, res) => {
 //     }
 // });
 
+//GMS FRONT END ROUTE is /login. this backend route is not relevant for any modeling on live server
 router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { email: req.body.email } });
-
-        if (!userData) {
+        //GMS I don't believe there is a need to make this an async/await function here, but after having trouble with other login routes this one seems to be working. 
+        const existingUserData = await User.findOne({ where: { email: req.body.email } });
+        //GMS if no found user exists where the params match the existing id database, inform front end user that something is not matching. Not sure how we could tell them WHICH is not matching
+        if (!existingUserData) {
             res
                 .status(400)
                 .json({ message: 'Incorrect email or password, please try again' });
             return;
         }
-
-        const validPassword = await userData.checkPassword(req.body.password);
-
+        //GMS because the existing userdata has been fetched and that includes password, we can form a variable for that req.body.password data and check to see whether it is attached or not
+        const validPassword = await existingUserData.checkPassword(req.body.password);
         if (!validPassword) {
             res
                 .status(400)
                 .json({ message: 'Incorrect email or password, please try again' });
             return;
         }
-
+        //GMS once we log in we certainly want to save some properties to session. we can simply attach the existing user data id, then we record a boolean of true that this id is logged in
         req.session.save(() => {
-            req.session.user_id = userData.id;
+            req.session.user_id = existingUserData.id;
             req.session.logged_in = true;
-            console.log(userData.id);
+            console.log(existingUserData.id);
             console.log(req.session.logged_in);
-            res.json({ user: userData, message: 'User successfully logged in.' });
+            res.json({ user: existingUserData, message: 'User successfully logged in.' });
         });
 
     } catch (err) {
@@ -111,6 +118,8 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+//!!! Please ignore. Want to leave broken routes in for studying purposes so I can look back later to see what I was thinking/where I went wrong. 
 
 // router.post("/login", async (req, res) => {
 //     if (req.session.user) {
@@ -172,11 +181,14 @@ router.post('/login', async (req, res) => {
 //         })
 // });
 
+//GMS BACKEND ROUTE IS /api/users/signup
 router.post('/signup', async (req, res) => {
     try {
+        //GMS declare a new user variable and wait for the body response, which will include all attributes of the user model
+        //GMS signup logic data being record in the public script
         const newUser = await User.create(req.body);
 
-
+        //GMS this is where we save the session data for a new user. By creating a variable possessing the entire body of the user, we can simplify our code a bit and just take those attributes from said user in setting the session
         req.session.save(() => {
             req.session.user_id = newUser.id,
                 req.session.email = newUser.email,
@@ -184,6 +196,7 @@ router.post('/signup', async (req, res) => {
                 req.session.password = newUser.password,
                 req.session.logged_in = true;
 
+            //GMS respond status 200 with the new user data, as well as set the session. front end route will direct us to the homepage afterwards
             res.status(200).json(newUser);
         });
     } catch (err) {
@@ -212,12 +225,12 @@ router.post('/signup', async (req, res) => {
 //             console.log("User is logged in.")
 
 
-//             //can console log passwords here to check debugging
+//             //GMS can console log passwords here to check debugging
 
-//             //compare password to hashed password; if not matching, return error.
+//             //GMS compare password to hashed password; if not matching, return error.
 
 
-//             //if matching, save session data.
+//             //GMS if matching, save session data.
 //             req.session.save(() => {
 //                 // this is where we save the session variables. all we should need to fetch everything else user-based is user id, username, and the logged in token. 
 //                 req.session.user_id = userData.id;
@@ -233,11 +246,13 @@ router.post('/signup', async (req, res) => {
 //     });
 // });
 
+//GMS no need for a front end route here; login banner will simply route directly to our session destroy 
 router.post('/logout', (req, res) => {
+    //GMS lets check to make sure we have these credentials before we log a ghost out
     console.log("logout attempt!", req.body.user_id)
     console.log(req.session.logged_in)
     if (req.session.logged_in) {
-        //logging out is simple- all we need to do is destroy the req.session. can send a 404 if something fails 
+        //GMS logging out is simple- all we need to do is destroy the req.session. can send a 404 if something fails 
         req.session.destroy(() => {
             res.status(204).end();
         });
@@ -262,8 +277,10 @@ router.post('/logout', (req, res) => {
 // });
 
 
+
+//TODO: GMS Develop front end for put route to make sure it is functional
 router.put('/:id', haveAuth, (req, res) => {
-    // expects {name: 'Gabe', username: 'thegabe101', email: 'sowag@gmail.com', password: 'password123'}
+    //GMS expects {name: 'Gabe', username: 'thegabe101', email: 'sowag@gmail.com', password: 'password123'}
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -283,18 +300,21 @@ router.put('/:id', haveAuth, (req, res) => {
         });
 });
 
-//deleting a user will involve a similar process to logout except we require an authorization, which we will grab from our util folder
+//GMS deleting a user will involve a similar process to logout except we require an authorization, which we will grab from our util folder
 router.delete('/:id', haveAuth, (req, res) => {
+    //GMS where the id matches the requested parameters
     User.destroy({
         where: {
             id: req.params.id
         }
     })
+        //GMS if we dont return anything, we note the error 
         .then(userData => {
             if (!userData) {
                 res.status(404).json({ message: 'No user matching that id was found in our database.' });
                 return;
             }
+            //GMS if we do, we destroy userData matching a user with that id parameter
             res.json(userData);
         })
         .catch(err => {
@@ -304,5 +324,5 @@ router.delete('/:id', haveAuth, (req, res) => {
 });
 
 
-//exporting router at end should do trick for retrieving route in user data creation
+//GMS exporting router at end should do trick for retrieving route in user data creation
 module.exports = router;
