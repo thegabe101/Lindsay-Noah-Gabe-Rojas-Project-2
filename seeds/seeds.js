@@ -1,5 +1,5 @@
 const seedUsers = require('./user-seeds');
-const seedBooks = require('./book-seeds').default;
+const seedBooks = require('./book-seeds');
 const seedCatalogs = require('./catalog-seeds');
 
 const sequelize = require('../config/connection');
