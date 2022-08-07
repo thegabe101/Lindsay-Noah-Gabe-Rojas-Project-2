@@ -1,9 +1,11 @@
+//ALL ROUTES WORKING! NO TOUCHY ASK GABE
+
 const router = require('express').Router();
 const { User } = require("../../models");
 const { Catalog } = require("../../models");
 const { Book } = require("../../models");
 const haveAuth = require('../../utils/auth');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 //route to get ALL users, without password attribute if we just want other user data
 // /api/users
@@ -76,28 +78,62 @@ router.get('/:id', (req, res) => {
 //     }
 // });
 
-router.post("/login", async (req, res) => {
-    if (req.session.user) {
-        return res.redirect("home")
-    }
-    const retrievedUser = await User.findOne({
-        where: {
-            email: req.body.email
+router.post('/login', async (req, res) => {
+    try {
+        const userData = await User.findOne({ where: { email: req.body.email } });
+
+        if (!userData) {
+            res
+                .status(400)
+                .json({ message: 'Incorrect email or password, please try again' });
+            return;
         }
-    }
-    )
-    if (!retrievedUser) {
-        return res.status(401).json({ msg: "no matching user in database" })
-    } else if (!bcrypt.compareSync(req.body.password, retrievedUser.password)) {
-        res.status(400).json({ message: 'Sorry, that password is incorrect. Please try again.' });
-        return;
-    } else {
-        console.log("user is logged in")
+
+        const validPassword = await userData.checkPassword(req.body.password);
+
+        if (!validPassword) {
+            res
+                .status(400)
+                .json({ message: 'Incorrect email or password, please try again' });
+            return;
+        }
+
         req.session.save(() => {
-            res.json({ user: retrievedUser, msg: "logged in successfully" })
-        })
+            req.session.user_id = userData.id;
+            req.session.logged_in = true;
+            console.log(userData.id);
+            console.log(req.session.logged_in);
+            res.json({ user: userData, message: 'User successfully logged in.' });
+        });
+
+    } catch (err) {
+        res.status(400).json(err);
     }
-})
+});
+
+
+// router.post("/login", async (req, res) => {
+//     if (req.session.user) {
+//         return res.redirect("home")
+//     }
+//     const retrievedUser = await User.findOne({
+//         where: {
+//             email: req.body.email
+//         }
+//     }
+//     )
+//     if (!retrievedUser) {
+//         return res.status(401).json({ msg: "no matching user in database" })
+//     } else if (!bcrypt.compareSync(req.body.password, retrievedUser.password)) {
+//         res.status(400).json({ message: 'Sorry, that password is incorrect. Please try again.' });
+//         return;
+//     } else {
+//         console.log("user is logged in")
+//         req.session.save(() => {
+//             res.json({ user: retrievedUser, msg: "logged in successfully" })
+//         })
+//     }
+// })
 
 // router.post('/signup', (req, res) => {
 //     // this will expect input in this format: {name: 'Gabe', username: 'thegabe101', email: 'sowag@gmail.com', password: 'password123'}
@@ -140,10 +176,13 @@ router.post('/signup', async (req, res) => {
     try {
         const newUser = await User.create(req.body);
 
+
         req.session.save(() => {
-            req.session.user_id = newUser.id;
-            req.session.username = newUser.username;
-            req.session.logged_in = true;
+            req.session.user_id = newUser.id,
+                req.session.email = newUser.email,
+                req.session.username = newUser.username,
+                req.session.password = newUser.password,
+                req.session.logged_in = true;
 
             res.status(200).json(newUser);
         });
@@ -195,7 +234,7 @@ router.post('/signup', async (req, res) => {
 // });
 
 router.post('/logout', (req, res) => {
-    console.log("logout attempt!", req.body)
+    console.log("logout attempt!", req.body.user_id)
     console.log(req.session.logged_in)
     if (req.session.logged_in) {
         //logging out is simple- all we need to do is destroy the req.session. can send a 404 if something fails 

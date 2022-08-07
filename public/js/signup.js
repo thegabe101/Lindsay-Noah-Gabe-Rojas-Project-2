@@ -5,7 +5,7 @@ document.querySelector("#signup-page").addEventListener("submit", e => {
         username: document.querySelector("#login-username-signup").value,
         password: document.querySelector("#login-password-signup").value,
     }
-    fetch("/api/users", {
+    fetch("/api/users/signup", {
         method: "POST",
         body: JSON.stringify(signupObj),
         headers: {
@@ -14,7 +14,7 @@ document.querySelector("#signup-page").addEventListener("submit", e => {
     }).then(res => {
         console.log('hello')
         if (res.ok) {
-            location.href = "/login"
+            location.href = "/home"
         } else {
             alert("You are not logged in!")
         }
