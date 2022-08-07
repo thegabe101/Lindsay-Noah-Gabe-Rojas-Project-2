@@ -20,6 +20,8 @@ router.get("/", (req, res) => {
     })
 })
 
+
+
 router.get('/home', (req, res) => {
     if (!req.session.user_id) {
         res.redirect('/login');
