@@ -1,8 +1,17 @@
         <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
             <section class="catalogs p-2 m-5 w-full">
                 <ul class="catList w-full">
-                    <li><a href="#" class="libraryFull border rounded-md p-5 m-5 w-full">`${username}`'s Library</a></li>
+                    <li><a href="#" class="libraryFull border rounded-md p-3 m-5 w-full">`${username}`'s Library</a></li>
                     <!-- this would be where new LI's are inserted upon the creation of new catalogs -->
                 </ul>
+            </section>
+            <section class="createCat">
+                <form>
+                    <label for="catName">Catalog name</label>
+                    <br>
+                    <input type="text" id="catName" name="catName" class="newCatName border rounded-md p-1">
+                    <br><br>
+                    <button class="newCat">Save Catalog</button>
+                </form>
             </section>
         </section>

@@ -12,6 +12,8 @@ const navBar = () => {
     }
 };
 
-// document.querySelector(".goLogin").addEventListener("click",e=>{
-//     location.href = "/login"
-// })
+
+// upload avatar
+const uploadImage = () => {
+    const data = new profileData 
+}
