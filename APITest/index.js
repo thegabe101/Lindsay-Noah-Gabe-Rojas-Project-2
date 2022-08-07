@@ -70,7 +70,6 @@ function getBooks(){
       }
     }
   });
-=======
 function getBooks() {
   document.getElementById('output').innerHTML = "";
   fetch("http://openlibrary.org/search.json?q=" + document.getElementById("input").value)
@@ -82,5 +81,5 @@ function getBooks() {
       //GMS console log to get our object
       console.log(response);
     });
->>>>>>> dev
+ dev
 }
