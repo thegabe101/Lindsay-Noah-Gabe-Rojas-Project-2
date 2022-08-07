@@ -16,29 +16,22 @@
         {{#if logged_in}}
         <section class="navLinks lg:space-x-8 pr-5 pl-5">
             <a href="/login" class="burgLinks hover:text-neutral-50 goLogout">Logout</a>
-            {{!-- <a href="/login" class="burgLinks hover:text-neutral-50 goLogin">Login</a>
-            <a href="/signup" class="burgLinks hover:text-neutral-50 goSignup">Sign Up</a> --}}
-            {{!-- <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a> --}}
             <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a>
+            
         </section>
         <section class="otherNav lg:space-x-8 pr-5 pl-5 ml">
             <!--GMS our if elses are working, great job!-->
             <a href="/login" class="hover:text-neutral-50 goLogout" id="logout-button">Logout</a>
-            {{!-- <a href="/login" class="hover:text-neutral-50 goLogin">Login</a>
-            <a href="/signup" class="hover:text-neutral-50 goSignup">Sign Up</a> --}}
-            {{!-- <a href="#" class="hover:text-neutral-50 goAbout">About</a> --}}
             <a href="#" class="hover:text-neutral-50 goContact">Contact</a>
         </section>
         {{else}}
          <section class="navLinks lg:space-x-8 pr-5 pl-5">
-            {{!-- <a href="/home" class="burgLinks hover:text-neutral-50 goLogout">Logout</a> --}}
             <a href="/login" class="burgLinks hover:text-neutral-50 goLogin">Login</a>
-            {{!-- <a href="/signup" class="burgLinks hover:text-neutral-50 goSignup" id="signup=page">Sign Up</a> --}}
+            <a href="/signup" class="burgLinks hover:text-neutral-50 goSignup" id="signup=page">Sign Up</a>
             <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a>
             <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a>
         </section>
         <section class="otherNav lg:space-x-8 pr-5 pl-5 ml">
-            <a href="/login" class="hover:text-neutral-50 goLogout">Logout</a>
             <a href="/login" class="hover:text-neutral-50 goLogin">Login</a>
             <a href="/signup" class="hover:text-neutral-50 goSignup">Sign Up</a>
             <a href="#" class="hover:text-neutral-50 goAbout">About</a>

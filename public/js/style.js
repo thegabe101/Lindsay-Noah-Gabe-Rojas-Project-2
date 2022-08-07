@@ -19,6 +19,8 @@ img.addEventListener("error", function(event) {
     event.onerror = null
 });
 
+// liking a book
+
 // upload avatar
 // const uploadImage = () => {
 //     const data = new profileData 
