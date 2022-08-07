@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
             'name',
             'genre_type'
         ],
-        order: [['created_at', 'DESC']],
+        // order: [['created_at', 'DESC']],
         include: [
             //GMS we will attach user to book after including the book model that is possessed by the catalogs
             {
