@@ -34,15 +34,53 @@
 
 //inspect(markdown, 'md') 
 
+// function getBooks() {
+//   document.getElementById('output').innerHTML = "";
+//   fetch("http://openlibrary.org/search.json?q=" + document.getElementById("input").value)
+//     .then(a => a.json())
+//     .then(response => {
+//       for (var i = 0; i < 5; i++) {
+//         document.getElementById("output").innerHTML += "</h2>" + response.docs[i].author_name[0] + "<br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
+//       }
+//       //GMS console log to get our object
+//       console.log(response);
+//     });
+//    dev
+// }
+
 function getBooks() {
+  var getAuthor = document.getElementById('author').checked
   document.getElementById('output').innerHTML = "";
   fetch("http://openlibrary.org/search.json?q=" + document.getElementById("input").value)
     .then(a => a.json())
     .then(response => {
-      for (var i = 0; i < 5; i++) {
-        document.getElementById("output").innerHTML += "</h2>" + response.docs[i].author_name[0] + "<br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
-      }
-      //GMS console log to get our object
       console.log(response);
-    });
+      let userInput = document.getElementById("input").value.toLowerCase()
+      let bookAmount = 0
+      for (var i = 0; i < response.docs.length; i++) {
+        if (bookAmount < 10) {
+          try {
+            if (getAuthor) {
+              let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
+              if (lowerCaseAuthor.indexOf(userInput) != -1) {
+                //document.getElementById("output").innerHTML+="</h2>"+response.docs[i].author_name[0]+"<br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
+                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
+                bookAmount++
+              }
+            } else {
+              let lowerCaseTitle = response.docs[i].title.toLowerCase().replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
+              console.log(lowerCaseTitle)
+              if (lowerCaseTitle.includes(userInput)) {
+                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
+                bookAmount++
+              }
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        } else {
+          break
+        }
+      }
+    })
 }

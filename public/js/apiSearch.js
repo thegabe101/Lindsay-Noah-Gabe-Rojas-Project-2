@@ -11,6 +11,8 @@
 //   }
 // });
 
+
+//GMS test non final API search. rendering books in combo with test html but have not gone to printing to cats yet
 function searchBook(name) {
   const searchQuery = document.querySelector('#search-book').value;
   var startTime = performance.now();

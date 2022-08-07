@@ -1,4 +1,4 @@
-//FRONTEND ROUTES
+//GMS FRONTEND ROUTES
 
 const router = require('express').Router();
 // const sequelize = require('../config/connection');
@@ -6,7 +6,7 @@ const { User } = require('../models');
 const { Book } = require('../models');
 const { Catalog } = require('../models');
 
-//front end routes to the login and home pages. 
+//GMS front end routes to the login and home pages. 
 
 router.get("/", (req, res) => {
     Catalog.findAll({
@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 })
 
 
-
+//GMS when developed will render homepage and user catalogs 
 router.get('/home', (req, res) => {
     if (!req.session.user_id) {
         res.redirect('/login');
@@ -37,8 +37,9 @@ router.get('/home', (req, res) => {
     })
 });
 
-//login path
+//GMS FRONT END to login path
 router.get('/login', (req, res) => {
+    //GMS if logged_in is checked as true they are redirected to home. if it is false we render the login page
     if (req.session.logged_in) {
         res.redirect('/home');
         return;
@@ -59,6 +60,8 @@ router.get('/login', (req, res) => {
 //     res.render('signup');
 // });
 
+
+//GMS will just make signup route straightforward since it is really only accessible from one place
 router.get('/signup', (req, res) => {
     res.render('signup');
 });
@@ -71,6 +74,7 @@ router.get('/signup', (req, res) => {
 //     })
 // })
 
+//GMS front end test route for catalogs currently being grabbed by the my catalogs in shelves
 router.get('/catalogs', (req, res) => {
     res.render('catalogs')
 });
