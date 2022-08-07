@@ -29,6 +29,7 @@ Catalog.init(
     },
     {
         sequelize,
+        //GMS include timestamps to sort by asc/desc order
         timestamps: false,
         freezeTableName: true,
         underscored: true,

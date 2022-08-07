@@ -8,17 +8,67 @@ const { Catalog } = require('../models');
 
 //GMS front end routes to the login and home pages. 
 
-router.get("/", (req, res) => {
+//GMS going to need to rework this route to include user and book models in the data. I think we will need to flip the plain to on and use a map in order to retrieve and render all posts. 
+
+// router.get("/", (req, res) => {
+//     Catalog.findAll({
+//         include: [User]
+//     }).then(data => {
+//         const hbsData = data.map(cata => cata.toJSON())
+//         res.render("home", {
+//             catalogs: hbsData,
+//             logged_in: req.session.logged_in
+//         })
+//     })
+// })
+
+router.get('/catalogs', (req, res) => {
+    console.log(req.session);
+
     Catalog.findAll({
-        include: [User]
-    }).then(data => {
-        const hbsData = data.map(cata => cata.toJSON())
-        res.render("home", {
-            catalogs: hbsData,
-            logged_in: req.session.logged_in
-        })
+        attributes: [
+            'id',
+            'name',
+            'genre_type'
+        ],
+        include: [
+            {
+                model: Book,
+                attributes: ['id', 'title', 'author', 'isbn_num', 'owned'],
+                include: {
+                    model: User,
+                    attributes: ['username', 'email']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username', 'email']
+            }
+        ]
     })
-})
+        .then(catalogData => {
+            const catalogs = catalogData.map(catalog => catalog.get({ plain: true }));
+            res.render('catalogs', {
+                catalogs,
+                logged_in: req.session.logged_in
+            });
+            //GMS some console logs to help me figure out what is going wrong here
+            console.log(req.session)
+            console.log(req.session.logged_in);
+            console.log('THESE IS CATALOGZ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            console.log(catalogs);
+            console.log(req.session.user_id);
+            // console.log(req.body.username)
+            // console.log(catalogs.username)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+
+
 
 
 //GMS when developed will render homepage and user catalogs 
@@ -75,9 +125,16 @@ router.get('/signup', (req, res) => {
 // })
 
 //GMS front end test route for catalogs currently being grabbed by the my catalogs in shelves
-router.get('/catalogs', (req, res) => {
-    res.render('catalogs')
-});
+// router.get('/catalogs', (req, res) => {
+//     res.render('catalogs', req.session.user)
+// });
+
+// router.get("/catalogs", (req, res) => {
+//     if (!req.session.user) {
+//         res.redirect("/login")
+//     }
+//     res.render("catalogs", req.session.user)
+// })
 
 
 
