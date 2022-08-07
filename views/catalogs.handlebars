@@ -1,0 +1,22 @@
+        <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
+            <section class="catalogs p-2 m-5 w-full">
+                <ul class="catList w-full">
+                    <li><a href="#" class="libraryFull border rounded-md p-3 m-5 w-full">`${username}`'s Library</a></li>
+                    <!-- this would be where new LI's are inserted upon the creation of new catalogs -->
+                </ul>
+            </section>
+            <section class="createCat">
+                <form action="" id="catName">
+                    <h2>Add a catalog to your collection</h2>
+                    <label for="catName">Catalog name</label>
+                    <br>
+                    <input type="text" id="catName" name="name" class="newCatName border rounded-md p-1">
+                    <br>
+                    <input type="text" id="genre_type" name="genre_type" class="newCatName border rounded-md p-1">
+                    <br>
+                    <button class="newCat">Save Catalog</button>
+                </form>
+                <script src="/js/catalogs.js"></script>
+            </section>
+        </section>
+

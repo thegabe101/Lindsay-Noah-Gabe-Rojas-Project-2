@@ -1,14 +1,14 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Catalog extends Model {};
+class Catalog extends Model { };
 
 Catalog.init(
     {
         id: {
-            type: DataTypes.INTEGER, 
+            type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true, 
+            primaryKey: true,
             autoIncrement: true,
         },
         name: {
@@ -16,7 +16,7 @@ Catalog.init(
             allowNull: false,
         },
         genre_type: {
-            type: DataTypes.STRING, 
+            type: DataTypes.STRING,
             allowNull: false,
         },
         user_id: {
@@ -26,13 +26,13 @@ Catalog.init(
                 key: 'id',
             }
         }
-        },
+    },
     {
-          sequelize,
-          timestamps: false,
-          freezeTableName: true,
-          underscored: true,
-          modelName: 'catalog',
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'catalog',
     }
 );
 

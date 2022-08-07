@@ -1,4 +1,4 @@
-//index of our api routes. we should have user, book, ctalog, and will use them by those names but pluralized in the api route.
+//index of our api routes. we should have user, book, catalog, and will use them by those names but pluralized in the api route.
 
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');

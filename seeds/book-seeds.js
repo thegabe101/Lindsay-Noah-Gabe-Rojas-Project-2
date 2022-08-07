@@ -1,15 +1,15 @@
-import Book from '../models/Book';
+const Book = require('../models/Book');
 
 const bookData = [
     {
-        "Title": "The Word for World is Forest",
-        "Author": "Ursula K. Le Guin",
-        "isbn_num": "9780575023024",
+        "title": "The Word for World is Forest",
+        "author": "Ursula K. Le Guin",
+        "isbn_num": 1,
         "owned": "true"
     }
 ];
 
-const seedBooks = () => Books.bulkCreate(bookData);
+const seedBooks = () => Book.bulkCreate(bookData);
 
 //export our user seed function to be used in mass seeding index
-export default seedBooks;
+module.exports = seedBooks;
