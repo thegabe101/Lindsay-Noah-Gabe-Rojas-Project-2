@@ -16,7 +16,8 @@ document.querySelector("#login-page").addEventListener("submit", e => {
         }
     }).then(res => {
         if (res.ok) {
-            location.href = "/"
+            console.log("clicked");
+            location.href = "/home"
         } else {
             alert("You have entered an invalid email or password.")
         }
