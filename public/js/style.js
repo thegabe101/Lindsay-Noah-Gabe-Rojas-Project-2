@@ -14,6 +14,6 @@ const navBar = () => {
 
 
 // upload avatar
-const uploadImage = () => {
-    const data = new profileData 
-}
+// const uploadImage = () => {
+//     const data = new profileData 
+// }
