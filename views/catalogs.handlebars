@@ -1,7 +1,7 @@
         <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
             <section class="catalogs p-2 m-5 w-full">
                 <ul class="catList w-full">
-                    <li><a href="#" class="libraryFull border rounded-md p-3 m-5 w-full">`${username}`'s Library</a></li>
+                    <li><a href="#" class="libraryFull border rounded-md p-3 m-5 w-full"> {{user.username}} Library</a></li>
                     <!-- this would be where new LI's are inserted upon the creation of new catalogs -->
                 </ul>
             </section>
@@ -17,6 +17,9 @@
                     <br>
                     <button class="newCat">Save Catalog</button>
                 </form>
+                <button type="button" class="learnBtn mt-10" id="catalogs-button">
+                    <a href="/catalogs" class="learnMore border rounded border-hidden shadow-md shadow-slate-700 p-2 text-large hover:bg-zinc-50 hover:border-solid">{{catalogs.name}}'s Catalogs</a>
+                </button>
                 <script src="/js/catalogs.js"></script>
             </section>
         </section>
