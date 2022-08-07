@@ -20,6 +20,8 @@ router.get("/", (req, res) => {
     })
 })
 
+
+
 router.get('/home', (req, res) => {
     if (!req.session.user_id) {
         res.redirect('/login');
@@ -61,12 +63,18 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-router.get("/catalogs", (req, res) => {
-    Catalog.findByPk(req.params.id).then(catDat => {
-        const hbsData = catDat.toJSON();
-        hbsData.logged_in = req.session.logged_in
-        res.render("catalogs", hbsData)
-    })
-})
+// router.get("/catalogs", (req, res) => {
+//     Catalog.findByPk(req.params.id).then(catDat => {
+//         const hbsData = catDat.toJSON();
+//         hbsData.logged_in = req.session.logged_in
+//         res.render("catalogs", hbsData)
+//     })
+// })
+
+router.get('/catalogs', (req, res) => {
+    res.render('catalogs')
+});
+
+
 
 module.exports = router;

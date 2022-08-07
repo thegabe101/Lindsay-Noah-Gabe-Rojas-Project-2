@@ -7,12 +7,17 @@
                 </ul>
             </section>
             <section class="createCat">
-                <form>
+                <form action="" id="catName">
+                    <h2>Add a catalog to your collection</h2>
                     <label for="catName">Catalog name</label>
                     <br>
-                    <input type="text" id="catName" name="catName" class="newCatName border rounded-md p-1">
-                    <br><br>
+                    <input type="text" id="catName" name="name" class="newCatName border rounded-md p-1">
+                    <br>
+                    <input type="text" id="genre_type" name="genre_type" class="newCatName border rounded-md p-1">
+                    <br>
                     <button class="newCat">Save Catalog</button>
                 </form>
+                <script src="/js/catalogs.js"></script>
             </section>
         </section>
+
