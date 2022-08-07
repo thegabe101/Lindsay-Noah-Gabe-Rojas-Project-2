@@ -95,8 +95,32 @@
             </section>
         </section> -->
          <!-- profile section -->
-         <section class="profileAvatar">
-            <img src=""
+         <!-- <section class="profileAvatar"> -->
+            <!-- <img src="" alt=""> -->
+         <!-- </section> -->
+
+         <!-- individual catalogs pages (with the books) -->
+         <section class="catbookList h-screen">
+            <ul class="titleList m-5 p-2 ">
+                <li class="indBook">
+                    <!-- cover from api -->
+                    <img src="#" class="coverImg h-3/5 w-2/5 border rounded-sm bg-slate-400">
+                    <p class="bookTitle text-2xl font-semibold"></p>
+                    <br>
+                    <p class="bookAuthor text-lg">by {{authorname}}</p>
+                    <br>
+                    <p class="synopsis"></p>
+                    <br>
+                    <form class="userBookInput">
+                        <!-- shit for adding user comments on book here -->
+                    </form>
+                    <button class="btn like-btn">
+                        <span class="button-icon">
+                            <i class="fa-regular fa-heart"></i>
+                        </span>
+                    </button>
+                </li>
+            </ul>
          </section>
     </main>
     <footer class="foot p-5">

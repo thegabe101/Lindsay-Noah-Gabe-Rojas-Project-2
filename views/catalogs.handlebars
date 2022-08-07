@@ -1,7 +1,12 @@
         <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
             <section class="catalogs p-2 m-5 w-full">
                 <ul class="catList w-full">
-                    <li><a href="#" class="libraryFull border rounded-md p-3 m-5 w-full"> {{user.username}} Library</a></li>
+                    <li><a href="#" class="libraryFull border rounded-md p-2 m-5 w-full">Full Library</a></li>
+                    <li><a href="#" class="favorites border rounded-md p-2 m-5">Favorites</a></li>
+                    <li><a href="#" class="wishList border rounded-md p-2 m-5 w-full">Wish List</a></li>
+                    {{!-- {{#each catalog}}
+                    <li>{{this}}</li>
+                    {{/each}} --}}
                     <!-- this would be where new LI's are inserted upon the creation of new catalogs -->
                 </ul>
             </section>
@@ -12,6 +17,8 @@
                     <br>
                     <!--GMS this will be our input value catch for the logic that renders a cat-->
                     <input type="text" id="name-input" name="name" class="newCatName border rounded-md p-1">
+                    <br>
+                    <label for="catGenre">Catalog Type</label>
                     <br>
                     <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1">
                     <br>
@@ -24,3 +31,9 @@
             </section>
         </section>
 
+{{!-- below is the start for my option to add a little elipsis on the end to do a quick option for delete, edit --}}
+                    {{!-- <section class="dropdownMenu">
+                        <button class="drop">
+                            <i 
+                        </button>
+                    </section> --}}
