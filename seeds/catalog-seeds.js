@@ -7,7 +7,8 @@ const catalogData = [
   }
 ];
 
+//GMS same idea as books
 const seedCatalogs = () => Catalog.bulkCreate(catalogData);
 
-//export our user seed function to be used in mass seeding index
+//GMS export our user seed function to be used in mass seeding index
 module.exports = seedCatalogs;

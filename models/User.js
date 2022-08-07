@@ -2,6 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
+//GMS bcrypt compare sync method
 class User extends Model {
     checkPassword(userPw) {
         return bcrypt.compareSync(userPw, this.password)
@@ -10,12 +11,14 @@ class User extends Model {
 
 User.init(
     {
+        //GMS our primary id, which we will autoincrement
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
         },
+        //GMS eliminating name because it is overcomplicating things. this can be added later if we want
         // name: {
         //     type: DataTypes.STRING,
         //     allowNull: true,
@@ -33,6 +36,7 @@ User.init(
                 isEmail: true,
             },
         },
+        //GMS a length of pw between 8 and 20 should be suitable 
         password: {
             type: DataTypes.STRING,
             allowNull: false,

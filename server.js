@@ -1,7 +1,9 @@
+//GMS our server is essentially going to be boilerplate, im using 3000 because i always type it in naturally but we can change if need be
+
 const express = require('express');
 const session = require('express-session');
 const routes = require('./routes');
-const exphbs= require("express-handlebars")
+const exphbs = require("express-handlebars")
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -19,7 +21,7 @@ const sess = {
   })
 };
 
-const hbs = exphbs.create({  });
+const hbs = exphbs.create({});
 app.use(express.static("public"))
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
