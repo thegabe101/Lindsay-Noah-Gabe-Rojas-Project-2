@@ -15,13 +15,13 @@ router.get("/", (req, res) => {
         const hbsData = data.map(cata => cata.toJSON())
         res.render("home", {
             catalogs: hbsData,
-            loggedIn: req.session.loggedIn
+            logged_in: req.session.logged_in
         })
     })
 })
 
 router.get('/home', (req, res) => {
-    if (!req.session.loggedIn) {
+    if (!req.session.user_id) {
         res.redirect('/login');
         return;
     }
@@ -30,33 +30,43 @@ router.get('/home', (req, res) => {
     }).then(userData => {
         const hbsData = userData.toJSON();
         console.log(hbsData)
-        hbsData.loggedIn = true;
+        hbsData.logged_in = true;
         res.render("home", hbsData)
     })
 });
 
-// login path
+//login path
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
+    if (req.session.logged_in) {
+        res.redirect('/home');
         return;
     }
 
-    res.render('login', { loggedIn: false });
+    res.render('login', { logged_in: false });
 });
 
-// signup path
-router.get('/signup', (req, res) => {
-    if (!req.session.user_id) {
-        res.redirect('/signup');
-        return;
-    }
+// router.get('/login', async (req, res) => res.render('login'));
 
+// signup path
+// router.get('/signup', (req, res) => {
+//     if (!req.session.user_id) {
+//         res.redirect('/signup');
+//         return;
+//     }
+
+//     res.render('signup');
+// });
+
+router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-// router.get('/signup', (req, res) => {
-//     res.render('signup');
-// });
+router.get("/catalogs", (req, res) => {
+    Catalog.findByPk(req.params.id).then(catDat => {
+        const hbsData = catDat.toJSON();
+        hbsData.logged_in = req.session.logged_in
+        res.render("catalogs", hbsData)
+    })
+})
 
 module.exports = router;
