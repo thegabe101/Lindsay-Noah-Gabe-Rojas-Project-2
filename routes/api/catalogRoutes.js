@@ -5,7 +5,7 @@ const { Book } = require("../../models");
 const haveAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    console.log('------route hit-------');
+    console.log('CAT------route hit-------CAT');
     Catalog.findAll({
         // attributes: [
         //     'id',
@@ -19,10 +19,10 @@ router.get('/', (req, res) => {
                 model: Book,
                 //GMS check on sequelize docs regarding inclusion of attributes or not- seems extraneous
                 // attributes: ['id', 'title', 'author', 'isbn_num', 'owned'],
-                include: {
-                    model: User,
-                    // attributes: ['username', 'email']
-                }
+                // include: {
+                //     model: User,
+                //     attributes: ['username', 'email']
+                // }
             },
             {
                 model: User,

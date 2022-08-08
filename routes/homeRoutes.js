@@ -35,11 +35,11 @@ router.get('/catalogs', (req, res) => {
         include: [
             {
                 model: Book,
-                attributes: ['id', 'title', 'author', 'isbn_num', 'owned'],
+                // attributes: ['id', 'title', 'author', 'isbn_num'],
             },
             {
                 model: User,
-                attributes: ['username', 'email']
+                // attributes: ['username', 'email']
             }
         ],
         where: {
@@ -49,7 +49,7 @@ router.get('/catalogs', (req, res) => {
         .then(catalogData => {
             const catalogs = catalogData.map(catalog => catalog.get({ plain: true }));
             res.render('catalogs', {
-                catalog: catalogs[0],
+                catalog: catalogs,
                 logged_in: req.session.logged_in
             });
             //GMS some console logs to help me figure out what is going wrong here
