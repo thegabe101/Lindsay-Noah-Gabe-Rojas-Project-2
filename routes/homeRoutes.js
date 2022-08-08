@@ -98,7 +98,7 @@ router.get('/books', (req, res) => {
     })
         .then(bookData => {
             const books = bookData.map(book => book.get({ plain: true }));
-            res.render('books', {
+            res.render('singleBooklist', {
                 book: books[0],
                 logged_in: req.session.logged_in
             });
