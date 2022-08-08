@@ -1,8 +1,12 @@
         <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
             <section class="catalogs p-2 m-5 w-full">
-                <ul class="catList w-full">
+                <ul class="catList w-full" id="catsCats">
                     <li><a href="#" class="libraryFull border rounded-md p-2 m-5 w-full">Full Library</a></li>
+                    <br>
+                    <br>
                     <li><a href="#" class="favorites border rounded-md p-2 m-5">Favorites</a></li>
+                    <br>
+                    <br>
                     <li><a href="#" class="wishList border rounded-md p-2 m-5 w-full">Wish List</a></li>
                     <!-- this would be where new LI's are inserted upon the creation of new catalogs -->
                 </ul>
@@ -21,10 +25,16 @@
                     <br>
                     <button class="newCat">Save Catalog</button>
                 </form>
-                <button type="button" class="learnBtn mt-10" id="catalogs-button">
-                    <a href="/catalogs" class="learnMore border rounded border-hidden shadow-md shadow-slate-700 p-2 text-large hover:bg-zinc-50 hover:border-solid">{{catalog.user.username}}'s Catalogs</a>
-                </button>
+                <!--GMS this is placeholder stuff I am using to test API book grabbing functionality.-->
+                    <input type="text" id="bookGrab" placeholder="Search for books to add to your collection"/>
+                    <input type="radio" name="btn" id="author" value="author" />
+                    <label for="author">Author</label>
+                    <input type="radio" name="btn" id="book" value="book" checked />
+                    <label for="book">Book</label>
+                    <button onclick="getBooks()">Get Books!</button><br />
+                    <div id="output"></div>
                 <script src="/js/catalogs.js"></script>
+                <script src="/js/apiSearch.js"></script>
             </section>
         </section>
 
