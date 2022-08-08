@@ -106,7 +106,9 @@ router.post('/login', async (req, res) => {
         }
         //GMS once we log in we certainly want to save some properties to session. we can simply attach the existing user data id, then we record a boolean of true that this id is logged in
         req.session.save(() => {
+
             req.session.user_id = existingUserData.id;
+            req.session.username = existingUserData.username;
             req.session.logged_in = true;
             console.log(existingUserData.id);
             console.log(req.session.logged_in);
