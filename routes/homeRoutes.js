@@ -1,15 +1,15 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+// <<<<<<< HEAD
+// <<<<<<< HEAD
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Book, Catalog } = require('../models/User');
-=======
+// =======
 //FRONTEND ROUTES
-=======
+// =======
 //GMS FRONTEND ROUTES
->>>>>>> dev
+// >>>>>>> dev
 
-const router = require('express').Router();
+const Router = require('express').Router();
 // const sequelize = require('../config/connection');
 const { User } = require('../models');
 const { Book } = require('../models');
@@ -45,7 +45,7 @@ router.get('/home', (req, res) => {
         res.render("home", hbsData)
     })
 });
->>>>>>> dev
+// >>>>>>> dev
 
 //GMS FRONT END to login path
 router.get('/login', (req, res) => {
@@ -55,8 +55,8 @@ router.get('/login', (req, res) => {
         return;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+// <<<<<<< HEAD
+// <<<<<<< HEAD
     res.render('login');
 });
 
@@ -70,12 +70,12 @@ router.get('/home', (req, res) => {
 });
 
 module.exports = router; 
-=======
+// =======
     res.render('login', { loggedIn: false });
-=======
+// =======
     res.render('login', { logged_in: false });
->>>>>>> dev
-});
+// >>>>>>> dev
+
 
 // router.get('/login', async (req, res) => res.render('login'));
 
@@ -111,4 +111,4 @@ router.get('/catalogs', (req, res) => {
 
 
 module.exports = router;
->>>>>>> dev
+// >>>>>>> dev
