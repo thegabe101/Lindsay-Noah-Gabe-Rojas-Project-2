@@ -19,7 +19,7 @@
                 </ul>
             </section>
             <section class="createCat">
-                <form action="" id="catName">
+                <form id="catName">
                     <h2>Add a catalog to your collection</h2>
                     <label for="catName">Catalog name</label>
                     <br>
@@ -35,7 +35,18 @@
             </section>
         </section>
         <section class="searchBooks">
-            <
+            <form id="exploreBooks">
+                <label for="searchBar">
+                    Explore the shelves here
+                </label>
+                <br>
+                <input type="search" id="searchBar" name="searchBar" class="searchBar border rounded-md p-1">
+                <br>
+                <label for="searchAuthor">Search by Author</label>
+                <input type="radio" id="searchAuthor" name="searchAuthor">
+                <label for="searchTitle">Search by Title</label>
+                <input type="radio" id="searchTitle" name="searchTitle">
+            </form>
         </section>
 
 <script src="/js/catalogs.js"></script>
