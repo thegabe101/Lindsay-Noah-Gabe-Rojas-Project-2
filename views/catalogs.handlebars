@@ -32,16 +32,8 @@
                     <br>
                     <button class="newCat">Save Catalog</button>
                 </form>
-                <!--GMS this is placeholder stuff I am using to test API book grabbing functionality.-->
-                    <input type="text" id="bookGrab" placeholder="Search for books to add to your collection"/>
-                    <input type="radio" name="btn" id="author" value="author" />
-                    <label for="author">Author</label>
-                    <input type="radio" name="btn" id="book" value="book" checked />
-                    <label for="book">Book</label>
-                    <button onclick="getBooks()">Get Books!</button><br />
-                    <div id="output"></div>
-                <script src="/js/catalogs.js"></script>
-                <script src="/js/apiSearch.js"></script>
+
+
             </section>
         </section>
         <section class="searchBooks">
@@ -50,17 +42,19 @@
                     Explore the shelves here
                 </label>
                 <br>
-                <input type="search" id="searchBar" name="searchBar" class="searchBar border rounded-md p-1">
+                <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1">
                 <br>
                 <label for="searchAuthor">Search by Author</label>
-                <input type="radio" id="searchAuthor" name="searchAuthor">
+                <input type="radio" id="author" name="searchAuthor">
                 <label for="searchTitle">Search by Title</label>
-                <input type="radio" id="searchTitle" name="searchTitle">
+                <input type="radio" id="book" name="searchTitle">
+                <button onclick="getBooks()">Search</button><br/>
+                <section id="output"></section>
             </form>
         </section>
 
 <script src="/js/catalogs.js"></script>
-
+<script src="/js/apiSearch.js"></script>
 {{!-- below is the start for my option to add a little elipsis on the end to do a quick option for delete, edit --}}
                     {{!-- <section class="dropdownMenu">
                         <button class="drop">
