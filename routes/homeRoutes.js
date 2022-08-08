@@ -39,7 +39,7 @@ router.get('/catalogs', (req, res) => {
             },
             {
                 model: User,
-                // attributes: ['username', 'email']
+                attributes: ['username', 'email']
             }
         ],
         where: {
@@ -50,11 +50,14 @@ router.get('/catalogs', (req, res) => {
             const catalogs = catalogData.map(catalog => catalog.get({ plain: true }));
             res.render('catalogs', {
                 catalog: catalogs,
-                logged_in: req.session.logged_in
+                user: req.session.user,
+                username: req.session.username,
+                // logged_in: req.session.logged_in
             });
             //GMS some console logs to help me figure out what is going wrong here
             console.log(req.session)
             console.log(req.session.logged_in);
+            console.log(req.session.username);
             console.log('THESE IS CATALOGZ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             console.log({ catalog: catalogs });
             console.log(req.session.user_id);
