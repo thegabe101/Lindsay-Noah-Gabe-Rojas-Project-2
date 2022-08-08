@@ -29,7 +29,8 @@ router.get('/catalogs', (req, res) => {
         attributes: [
             'id',
             'name',
-            'genre_type'
+            'genre_type',
+            'user_id'
         ],
         include: [
             {
@@ -49,15 +50,16 @@ router.get('/catalogs', (req, res) => {
         .then(catalogData => {
             const catalogs = catalogData.map(catalog => catalog.get({ plain: true }));
             res.render('catalogs', {
-                catalogs,
+                catalog: catalogs[0],
                 logged_in: req.session.logged_in
             });
             //GMS some console logs to help me figure out what is going wrong here
             console.log(req.session)
             console.log(req.session.logged_in);
             console.log('THESE IS CATALOGZ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            console.log(catalogs);
+            console.log({catalog: catalogs});
             console.log(req.session.user_id);
+            console.log(catalogs[0])
             // console.log(req.body.username)
             // console.log(catalogs.username)
         })
