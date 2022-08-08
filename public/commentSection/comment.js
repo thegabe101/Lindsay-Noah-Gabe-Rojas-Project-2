@@ -37,4 +37,3 @@ post.addEventListener("click", function(){
 //     localStorage.setItem("commentBox", event.target.value)
 //   }, 1000)
 // })
-
