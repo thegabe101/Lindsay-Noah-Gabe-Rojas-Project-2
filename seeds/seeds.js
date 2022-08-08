@@ -14,11 +14,12 @@ const seedDatabase = async () => {
     await seedUsers();
     console.log('\n----------------------- USERS SUCCESSFULLY SEEDED ----------------------\n');
 
+    await seedCatalogs();
+    console.log('\n-------------------- CATALOGS SUCCESSFULLY SEEDED -------------------\n');
+
     await seedBooks();
     console.log('\n---------------------- BOOKS SUCCESSFULLY SEEDED ------------------------\n');
 
-    await seedCatalogs();
-    console.log('\n-------------------- CATALOGS SUCCESSFULLY SEEDED -------------------\n');
 
     process.exit(0);
 };

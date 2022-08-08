@@ -23,14 +23,14 @@ Book.init(
             allowNull: false,
         },
         isbn_num: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         //GMS think we need to add an owned field here as a boolean. this will be a simple way for a user to declare whether it is in the collection or not without checking more complex parameters.
-        owned: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
+        // owned: {
+        //     type: DataTypes.BOOLEAN,
+        //     allowNull: false,
+        // },
         catalog_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -38,15 +38,15 @@ Book.init(
                 key: 'id',
             }
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id',
-            }
-        },
+        // user_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'user',
+        //         key: 'id',
+        //     }
+        // },
     },
-   
+
     {
         sequelize,
         timestamps: false,

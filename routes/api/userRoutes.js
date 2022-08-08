@@ -33,15 +33,15 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Catalog,
-                attributes: ['id', 'name', 'genre_type']
+                // attributes: ['id', 'name', 'genre_type']
             },
-            {
-                model: Book,
-                attributes: ['title', 'author', 'isbn_num', 'owned'],
-                // through: Catalog,
-                //GMS not sure whether we need an alias here or not
-                // as: 'catalog_books'
-            }
+            // {
+            //     model: Book,
+            //     attributes: ['title', 'author', 'isbn_num', 'owned'],
+            //     // through: Catalog,
+            //     //GMS not sure whether we need an alias here or not
+            //     // as: 'catalog_books'
+            // }
         ]
     })
         .then(userData => {
@@ -254,7 +254,7 @@ router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
         //GMS logging out is simple- all we need to do is destroy the req.session. can send a 404 if something fails 
         req.session.destroy(() => {
-            res.status(204).end();
+            res.status(204).json({ msg: "Successfully Logged Out" });
         });
     }
     else {

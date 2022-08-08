@@ -35,22 +35,21 @@ router.get('/catalogs', (req, res) => {
         include: [
             {
                 model: Book,
-                attributes: ['id', 'title', 'author', 'isbn_num', 'owned'],
-                include: {
-                    model: User,
-                    attributes: ['username', 'email']
-                }
+                // attributes: ['id', 'title', 'author', 'isbn_num'],
             },
             {
                 model: User,
-                attributes: ['username', 'email']
+                // attributes: ['username', 'email']
             }
-        ]
+        ],
+        where: {
+            user_id: req.session.user_id
+        }
     })
         .then(catalogData => {
             const catalogs = catalogData.map(catalog => catalog.get({ plain: true }));
             res.render('catalogs', {
-                catalog: catalogs[0],
+                catalog: catalogs,
                 logged_in: req.session.logged_in
             });
             //GMS some console logs to help me figure out what is going wrong here
@@ -71,35 +70,25 @@ router.get('/catalogs', (req, res) => {
 
 
 
-router.get('/books', (req, res) => {
+router.get('/catalogs/:id', (req, res) => {
     console.log(req.session);
+    Catalog.findByPk(req.params.id, {
 
-    Book.findAll({
-        attributes: [
-            'id',
-            'author',
-            'title',
-            'isbn_num'
-        ],
         include: [
             {
-                model: Catalog,
-                attributes: ['id', 'name', 'genre_type'],
-                include: {
-                    model: User,
-                    attributes: ['username', 'email']
-                }
+                model: Book,
             },
-            {
-                model: User,
-                attributes: ['username', 'email']
-            }
+            //GMS !! THINK ABOUT RELATIONSHIPS!
+            // {
+            //     model: User,
+            //     attributes: ['username', 'email']
+            // }
         ]
     })
         .then(bookData => {
-            const books = bookData.map(book => book.get({ plain: true }));
+            const books = bookData.get({ plain: true });
             res.render('singleBooklist', {
-                book: books[0],
+                books: books,
                 logged_in: req.session.logged_in
             });
         })
