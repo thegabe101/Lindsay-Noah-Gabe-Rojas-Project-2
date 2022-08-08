@@ -29,9 +29,10 @@
 //     });
 // };
 
-function getBooks() {
+function getBooks(resultObj) {
+  console.log("GETTING BOOKS!!!!!!!!!!!!");
   //GMS we check to see whether the user is going to search by checkbox value author or book by declaring a variable that constitutes the auth id beginning fulfilled
-  var getAuthor = document.getElementById('author').checked
+  var getAuthor = document.getElementById('author').checked;
   //GMS start inner html as empty string- will write over it later
   document.getElementById('output').innerHTML = "";
   //GMS our query url searches openlibrary by json and the following q which will be the text value of the bookGrab input field
@@ -48,16 +49,34 @@ function getBooks() {
           try {
             //all of this only happens if the getAuthor was fulfilled; otherwise we can ignore that check and search by title, which we do in our else statment 
             if (getAuthor) {
+              let authorBookCard = document.createElement('div');
+              let authorBookCardBody = document.createElement('div');
+              authorBookCardBody.classList.add('card-body');
+              authorBookCard.append(authorBookCardBody);
               let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
               if (lowerCaseAuthor.indexOf(userInput) != -1) {
                 //document.getElementById("output").innerHTML+="</h2>"+response.docs[i].author_name[0]+"<br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
+                //GMS initial button attempt IGNORE pls dont delete
+                // const addButt = document.createElement("button");
+                // addButt.innerHTML = "+ Book to Catalog";
                 document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
+                let titleEl = document.createElement('h3');
+                titleEl.textContent = response.docs[i].title;
+                var bodyContentEl = document.createElement('p');
+                bodyContentEl.innerHTML += '<h3>' + '<strong>Author name:</strong> ' + response.docs[i].author.name[0] + '<strong>ISBN Number:</strong> ' + response.docs[i].isbn[0] + '<br/>';
                 bookAmount++
               }
             } else {
+              let titleBookCard = document.createElement('div');
+              let titleBookCardBody = document.createElement('div');
+              titleBookCardBody.classList.add('card-body');
+              titleBookCard.append(titleBookCardBody);
               let lowerCaseTitle = response.docs[i].title.toLowerCase().replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
               console.log(lowerCaseTitle)
               if (lowerCaseTitle.includes(userInput)) {
+                //GMS initial button attempt IGNORE pls dont delete 
+                // const addButt = document.createElement("button");
+                // addButt.innerHTML = "+ Book to Catalog";
                 document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
                 bookAmount++
               }
