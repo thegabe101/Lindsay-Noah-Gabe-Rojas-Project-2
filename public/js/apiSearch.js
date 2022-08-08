@@ -30,17 +30,23 @@
 // };
 
 function getBooks() {
+  //GMS we check to see whether the user is going to search by checkbox value author or book by declaring a variable that constitutes the auth id beginning fulfilled
   var getAuthor = document.getElementById('author').checked
+  //GMS start inner html as empty string- will write over it later
   document.getElementById('output').innerHTML = "";
-  fetch("http://openlibrary.org/search.json?q=" + document.getElementById("input").value)
+  //GMS our query url searches openlibrary by json and the following q which will be the text value of the bookGrab input field
+  fetch("http://openlibrary.org/search.json?q=" + document.getElementById("bookGrab").value)
+    //GMS parameter can be set as a and will be converted to JSON
     .then(a => a.json())
     .then(response => {
       console.log(response);
-      let userInput = document.getElementById("input").value.toLowerCase()
+      let userInput = document.getElementById("bookGrab").value.toLowerCase()
       let bookAmount = 0
+      //GMS run a loop to print at least three books but probably no more than that. otherwise we are getting too many. IF there are books returned, then we get the author from the response body and check for lower casing in case thats an issue 
       for (var i = 0; i < response.docs.length; i++) {
         if (bookAmount < 3) {
           try {
+            //all of this only happens if the getAuthor was fulfilled; otherwise we can ignore that check and search by title, which we do in our else statment 
             if (getAuthor) {
               let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
               if (lowerCaseAuthor.indexOf(userInput) != -1) {
@@ -61,11 +67,19 @@ function getBooks() {
           }
         } else {
           break
-        }
-      }
-    })
-}
+        };
+      };
+    });
+};
 
+// document.querySelector("#bookGrab").addEventListener("submit", e => {
+//   e.preventDefault();
+//   console.log("CLICKY CLICKY");
+//   getBooks();
+// });
+
+
+// module.exports = getBooks();
 //GMS moving onto new API search method
 
 // module.exports = searchBook();

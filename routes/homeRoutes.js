@@ -57,11 +57,51 @@ router.get('/catalogs', (req, res) => {
             console.log(req.session)
             console.log(req.session.logged_in);
             console.log('THESE IS CATALOGZ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            console.log({catalog: catalogs});
+            console.log({ catalog: catalogs });
             console.log(req.session.user_id);
             console.log(catalogs[0])
             // console.log(req.body.username)
             // console.log(catalogs.username)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+
+
+router.get('/books', (req, res) => {
+    console.log(req.session);
+
+    Book.findAll({
+        attributes: [
+            'id',
+            'author',
+            'title',
+            'isbn_num'
+        ],
+        include: [
+            {
+                model: Catalog,
+                attributes: ['id', 'name', 'genre_type'],
+                include: {
+                    model: User,
+                    attributes: ['username', 'email']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username', 'email']
+            }
+        ]
+    })
+        .then(bookData => {
+            const books = bookData.map(book => book.get({ plain: true }));
+            res.render('singleBooklist', {
+                book: books[0],
+                logged_in: req.session.logged_in
+            });
         })
         .catch(err => {
             console.log(err);

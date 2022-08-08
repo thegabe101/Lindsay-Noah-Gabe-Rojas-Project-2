@@ -14,11 +14,32 @@ document.querySelector("#catName").addEventListener("submit", e => {
         headers: {
             "Content-Type": "application/json"
         }
+        // }).then(res => {
+        //     if (res.ok) {
+        //         location.reload()
+        //         const newCatalog = document.createElement("li");
+        //         newCatalog.appendChild(catObj);
+        //         const fullLibrary = document.getElementById("newCatalogEntered");
+        //         document.body.insertBefore(newCatalog, fullLibrary);
+        //     } else {
+        //         alert("no response")
+        //     }
     }).then(res => {
         if (res.ok) {
-            location.reload()
+            location.reload();
         } else {
-            alert("no response")
+            alert("FAILURE");
         }
     })
-})
+});
+
+
+//GMS testing some appension
+// document.querySelector("#catsCats").addEventListener("submit", e => {
+//     e.preventDefault();
+//     let newLibraryCat = document.createElement('p');
+//     const fullLibrary = document.getElementById("newCatalogEntered");
+//     newLibraryCat.innerHTML = "Can we append here";
+//     document.body.appendChild(newLibraryCat, fullLibrary);
+// });
+
