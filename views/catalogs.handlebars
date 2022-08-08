@@ -1,23 +1,34 @@
         <section class="userBanner w-screen p-2">
+            {{!-- {{#each catalog}}
+            {{#log name}}
+            {{/each}} --}}
             <p class="text-3xl mb-2">
-                Welcome home, {{catalog.user.username}}.
+                Welcome home, {{user.username}}.
             </p>
             <p class="text-xl">
                 Let's make your shelves your safe space.
             </p>
         </section>
+
+
         <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
+            {{#each catalog}}
+            {{log name}}
             <section class="catalogs p-2 m-5 w-full">
                 <ul class="catList w-full" id="catsCats">
-                    <li><a href="#" class="libraryFull border rounded-md p-2 m-5 w-full">Full Library</a></li>
+                    <li><a href="#" id="" class="border rounded-md p-2 m-5 w-full">{{name}}</a></li>
                     <br>
-                    <li><a href="#" class="favorites border rounded-md p-2 m-5">Favorites</a></li>
-                    <br>
-                    <li><a href="#" class="wishList border rounded-md p-2 m-5 w-full">Wish List</a></li>
-                    <br>
-                    <!-- this would be where new LI's are inserted upon the creation of new catalogs -->
                 </ul>
             </section>
+            {{/each}}
+            {{!-- {{#if !catalog}}
+            <section class="noCatalogs">
+                <p>
+                    You don't have any catalogs yet!
+                </p>
+            </section>
+            {{/if}} --}}
+        </section>
             <section class="createCat">
                 <form id="catName">
                     <h2>Add a catalog to your collection</h2>
@@ -55,9 +66,4 @@
 
 <script src="/js/catalogs.js"></script>
 <script src="/js/apiSearch.js"></script>
-{{!-- below is the start for my option to add a little elipsis on the end to do a quick option for delete, edit --}}
-                    {{!-- <section class="dropdownMenu">
-                        <button class="drop">
-                            <i 
-                        </button>
-                    </section> --}}
+
