@@ -50,6 +50,15 @@ THEN I am taken to a modal display of the book and information about it includin
 ## reflections
 
 ## resources
+List of resources utilized in this project:
+-[Carnegie Museums](http://web-accessibility.carnegiemuseums.org/design/color/)
+-[Font Awesome](https://fontawesome.com/icons)
+-[Open Library](https://openlibrary.org/dev/docs/api/books)
+-[Sequelize](https://sequelize.org/)
+-[Tailwind](https://tailwindcss.com/)
+-[Unsplash](https://unsplash.com/)
+-[W3 Schools](https://www.w3schools.com/)
+    -[Navbar Build](https://www.w3schools.com/howto/howto_js_mobile_navbar.asp)
 
 ## contributors
 
