@@ -22,3 +22,12 @@ document.querySelector("#catName").addEventListener("submit", e => {
         }
     })
 })
+
+// document.body.onload = addElement;
+
+// const addElement = () => {
+//     const newLi = document.createElement("li");
+//     newLi.appendChild(catObj);
+//     const currentLi = document.querySelector(".wishList");
+//     document.body.insertBefore(newLi, currentLi)
+// };
