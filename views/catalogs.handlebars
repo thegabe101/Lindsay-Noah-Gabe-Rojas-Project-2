@@ -1,18 +1,25 @@
+        <section class="userBanner w-screen p-2">
+            <p class="text-3xl mb-2">
+                Welcome home, {{catalog.user.username}}.
+            </p>
+            <p class="text-xl">
+                Let's make your shelves your safe space.
+            </p>
+        </section>
         <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
             <section class="catalogs p-2 m-5 w-full">
                 <ul class="catList w-full" id="catsCats">
                     <li><a href="#" class="libraryFull border rounded-md p-2 m-5 w-full">Full Library</a></li>
                     <br>
-                    <br>
                     <li><a href="#" class="favorites border rounded-md p-2 m-5">Favorites</a></li>
                     <br>
-                    <br>
                     <li><a href="#" class="wishList border rounded-md p-2 m-5 w-full">Wish List</a></li>
+                    <br>
                     <!-- this would be where new LI's are inserted upon the creation of new catalogs -->
                 </ul>
             </section>
             <section class="createCat">
-                <form action="" id="catName">
+                <form id="catName">
                     <h2>Add a catalog to your collection</h2>
                     <label for="catName">Catalog name</label>
                     <br>
@@ -25,19 +32,29 @@
                     <br>
                     <button class="newCat">Save Catalog</button>
                 </form>
-                <!--GMS this is placeholder stuff I am using to test API book grabbing functionality.-->
-                    <input type="text" id="bookGrab" placeholder="Search for books to add to your collection"/>
-                    <input type="radio" name="btn" id="author" value="author" />
-                    <label for="author">Author</label>
-                    <input type="radio" name="btn" id="book" value="book" checked />
-                    <label for="book">Book</label>
-                    <button onclick="getBooks()">Get Books!</button><br />
-                    <div id="output"></div>
-                <script src="/js/catalogs.js"></script>
-                <script src="/js/apiSearch.js"></script>
+
+
             </section>
         </section>
+        <section class="searchBooks">
+            <form id="exploreBooks">
+                <label for="searchBar">
+                    Explore the shelves here
+                </label>
+                <br>
+                <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1">
+                <br>
+                <label for="searchAuthor">Search by Author</label>
+                <input type="radio" id="author" name="searchAuthor">
+                <label for="searchTitle">Search by Title</label>
+                <input type="radio" id="book" name="searchTitle">
+                <button onclick="getBooks()">Search</button><br/>
+                <section id="output"></section>
+            </form>
+        </section>
 
+<script src="/js/catalogs.js"></script>
+<script src="/js/apiSearch.js"></script>
 {{!-- below is the start for my option to add a little elipsis on the end to do a quick option for delete, edit --}}
                     {{!-- <section class="dropdownMenu">
                         <button class="drop">
