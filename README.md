@@ -61,7 +61,14 @@ List of resources utilized in this project:
     -[Navbar Build](https://www.w3schools.com/howto/howto_js_mobile_navbar.asp)
 
 ## contributors
+Shout out to the team,
+-[Git Administrator, Gabe Sowa](https://github.com/thegabe101)
+-[Project Manager, Lindsay Lewis](https://github.com/lindslewis)
+-[Noah Carralero](https://github.com/thenoahac)
+-[Robertson (Gio) Rojas](https://github.com/gio2nice)
 
+And shout out to our friends who lended a hand,
+-[Axel Kern](https://github.com/Axeljk)
 
 
 
