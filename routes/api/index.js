@@ -3,13 +3,13 @@
 //GMS dont forget to uncomment the necessary router use when you form the other routes reminder
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
-// const bookRoutes = require('./bookRoutes');
+const bookRoutes = require('./bookRoutes');
 const catalogRoutes = require('./catalogRoutes');
 
 
 //GMS declaring users for user and catalogs for catalogs. not sure how books are going to work yet.
 router.use('/users', userRoutes);
-// router.use('/books', bookRoutes);
+router.use('/books', bookRoutes);
 router.use('/catalogs', catalogRoutes);
 
 module.exports = router;

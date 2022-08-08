@@ -12,6 +12,14 @@ const navBar = () => {
     }
 };
 
+// book list default image if no cover image is pulled
+const img = document.querySelector(".coverImg")
+img.addEventListener("error", function(event) {
+    event.target.src = "../assets/images/cover-default.jpg"
+    event.onerror = null
+});
+
+// liking a book
 
 // upload avatar
 // const uploadImage = () => {

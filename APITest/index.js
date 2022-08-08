@@ -58,7 +58,7 @@ function getBooks() {
       let userInput = document.getElementById("input").value.toLowerCase()
       let bookAmount = 0
       for (var i = 0; i < response.docs.length; i++) {
-        if (bookAmount < 10) {
+        if (bookAmount < 3) {
           try {
             if (getAuthor) {
               let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())

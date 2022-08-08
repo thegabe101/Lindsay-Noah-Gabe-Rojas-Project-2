@@ -9,6 +9,8 @@ User.hasMany(Catalog, {
     onDelete: 'CASCADE'
 });
 
+// Catalog.belongsTo(User);
+
 Catalog.belongsTo(User, {
     foreignKey: 'user_id'
 });
