@@ -25,32 +25,40 @@ const { Catalog } = require('../models');
 router.get('/catalogs', (req, res) => {
     console.log(req.session);
 
-    Catalog.findAll({
-        attributes: [
-            'id',
-            'name',
-            'genre_type',
-            'user_id'
-        ],
-        include: [
-            {
-                model: Book,
-                attributes: ['id', 'title', 'author', 'isbn_num', 'owned'],
-                include: {
-                    model: User,
-                    attributes: ['username', 'email']
-                }
-            },
-            {
-                model: User,
-                attributes: ['username', 'email']
-            }
-        ]
-    })
+    User.findOne({where: {
+        id: req.session.user_id,
+    },
+    raw:true,
+    include: [Catalog]
+    },
+        // attributes: [
+        //     'id',
+        //     'username',
+        //     'email'
+        // ],
+        // include: [
+            // {
+            //     model: Book,
+            //     attributes: ['id', 'title', 'author', 'isbn_num', 'owned'],
+            //     include: {
+            //         model: User,
+            //         attributes: ['username', 'email']
+            //     }
+            // },
+
+
+                // include:{
+                //     model: Catalog,
+                //     attributes: ['id', 'name', 'genre_type', 'user_id']
+                // }
+            
+        // ]
+    )
         .then(catalogData => {
+            console.log(catalogData)
             const catalogs = catalogData.map(catalog => catalog.get({ plain: true }));
             res.render('catalogs', {
-                catalog: catalogs[0],
+                catalog: catalogs,
                 logged_in: req.session.logged_in
             });
             //GMS some console logs to help me figure out what is going wrong here

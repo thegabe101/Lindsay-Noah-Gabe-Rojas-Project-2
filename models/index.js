@@ -15,22 +15,22 @@ Catalog.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-Catalog.hasMany(Book, {
-    foreignKey: 'user_id'
-})
+// Catalog.hasMany(Book, {
+//     foreignKey: 'user_id'
+// })
 
-Book.belongsTo(Catalog, {
-    foreignKey: 'user_id'
-})
+// Book.belongsTo(Catalog, {
+//     foreignKey: 'user_id'
+// })
 
 //GMS this one im not sure about. Does book need to belong to both user and catalog? 
-Book.belongsTo(User, {
-    foreignKey: 'user_id'
-})
+// Book.belongsTo(User, {
+//     foreignKey: 'user_id'
+// })
 
-User.hasMany(Book, {
-    foreignKey: 'user_id'
-})
+// User.hasMany(Book, {
+//     foreignKey: 'user_id'
+// })
 
 //GMS export our models.
 module.exports = { User, Catalog, Book };

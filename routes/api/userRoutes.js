@@ -13,6 +13,9 @@ const haveAuth = require('../../utils/auth');
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method)
     User.findAll({
+        include: [
+            Catalog
+        ]
     })
         .then(userData => res.json(userData))
         .catch(err => {

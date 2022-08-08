@@ -44,6 +44,7 @@ User.init(
                 len: [8, 20]
             },
         },
+        
     },
     {
         //this is where we hash our password, salt level 10
