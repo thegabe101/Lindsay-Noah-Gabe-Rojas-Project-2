@@ -1,3 +1,5 @@
+//GMS grab our form and define our output div that will render as a template literal upon book query
+
 let searchBooksEl = document.querySelector('#exploreBooks');
 const output = document.getElementById('output');
 
@@ -10,6 +12,7 @@ function getParams() {
   // let format = searchParams[1].split('=').pop();
 
   //GMS will accept two values- the query from the users search params and the first formatted value returned 
+  //GMS simplyifying- just call searchBooks, which is our fetch function
   searchBooks(query);
 };
 
@@ -51,7 +54,9 @@ function getParams() {
 //   //bookContentEl.append(bookCard);
 // }
 
+//GMS for now will accept an argument but I don't think we will be using it
 function searchBooks(query) {
+  //GMS define openlibrary query url 
   let apiQueryUrl = "http://openlibrary.org/search.json?q=";
 
   // if (format) {
@@ -60,6 +65,7 @@ function searchBooks(query) {
 
   //apiQueryUrl = query;
 
+  //GMS fetch function routes to our URL + query value of the input in the bookGrab field 
   fetch(apiQueryUrl + document.getElementById("bookGrab").value)
     .then((res) => res.json())
     .then((userFacingResponse) => {
@@ -67,18 +73,25 @@ function searchBooks(query) {
       //resultsTextEl.textContent = userFacingResponse.search.query;
 
       console.log(userFacingResponse);
-
+      //GMS if the array length is <0, notify the user the book isn't found. 
       if (!userFacingResponse.docs.length) {
         console.log('No results found.');
-        return
+        return;
         //resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
       }
       //resultsTextEl.textContent = '';
+      //GMS just gonna log our output field to make sure that it is existing as an open section
       console.log(output)
-      for (var i = 0; i < userFacingResponse.docs.length; i++) {
 
-        //printBooks(userFacingResponse.docs[i]);
-        output.innerHTML = `
+
+      //GMS realizing the for loop isn't going to render into a template literal this way. 
+      //GMS will have to figure this out tomorrow 
+      let booksShown = 0;
+
+      for (var i = 0; i < userFacingResponse.docs.length; i++) {
+        if (booksShown < 3) {
+          //printBooks(userFacingResponse.docs[i]);
+          output.innerHTML = `
         <div>
           <br>
           <button>&#10133 Add to a Catalog</button>
@@ -92,9 +105,10 @@ function searchBooks(query) {
           </div>
           <br> 
         `
+          booksShown++;
+        }
       }
-    })
-    .catch(function (err) {
+    }).catch(function (err) {
       if (err) {
         console.log(JSON.stringify(err));
       }
