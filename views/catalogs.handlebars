@@ -25,7 +25,7 @@
 
 {{!-- shit won't center.... >:[ --}}
 <section class="createCat m-5 ml-10 p-2 inline-flex border border-2 border-[#ffd166] rounded-md">
-    <form id="catName flex flex-col justify-center p-2">
+    <form id="catName flex flex-col p-2 justify-center p-2">
         <p class="text-xl pb-2 self-center">Create Catalog</p>
         <label for="catName" class="mb-2">Catalog name</label>
         <br>
@@ -50,12 +50,12 @@
         <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1 focus:border-[#fff4797" placeholder="ex. Our Mutual Friend">
        
     {{!-- below is the search by author with button bit --}}
-        <section class="pt-2">
+        <section class="pt-2 flex content-center justify-evenly">
             <label for="searchAuthor">Search by Author</label>
             <input type="radio" id="author" name="searchAuthor">
         </section>
     {{!-- below is search by title --}}
-        <section class="pb-2">
+        <section class="pb-2 flex content-center justify-around">
             <label for="searchTitle">Search by Title</label>
             <input type="radio" id="book" name="searchTitle">
         </section>
