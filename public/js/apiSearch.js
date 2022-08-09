@@ -118,30 +118,30 @@ function getParams() {
 // };
 
 
-// function addToCat(isbn) {
-//   console.log("match to isbn")
-//   isbn = response.docs[i].isbn[0]
-//   const bookObj = {
-//     //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
-//     title: response.docs[i].title,
-//     author: response.docs[i].author_name[0],
-//     isbn_num: response.docs[i].isbn[0],
-//   }
-//   console.log(bookObj);
-//   fetch("/api/catalogs", {
-//     method: "POST",
-//     body: JSON.stringify(bookObj),
-//     headers: {
-//       "Content-Type": "application/json"
-//     }
-//   }).then(res => {
-//     if (res.ok) {
-//       location.replace('/singleBooklist');
-//     } else {
-//       alert("FAILURE");
-//     }
-//   })
-// };
+function addToCat(isbn) {
+  console.log("match to isbn")
+  isbn = response.docs[i].isbn[0]
+  const bookObj = {
+    //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
+    title: response.docs[i].title,
+    author: response.docs[i].author_name[0],
+    isbn_num: response.docs[i].isbn[0],
+  }
+  console.log(bookObj);
+  fetch("/api/catalogs", {
+    method: "POST",
+    body: JSON.stringify(bookObj),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => {
+    if (res.ok) {
+      location.replace('/singleBooklist');
+    } else {
+      alert("FAILURE");
+    }
+  })
+};
 
 
 function searchBooks() {
@@ -154,7 +154,7 @@ function searchBooks() {
       let userInput = document.getElementById("bookGrab").value.toLowerCase()
       let bookAmount = 0
       for (var i = 0; i < response.docs.length; i++) {
-        if (bookAmount < 5) {
+        if (bookAmount < 3) {
           try {
             if (getAuthor) {
               let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
@@ -208,22 +208,6 @@ searchBooksEl.addEventListener('click', function (e) {
 
   searchBooks(bookGrabVal);
 });
-
-
-
-fetch("/api/books", {
-  method: "POST",
-  body: JSON.stringify(bookObj),
-  headers: {
-    "Content-Type": "application/json"
-  }
-}).then(res => {
-  if (res.ok) {
-    location.replace('/singleBooklist');
-  } else {
-    alert("FAILURE");
-  }
-})
 
 
 
