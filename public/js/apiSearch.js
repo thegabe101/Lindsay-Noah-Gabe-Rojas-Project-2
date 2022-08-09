@@ -1,9 +1,11 @@
-let searchBooks = document.querySelector('#exploreBooks');
+let searchBooksEl = document.querySelector('#exploreBooks');
 
 function getParams() {
   let searchParams = document.location.search.split('&');
-  //GMS to try to return the last element from our array of search perams
+  //GMS to try to return the last element from our array of search perams, popping whatever the query is post =
   let query = searchParams[0].split('=').pop();
+
+  //GMS format our query link if it is incomplete
   let format = searchParams[1].split('=').pop();
 
   //GMS will accept two values- the query from the users search params and the first formatted value returned 
@@ -36,9 +38,73 @@ function printBooks(resultObj) {
   let authorContentEl = document.createElement('h4');
   authorContentEl.innerHTML = '<strong>Author: </strong> ' + resultObj.author; + '<br/>';
 
-  let authorContentEl = document.createElement('p');
-  authorContentEl.innerHTML = '<strong>Author: </strong> ' + resultObj.author; + '<br/>';
+  let isbnNumEl = document.createElement('p');
+  isbnNumEl.innerHTML = '<strong>ISBN: </strong> ' + resultObj.isbn; + '<br/>';
+
+  let bookButtonEl = document.createElement('button');
+  bookButtonEl.textContent = 'Add Book to Collection';
+  // bookButtonEl.setAttribute('href', resultObj.url);
+  bookButtonEl.classList.add('btn', 'btn-dark');
+
+  bookCardBody.append(titleEl, authorContentEl, isbnNumEl, bookButtonEl);
+
+  bookContentEl.append(bookCard);
 }
+
+function searchBooks(query) {
+  let apiQueryUrl = "http://openlibrary.org/search.json?q=";
+
+  // if (format) {
+  //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
+  // }
+
+  apiQueryUrl = query;
+
+  fetch(apiQueryUrl)
+    .then(function (res) {
+      if (!response.ok) {
+        throw response.json();
+      }
+
+      return response.json();
+    })
+    .then(function (userFacingResponse) {
+      resultsTextEl.textContent = userFacingResponse.search.query;
+
+      console.log(userFacingResponse);
+
+      if (!userFacingResponse.results.length) {
+        console.log('No results found.');
+        resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
+      } else {
+        resultsTextEl.textContent = '';
+        for (var i = 0; i < userFacingResponse.results.length; i++) {
+          printBooks(userFacingResponse.results[i]);
+        }
+      }
+    }).catch(function (error) {
+      console.err(err);
+    });
+};
+
+function takeBookForm(e) {
+  e.preventDefault();
+
+  let bookGrabVal = document.querySelector('#bookGrab').value;
+
+  if (!bookGrabVal) {
+    console.error('No book title entered.');
+    return;
+  }
+
+  searchBooks(bookGrabVal);
+};
+
+searchBooksEl.addEventListener('submit', takeBookForm);
+
+getParams();
+
+
 
 
 
