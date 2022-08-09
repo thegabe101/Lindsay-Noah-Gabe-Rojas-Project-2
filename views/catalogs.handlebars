@@ -25,8 +25,8 @@
 
 {{!-- shit won't center.... >:[ --}}
 <section class="createCat m-5 ml-10 p-2 inline-flex border border-2 border-[#ffd166] rounded-md">
-    <form id="catName flex flex-col justify-items-center p-2">
-        <p class="text-xl pb-4 self-center">Create Catalog</p>
+    <form id="catName flex flex-col justify-center p-2">
+        <p class="text-xl pb-2 self-center">Create Catalog</p>
         <label for="catName" class="mb-2">Catalog name</label>
         <br>
         <!--GMS this will be our input value catch for the logic that renders a cat-->
@@ -42,10 +42,10 @@
     </form>
 </section>
 
-<section class="searchBooks">
-    <form id="explore">
+<section class="searchBooks m-5 ml-10 p-2 inline-flex border border-2 border-[#ffd166] rounded-md">
+    <form id="explore" class="flex flex-col p-2">
         <label for="searchBar">
-            Explore the shelves here
+            Explore the shelves
         </label>
         <br>
         <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1">
