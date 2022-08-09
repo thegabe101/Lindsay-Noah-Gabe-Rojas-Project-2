@@ -84,7 +84,6 @@ function searchBooks(query) {
       //GMS just gonna log our output field to make sure that it is existing as an open section
       console.log(output)
 
-
       //GMS realizing the for loop isn't going to render into a template literal this way. 
       //GMS will have to figure this out tomorrow 
       let booksShown = 0;
