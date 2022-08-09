@@ -41,8 +41,13 @@
 
                     {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
                     <section class="content-end">
-                        <i class="fa-solid fa-pen pt-1 p-1" role="button"></i>
-                        <i class="fa-solid fa-trash pt-1 p-1" role="button" onclick="editCat()"></i>
+                        <button class="editCatBtn">
+                            <i class="fa-solid fa-pen pt-1 p-1" role="button">
+                            </i>
+                        </button>
+                        <button class="trashCatBtn">
+                            <i class="fa-solid fa-trash pt-1 p-1" role="button" onclick="editCat()"></i>
+                        </button>
                     </section>
                 </li>
             </ul>
