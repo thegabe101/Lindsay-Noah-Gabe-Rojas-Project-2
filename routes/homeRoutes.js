@@ -52,7 +52,7 @@ router.get('/catalogs', (req, res) => {
                 catalog: catalogs,
                 user: req.session.user,
                 username: req.session.username,
-                // logged_in: req.session.logged_in
+                logged_in: req.session.logged_in
             });
             //GMS some console logs to help me figure out what is going wrong here
             console.log(req.session)
@@ -174,6 +174,18 @@ router.get('/signup', (req, res) => {
 //     res.render("catalogs", req.session.user)
 // })
 
+// route to the about page
+router.get("/about", (req, res) => {
+    res.render('about', {
+        logged_in: req.session.logged_in
+    });
+});
 
+// route to the contact page
+router.get("/contact", (req, res) => {
+    res.render('contact', {
+        logged_in: req.session.logged_in
+    });
+});
 
 module.exports = router;
