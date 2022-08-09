@@ -2,7 +2,7 @@
 
 let searchBooksEl = document.querySelector('#exploreBooks');
 const output = document.getElementById('output');
-const bookImg = document.getElementById('imgReturn');
+// const bookImg = document.getElementById('imgReturn');
 
 function getParams() {
   let searchParams = document.location.search.split('&');
@@ -56,66 +56,105 @@ function getParams() {
 // }
 
 //GMS for now will accept an argument but I don't think we will be using it
-function searchBooks(query) {
-  //GMS define openlibrary query url 
-  let apiQueryUrl = "http://openlibrary.org/search.json?q=";
+// function searchBooks(query) {
+//   //GMS define openlibrary query url 
+//   let apiQueryUrl = "http://openlibrary.org/search.json?q=";
 
-  // if (format) {
-  //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
-  // }
+//   // if (format) {
+//   //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
+//   // }
 
-  //apiQueryUrl = query;
+//   //apiQueryUrl = query;
 
-  //GMS fetch function routes to our URL + query value of the input in the bookGrab field 
-  fetch(apiQueryUrl + document.getElementById("bookGrab").value)
-    .then((res) => res.json())
-    .then((userFacingResponse) => {
-      console.log(userFacingResponse)
-      //resultsTextEl.textContent = userFacingResponse.search.query;
+//   //GMS fetch function routes to our URL + query value of the input in the bookGrab field 
+//   fetch(apiQueryUrl + document.getElementById("bookGrab").value)
+//     .then((res) => res.json())
+//     .then((userFacingResponse) => {
+//       console.log(userFacingResponse)
+//       //resultsTextEl.textContent = userFacingResponse.search.query;
 
-      console.log(userFacingResponse);
-      //GMS if the array length is <0, notify the user the book isn't found. 
-      if (!userFacingResponse.docs.length) {
-        console.log('No results found.');
-        return;
-        //resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
-      }
-      //resultsTextEl.textContent = '';
-      //GMS just gonna log our output field to make sure that it is existing as an open section
-      console.log(output)
+//       console.log(userFacingResponse);
+//       //GMS if the array length is <0, notify the user the book isn't found. 
+//       if (!userFacingResponse.docs.length) {
+//         console.log('No results found.');
+//         return;
+//         //resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
+//       }
+//       //resultsTextEl.textContent = '';
+//       //GMS just gonna log our output field to make sure that it is existing as an open section
+//       console.log(output)
 
-      //GMS realizing the for loop isn't going to render into a template literal this way. 
-      //GMS will have to figure this out tomorrow 
-      let booksShown = 0;
+//       //GMS realizing the for loop isn't going to render into a template literal this way. 
+//       //GMS will have to figure this out tomorrow 
+//       let booksShown = 0;
 
-      for (var i = 0; i < userFacingResponse.docs.length; i++) {
-        if (booksShown < 3) {
-          //printBooks(userFacingResponse.docs[i]);
-          output.innerHTML = `
-        <div>
-          <br>
-          <button>&#10133 Add to a Catalog</button>
-          <br>
-          <h1><br><strong>Title:</strong> ${userFacingResponse.docs[i].title}</h1>
-          <br>
-          <h2><strong>Author:</strong> ${userFacingResponse.docs[i].author_name}</h2>
-          <br>
-          <p><strong>ISBN Number:</strong> ${userFacingResponse.docs[i].isbn}</p>
-          <br>
-          </div>
-          <br> 
-        `
-          booksShown++;
+//       for (var i = 0; i < userFacingResponse.docs.length; i++) {
+//         if (booksShown < 3) {
+//           //printBooks(userFacingResponse.docs[i]);
+//           output.innerHTML = `
+//         <div>
+//           <br>
+//           <button>&#10133 Add to a Catalog</button>
+//           <br>
+//           <h1><br><strong>Title:</strong> ${userFacingResponse.docs[i].title}</h1>
+//           <br>
+//           <h2><strong>Author:</strong> ${userFacingResponse.docs[i].author_name}</h2>
+//           <br>
+//           <p><strong>ISBN Number:</strong> ${userFacingResponse.docs[i].isbn}</p>
+//           <br>
+//           </div>
+//           <br> 
+//         `
+//           booksShown++;
+//         }
+//         // bookImg.innerHTML += `<img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>`;
+//         // document.getElementById("bookImg").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
+//       }
+//     }).catch(function (err) {
+//       if (err) {
+//         console.log(JSON.stringify(err));
+//       }
+//     });
+// };
+
+function searchBooks() {
+  var getAuthor = document.getElementById('author').checked
+  document.getElementById('output').innerHTML = "";
+  fetch("http://openlibrary.org/search.json?q=" + document.getElementById("bookGrab").value)
+    .then(a => a.json())
+    .then(response => {
+      console.log(response);
+      let userInput = document.getElementById("bookGrab").value.toLowerCase()
+      let bookAmount = 0
+      for (var i = 0; i < response.docs.length; i++) {
+        if (bookAmount < 3) {
+          try {
+            if (getAuthor) {
+              let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
+              if (lowerCaseAuthor.indexOf(userInput) != -1) {
+                //document.getElementById("output").innerHTML+="</h2>"+response.docs[i].author_name[0]+"<br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
+                //GMS add to catalog button should display for each book rendered 
+                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button>&#10133 Add to a Catalog</button>`;
+                bookAmount++
+              }
+            } else {
+              let lowerCaseTitle = response.docs[i].title.toLowerCase().replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
+              console.log(lowerCaseTitle)
+              if (lowerCaseTitle.includes(userInput)) {
+                //GMS add to catalog button should display for each book rendered 
+                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button>&#10133 Add to a Catalog</button>`;
+                bookAmount++
+              }
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        } else {
+          break
         }
-        // bookImg.innerHTML += `<img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>`;
-        // document.getElementById("bookImg").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
       }
-    }).catch(function (err) {
-      if (err) {
-        console.log(JSON.stringify(err));
-      }
-    });
-};
+    })
+}
 
 function takeBookForm(e) {
   e.preventDefault();
