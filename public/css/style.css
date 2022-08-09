@@ -41,3 +41,24 @@
 /* .like-btn {
     
 } */
+/* 
+body {
+    background: dodgerblue linear-gradient(45deg, aqua, dodgerblue, deeppink) fixed;
+
+} */
+#commentBox, #post {
+    border: none;
+    border-radius: 5px;
+    width: 20%;
+	border: none;
+	background: #E8E8E8;
+	padding: 5px 10px;
+	height: 100%;
+	border-radius: 5px 5px 0px 0px;
+	border-bottom: 2px solid #016BA8;
+	transition: all 0.5s;
+	margin-top: 15px;
+}
+#post:hover{
+    background-color: deeppink;
+}
