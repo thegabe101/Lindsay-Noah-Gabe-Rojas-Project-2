@@ -127,7 +127,7 @@ function searchBooks() {
       let userInput = document.getElementById("bookGrab").value.toLowerCase()
       let bookAmount = 0
       for (var i = 0; i < response.docs.length; i++) {
-        if (bookAmount < 5) {
+        if (bookAmount < 3) {
           try {
             if (getAuthor) {
               let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
