@@ -12,7 +12,26 @@
 
 {{!-- this section below with the h-screen is just so that I can make the footer stick at the bottom haha --}}
 <section class="h-screen">
+
     <section class="catalogsHome p-2 inline-flex flex-col w-1/3 place-content-center">
+    {{!-- the add cats table below, embedded in the catshome --}}
+        <section id="catName" class="createCat m-5 p-3 border border-2 border-[#ffd166] rounded-md justify-items-center">
+            <form id="flex flex-col">
+                <p class="text-xl pb-2">Create Catalog</p>
+                <label for="catName" class="mb-2">Catalog name</label>
+                <br>
+                <!--GMS this will be our input value catch for the logic that renders a cat-->
+                <input type="text" id="name-input" name="name"
+                    class="newCatName border rounded-md mb-3 p-1 focus:border-[#ff4797]"
+                    placeholder="ex. Vampire Parodies">
+                <br>
+                <label for="catGenre" class="pb-1">Catalog Type</label>
+                <br>
+                <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1" placeholder="ex. Sci-Fi">
+                <br>
+                <button class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1 w-full">Save Catalog</button>
+            </form>
+        </section>
         {{#each catalog}}
         {{log name}}
         
@@ -20,55 +39,9 @@
             <ul class="catList flex" id="catsCats">
                 <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]">
                     <a href="#" class="pl-2">{{name}}</a>
-
-                    {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
                     <section class="content-end">
                         <i class="fa-solid fa-pen pt-1 p-1" role="button" onclick="editCat"></i>
                         <i class="fa-solid fa-trash pt-1 p-1" role="button" onclick= "trashCat({{id}})"></i>
-                    </section>
-                </li>
-            </ul>
-        </section>
-        {{/each}}
-    </section>
-
-    {{!-- shit won't center.... >:[ --}}
-    <!-- GMS NO TOUCHY SECTION ID CATNAME!!!!!!!!-->
-    <section id="catName" class="createCat m-5 p-3 inline-flex border border-2 border-[#ffd166] rounded-md justify-items-center">
-        <form id="flex flex-col">
-            <p class="text-xl pb-2">Create Catalog</p>
-            <label for="catName" class="mb-2">Catalog name</label>
-            <br>
-            <!--GMS this will be our input value catch for the logic that renders a cat-->
-            <input type="text" id="name-input" name="name"
-                class="newCatName border rounded-md mb-3 p-1 focus:border-[#ff4797]"
-                placeholder="ex. Vampire Parodies">
-            <br>
-            <label for="catGenre" class="pb-1">Catalog Type</label>
-            <br>
-            <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1" placeholder="ex. Sci-Fi">
-            <br>
-            <button class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1 w-full">Save Catalog</button>
-        </form>
-    </section>
-    
-    <section class="catalogsHome p-2 inline-flex flex-col w-1/3 place-content-center">
-        {{#each catalog}}
-        {{log name}}
-        <section class="catalogs p-2 m-2">
-            <ul class="catList flex" id="catsCats">
-                <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]">
-                    <a href="#" class="pl-2">{{name}}</a>
-
-                    {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
-                    <section class="content-end">
-                        <button class="editCatBtn">
-                            <i class="fa-solid fa-pen pt-1 p-1" role="button">
-                            </i>
-                        </button>
-                        <button class="trashCatBtn">
-                            <i class="fa-solid fa-trash pt-1 p-1" role="button" onclick="editCat()"></i>
-                        </button>
                     </section>
                 </li>
             </ul>
