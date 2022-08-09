@@ -1,0 +1,21 @@
+        <section class="loginPage flex justify-center h-screen p-5">
+            <form class="loginForm flex flex-col justify-center" id="login-page">
+                <p class="text-4xl pb-4 self-center">shelfspace</p>
+                <p class="text-2xl self-center pb-4">Log in</p>
+                <label for="login-email" class="pb-1">Email</label>
+                <input type="text" id="login-email" name="login-email" class="border rounded-md mb-3">
+                <label for="login-password" class="pb-1">Password</label>
+                <!--GMS added a little check here to hide/show password. script is still just in login, which I marked as well.-->
+                <input type="password" id="login-password" name="login-password" class="border rounded-md mb-3" autocomplete="off">
+                <section class="flex content-center justify-end">
+                    <label for="showPassword" class="text-slate-500 text-sm mx-2">Show Password</label>
+                    <input class="float-right" type="checkbox" name="showPassword" onclick="showPw()">
+                </section>
+
+
+                <!-- <input type="submit" value="Login"> if we do this way, needs an action label in the form field-->
+                <button class="self-center w-1/2 loginBtn border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2">Login</button>
+                <p class="text-sm text-slate-500 self-center pt-1">Don't have an account with us? <a href="/signup" class="hover:text-black">Sign up here</a>.</p>
+            </form>
+        </section>
+<script src="/js/login.js"></script>

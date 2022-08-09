@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styling/style.css">
+    <title>Shelf Space</title>
+</head>
+<body>
+    <header class="nav flex justify-end p-5">
+        <!-- where we will place our logo -->
+        <!-- hid the logo for now -->
+        <a href="#" class="active justify-self-start lg:pl-5 hidden">Logo</a>
+        <!-- nav links below -->
+        <section class="navLinks lg:space-x-8 pr-5 pl-5">
+            <a href="#" class="burgLinks hover:text-neutral-50 goLogin">Login</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goSignup">Sign Up</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goAbout">About</a>
+            <a href="#" class="burgLinks hover:text-neutral-50 goContact">Contact</a>
+        </section>
+        <section class="otherNav lg:space-x-8 pr-5 pl-5 ml">
+            <a href="#" class="hover:text-neutral-50 goLogin">Login</a>
+            <a href="#" class="hover:text-neutral-50 goSignup">Sign Up</a>
+            <a href="#" class="hover:text-neutral-50 goAbout">About</a>
+            <a href="#" class="hover:text-neutral-50 goContact">Contact</a>
+        </section>
+        <!-- pop open hamburg -->
+        <a href="javascript:void(0);" class="icon lg:hidden md:hidden" onclick="navBar()">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+    </header>
+
+   
+    <main>
+        <!-- below is the home while logged out -->
+        <!-- <section class="hero flex bg-fixed bg-center bg-cover bg-origin-border  justify-center h-screen">
+            <section class="heroText">
+                <p class="text-6xl">shelfspace</p>
+                <button type="button" class="learnBtn mt-10">
+                    <a href="/about" class="learnMore border rounded border-hidden shadow-md shadow-slate-700 p-2 text-large hover:bg-zinc-50 hover:border-solid">Learn More</a>
+                </button>
+            </section>
+
+        </section> -->
+        <!-- login info -->
+        <!-- <section class="loginPage">
+            <form class="loginForm" id="login-page">
+                <label for="login-email">Email</label>
+                <br>
+                <input type="text" id="login-email" name="login-email" class="border rounded-md">
+                <br>
+                <label for="login-password">Password</label>
+                <br>
+                <input type="text" id="login-password" name="login-password" class="border rounded-md">
+                <br><br>
+                <input type="submit" value="Login"> if we do this way, needs an action label in the form field-->
+                <!-- <button class="loginBtn border rounded-md">Login</button>
+            </form>
+
+        </section> -->
+
+        <!-- sign up  -->
+        <!-- <section class="signupPage">
+            <form class="signupForm">
+                <label for="login-email-signup">Email</label>
+                <input type="text" name="login-email-signup" id="login-email-signup" class="border rounded-md">
+                <br>
+                <label for="login-username-signup">Username</label>
+                <input type="text" name="login-username-signup" id="login-username-signup" class="border rounded-md">
+                <br>
+                <label for="login-password-signup">Password</label>
+                <input type="text" name="login-password-signup" id="login-password-signup" class="border rounded-md">
+                <br><br>
+                <button class="border rounded-md">Sign Up</button>
+            </form>
+
+        </section>  -->
+        <!-- catalogs home page -->
+        <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
+            <section class="catalogs p-2 m-5 w-full">
+                <ul class="catList w-full">
+                    <li><a href="#" class="libraryFull border rounded-md p-3 m-5 w-full">`${username}`'s Library</a></li>
+                     this would be where new LI's are inserted upon the creation of new catalogs -->
+              </ul>
+            </section>
+            <section class="createCat">
+                <form>
+                    <label for="catName">Catalog name</label>
+                    <br>
+                    <input type="text" id="catName" name="catName" class="newCatName border rounded-md p-1">
+                    <br><br>
+                    <button class="newCat">Save Catalog</button>
+                </form>
+            </section>
+        </section>
+         <!-- profile section -->
+         <!-- <section class="profileAvatar"> -->
+            <!-- <img src="" alt=""> -->
+         <!-- </section> -->
+
+         <!-- individual catalogs pages (with the books) -->
+         <!-- <section class="catbookList h-screen">
+            <ul class="titleList m-5 p-2 ">
+                <li class="indBook"> -->
+                    <!-- cover from api -->
+                    <!-- <img src="#" class="coverImg h-3/5 w-2/5 border rounded-sm bg-slate-400">
+                    <p class="bookTitle text-2xl font-semibold"></p>
+                    <br>
+                    <p class="bookAuthor text-lg">by {{authorname}}</p>
+                    <br>
+                    <p class="synopsis"></p>
+                    <br>
+                    <form class="userBookInput"> -->
+                        <!-- shit for adding user comments on book here -->
+                    <!-- </form>
+                    <button class="btn like-btn">
+                        <span class="button-icon">
+                            <i class="fa-regular fa-heart"></i>
+                        </span>
+                    </button>
+                </li>
+            </ul>
+         </section> -->
+    </main>
+    <footer class="foot p-5">
+        <section> 
+            <p class="subFoot text-s">
+                From one bibliophile, to the next.
+            </p>
+            <p class="footText text-xs">
+                &#169 2022 Carralero, Lewis, Rojas, Sowa.
+            </p>
+        </section>
+    </footer>
+</body>
+<script src="./js/style.js"></script>
+<script src='../public/js/login.js'></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://kit.fontawesome.com/997d2a4a51.js" crossorigin="anonymous"></script>
+</html>

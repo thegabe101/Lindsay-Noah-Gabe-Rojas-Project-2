@@ -1,0 +1,46 @@
+<section class='catbookList h-screen'>
+  <ul class='titleList m-5 p-2'>
+    <li class='indBook'>
+      <!-- cover from api -->
+      <img
+        src='#'
+        class='coverImg h-3/5 w-2/5 border rounded-sm bg-slate-400'
+      />
+      <p class='bookTitle text-2xl font-semibold'></p>
+      <br />
+      <p class='bookAuthor text-lg'>
+        by {{authorname}}
+      </p>
+      <br />
+      <p class='synopsis'></p>
+      <br />
+      <form class='userBookInput'>
+        <!-- shit for adding user comments on book here -->
+<div class="max-w-lg rounded-lg shadow-md shadow-blue-600/50">
+  <form action="" class="w-full p-4">
+    <div class="mb-2">
+      <label for="comment" class="text-lg text-gray-600" method="post">Add a comment</label>
+      <textarea
+        class="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
+        name="content"
+        placeholder="Comment"></textarea>
+    </div>
+    <div>
+      <button class="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded">
+        Comment
+      </button>
+      <button
+        class="px-3 py-2 text-sm text-blue-600 border border-blue-500 rounded">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+      {{! <button class="btn like-btn">
+                        <span class="button-icon">
+                            <i class="fa-regular fa-heart"></i>
+                        </span>
+                    </button> }}
+    </li>
+  </ul>
+</section>
