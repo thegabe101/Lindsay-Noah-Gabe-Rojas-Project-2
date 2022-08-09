@@ -188,4 +188,14 @@ router.get("/contact", (req, res) => {
     });
 });
 
+
+//GMS want to render a catalog with its displayed books there 
+router.get("/singleBooklist", (req, res) => {
+    if (req.session.logged_in) {
+        res.render('singleBooklist')
+    } else if (!req.session.logged_in) {
+        throw err
+    };
+});
+
 module.exports = router;
