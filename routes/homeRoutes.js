@@ -39,7 +39,7 @@ router.get('/catalogs', (req, res) => {
             },
             {
                 model: User,
-                // attributes: ['username', 'email']
+                attributes: ['username', 'email']
             }
         ],
         where: {
@@ -50,11 +50,14 @@ router.get('/catalogs', (req, res) => {
             const catalogs = catalogData.map(catalog => catalog.get({ plain: true }));
             res.render('catalogs', {
                 catalog: catalogs,
+                user: req.session.user,
+                username: req.session.username,
                 logged_in: req.session.logged_in
             });
             //GMS some console logs to help me figure out what is going wrong here
             console.log(req.session)
             console.log(req.session.logged_in);
+            console.log(req.session.username);
             console.log('THESE IS CATALOGZ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             console.log({ catalog: catalogs });
             console.log(req.session.user_id);
@@ -97,6 +100,10 @@ router.get('/catalogs/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+
+//GMS going to try writing a book rendering route. this is where the API needs to play in but since we don't have front end for that yet its going to be hard to tie it to the fetched obj. 
+//GMS going to try different strat- lets just do catalog id containing said books. just need to figure out how to render what they contain. 
 
 
 
@@ -167,6 +174,18 @@ router.get('/signup', (req, res) => {
 //     res.render("catalogs", req.session.user)
 // })
 
+// route to the about page
+router.get("/about", (req, res) => {
+    res.render('about', {
+        logged_in: req.session.logged_in
+    });
+});
 
+// route to the contact page
+router.get("/contact", (req, res) => {
+    res.render('contact', {
+        logged_in: req.session.logged_in
+    });
+});
 
 module.exports = router;
