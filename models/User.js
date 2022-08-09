@@ -1,3 +1,7 @@
+// <<<<<<< HEAD
+// const mongoose = require('mongoose');
+
+// =======
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
@@ -45,6 +49,10 @@ User.init(
             },
         },
     },
+// <<<<<<< HEAD
+
+// >>>>>>> 7b5d5cadf744feba8a73971b6fcd446f1977428a
+// =======
     {
         //this is where we hash our password, salt level 10
         hooks: {
@@ -66,3 +74,4 @@ User.init(
 );
 
 module.exports = User;
+// >>>>>>> 1a0be451f9a5d64f06ee3293dc7b062d589c3408
