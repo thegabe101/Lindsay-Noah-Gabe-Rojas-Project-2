@@ -1,72 +1,87 @@
-        <section class="userBanner w-screen p-2">
-            {{!-- {{#each catalog}}
-            {{#log name}}
-            {{/each}} --}}
-            <p class="text-3xl mb-2">
-                Welcome home, {{username}}.
-            </p>
-            <p class="text-xl">
-                Let's make your shelves your safe space.
-            </p>
+<section class="userBanner w-screen p-2">
+    {{!-- {{#each catalog}}
+    {{#log name}}
+    {{/each}} --}}
+    <p class="text-3xl mb-2">
+        Welcome home, {{username}}.
+    </p>
+    <p class="text-xl">
+        Let's make your shelves your safe space.
+    </p>
+</section>
+
+{{!-- this section below with the h-screen is just so that I can make the footer stick at the bottom haha --}}
+<section class="h-screen">
+    <section class="catalogsHome p-2 inline-flex flex-col w-1/3 place-content-center">
+        {{#each catalog}}
+        {{log name}}
+        <section class="catalogs p-2 m-2">
+            <ul class="catList flex" id="catsCats">
+                <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]">
+                    <a href="#" class="pl-2">{{name}}</a>
+
+                    {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
+                            <i class="fa-solid fa-ellipsis-vertical pt-1" role="button" onclick="editCat()">
+                                {{!-- <select>
+                                    <option value="Delete">Delete</option>
+                                    <option value="Edit">Edit</option>
+                                </select> --}}
+                            </i>
+                </li>
+            </ul>
         </section>
+        {{/each}}
+    </section>
 
+    {{!-- shit won't center.... >:[ --}}
+    <section class="createCat m-5 p-3 inline-flex border border-2 border-[#ffd166] rounded-md justify-items-center">
+        <form id="catName flex flex-col">
+            <p class="text-xl pb-2">Create Catalog</p>
+            <label for="catName" class="mb-2">Catalog name</label>
+            <br>
+            <!--GMS this will be our input value catch for the logic that renders a cat-->
+            <input type="text" id="name-input" name="name"
+                class="newCatName border rounded-md mb-3 p-1 focus:border-[#ff4797]"
+                placeholder="ex. Vampire Parodies">
+            <br>
+            <label for="catGenre" class="pb-1">Catalog Type</label>
+            <br>
+            <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1" placeholder="ex. Sci-Fi">
+            <br>
+            <button class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1 w-full">Save Catalog</button>
+        </form>
+    </section>
 
-        <section class="catalogsHome h-screen p-2 grid grid-cols-2 gap-4">
-            {{#each catalog}}
-            {{log name}}
-            <section class="catalogs p-2 m-5 w-full">
-                <ul class="catList w-full" id="catsCats">
-                    <li><a href="#" id="" class="border rounded-md p-2 m-5 w-full">{{name}}</a></li>
-                    <br>
-                </ul>
-            </section>
-            {{/each}}
-            {{!-- {{#if !catalog}}
-            <section class="noCatalogs">
-                <p>
-                    You don't have any catalogs yet!
-                </p>
-            </section>
-            {{/if}} --}}
-        </section>
-            <section class="createCat">
-                <form id="catName">
-                    <h2>Add a catalog to your collection</h2>
-                    <label for="catName">Catalog name</label>
-                    <br>
-                    <!--GMS this will be our input value catch for the logic that renders a cat-->
-                    <input type="text" id="name-input" name="name" class="newCatName border rounded-md p-1">
-                    <br>
-                    <label for="catGenre">Catalog Type</label>
-                    <br>
-                    <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1">
-                    <br>
-                    <button class="newCat">Save Catalog</button>
-                </form>
-
-
-            </section>
-        </section>
-        <section class="searchBooks">
-            <form id="explore">
-                <label for="searchBar">
-                    Explore the shelves here
-                </label>
-                <br>
-                <!--GMS input bar for bookGrab in API search logic-->
-                <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1">
-                <br>
-                <!--GMS TODO find out why these don't deselect-->
+    <section class="searchBooks m-5 ml-10 p-2 inline-flex border border-2 border-[#ffd166] rounded-md">
+        <form id="explore" class="flex flex-col p-2 content-center">
+            <label for="searchBar" class="pb-2 text-xl">
+                Explore the shelves
+            </label>
+            <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1 focus:border-[#fff4797" placeholder="ex. Our Mutual Friend">
+        
+        {{!-- below is the search by author with button bit --}}
+            <section class="pt-2 flex content-center justify-evenly">
                 <label for="searchAuthor">Search by Author</label>
                 <input type="radio" id="author" name="searchAuthor">
+            </section>
+        {{!-- below is search by title --}}
+            <section class="pb-2 flex content-center justify-around">
                 <label for="searchTitle">Search by Title</label>
                 <input type="radio" id="book" name="searchTitle">
-                <input id="exploreBooks" type="submit"></input><br/>
-                <!--GMS render section api return passes through-->
-                <section id="output"></section>
-            </form>
-        </section>
+            </section>
+        
+            {{!-- <input id="exploreBooks" type="submit"> --}}
+            <button onclick="getBooks()" class="bg-[#ff4797] border rounded-md mt-3 text-white hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1">Search</button>
+        </form>
+    </section>
 
+    {{!-- this is where the books populate --}}
+    <section id="output">
+    {{!-- need to add the plus button on this part I think, but where and how???? --}}
+    </section>
+</section>
+
+
+{{!-- api search was originally pulling up the books, pulled and now it's not, come back to this --}}
 <script src="/js/catalogs.js"></script>
 <script src="/js/apiSearch.js"></script>
-
