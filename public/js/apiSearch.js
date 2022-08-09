@@ -2,6 +2,7 @@
 
 let searchBooksEl = document.querySelector('#exploreBooks');
 const output = document.getElementById('output');
+const bookImg = document.getElementById('imgReturn');
 
 function getParams() {
   let searchParams = document.location.search.split('&');
@@ -83,7 +84,6 @@ function searchBooks(query) {
       //GMS just gonna log our output field to make sure that it is existing as an open section
       console.log(output)
 
-
       //GMS realizing the for loop isn't going to render into a template literal this way. 
       //GMS will have to figure this out tomorrow 
       let booksShown = 0;
@@ -107,6 +107,8 @@ function searchBooks(query) {
         `
           booksShown++;
         }
+        // bookImg.innerHTML += `<img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>`;
+        // document.getElementById("bookImg").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
       }
     }).catch(function (err) {
       if (err) {

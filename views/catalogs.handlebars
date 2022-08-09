@@ -68,20 +68,11 @@
             <section class="pb-2 flex content-center justify-around">
                 <label for="searchTitle">Search by Title</label>
                 <input type="radio" id="book" name="searchTitle">
-            </section>
-        
-            {{!-- <input id="exploreBooks" type="submit"> --}}
-            <button onclick="getBooks()" class="bg-[#ff4797] border rounded-md mt-3 text-white hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1">Search</button>
-        </form>
-    </section>
+                <input id="exploreBooks" type="submit"></input><br/>
+                <!--GMS render section api return passes through-->
+                <section id="output"></section>
+            </form>
+        </section>
 
-    {{!-- this is where the books populate --}}
-    <section id="output">
-    {{!-- need to add the plus button on this part I think, but where and how???? --}}
-    </section>
-</section>
-
-
-{{!-- api search was originally pulling up the books, pulled and now it's not, come back to this --}}
 <script src="/js/catalogs.js"></script>
 <script src="/js/apiSearch.js"></script>
