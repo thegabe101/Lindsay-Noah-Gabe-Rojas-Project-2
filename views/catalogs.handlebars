@@ -18,7 +18,14 @@
         <section class="catalogs p-2 m-2">
             <ul class="catList flex" id="catsCats">
                 <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]">
-                    <a href="#" class="pl-2">{{name}}</a><i class="fa-solid fa-ellipsis-vertical pt-1" role="button" onclick=""></i></li>
+                    <a href="#" class="pl-2">{{name}}</a>
+                        <select>
+                            {{!-- <i class="fa-solid fa-ellipsis-vertical pt-1" role="button" onclick="editCat()">
+                            </i> --}}
+                            <option value="Delete">Delete</option>
+                            <option value="Edit">Edit</option>
+                        </select>
+                </li>
             </ul>
         </section>
         {{/each}}
