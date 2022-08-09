@@ -2,6 +2,7 @@
 
 let searchBooksEl = document.querySelector('#exploreBooks');
 const output = document.getElementById('output');
+const bookImg = document.getElementById('imgReturn');
 
 function getParams() {
   let searchParams = document.location.search.split('&');
@@ -107,6 +108,8 @@ function searchBooks(query) {
         `
           booksShown++;
         }
+        // bookImg.innerHTML += `<img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>`;
+        // document.getElementById("bookImg").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
       }
     }).catch(function (err) {
       if (err) {
