@@ -179,4 +179,9 @@ router.get("/about", (req, res) => {
     res.render('about');
 });
 
+// route to the contact page
+router.get("/contact", (req, res) => {
+    res.render('contact');
+});
+
 module.exports = router;
