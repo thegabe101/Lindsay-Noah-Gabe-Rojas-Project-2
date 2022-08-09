@@ -1,4 +1,5 @@
 let searchBooksEl = document.querySelector('#exploreBooks');
+const output = document.getElementById('output');
 
 function getParams() {
   let searchParams = document.location.search.split('&');
@@ -6,50 +7,49 @@ function getParams() {
   let query = searchParams[0].split('=').pop();
 
   //GMS format our query link if it is incomplete
-  let format = searchParams[1].split('=').pop();
+  // let format = searchParams[1].split('=').pop();
 
   //GMS will accept two values- the query from the users search params and the first formatted value returned 
-  getBooks(query, format);
+  searchBooks(query);
 };
 
-function printBooks(resultObj) {
-  console.log(resultObj);
-  console.log('print function triggered');
+// function printBooks(resultObj) {
+//   console.log(resultObj);
+//   console.log('print function triggered');
+//   //GMS lets set a store card for our result content. This can be styled by tailwinds
+//   let bookCard = document.createElement('div');
+//   //GMS this is how we add styles to the appeneded card
+//   //TODO: UNCOMMENT NEXT LINE LATER!
+//   //bookCard.classList.add('')
+//   output.appendChild(bookCard)
+//   let bookCardBody = document.createElement('div');
+//   //GMS to add styles to the card body
+//   //TODO: UNCOMMENT NEXT LINE LATER!
+//   //bookCardBody.classList.add('card-body');
+//   //GMS append the body of the card to the card
+//   bookCard.appendChild(bookCardBody);
 
-  //GMS lets set a store card for our result content. This can be styled by tailwinds
-  let bookCard = document.createElement('div');
-  //GMS this is how we add styles to the appeneded card
-  //TODO: UNCOMMENT NEXT LINE LATER!
-  //bookCard.classList.add('')
+//   //GMS now we need to start constructing these elements from the API's return. 
+//   //GMS first will be title of the book
 
-  let bookCardBody = document.createElement('div');
-  //GMS to add styles to the card body
-  //TODO: UNCOMMENT NEXT LINE LATER!
-  //bookCardBody.classList.add('card-body');
-  //GMS append the body of the card to the card
-  bookCard.append(bookCardBody);
+//   let titleEl = document.createElement('h3');
+//   titleEl.textContent = resultObj.title;
+//   bookCardBody.appendChild(titleEl)
+//   let authorContentEl = document.createElement('h4');
+//   authorContentEl.innerHTML = '<strong>Author: </strong> ' + resultObj.author; + '<br/>';
 
-  //GMS now we need to start constructing these elements from the API's return. 
-  //GMS first will be title of the book
+//   let isbnNumEl = document.createElement('p');
+//   isbnNumEl.innerHTML = '<strong>ISBN: </strong> ' + resultObj.isbn; + '<br/>';
 
-  let titleEl = document.createElement('h3');
-  titleEl.textContent = resultObj.title;
+//   let bookButtonEl = document.createElement('button');
+//   bookButtonEl.textContent = 'Add Book to Collection';
+//   // bookButtonEl.setAttribute('href', resultObj.url);
+//   // bookButtonEl.classList.add('btn', 'btn-dark');
 
-  let authorContentEl = document.createElement('h4');
-  authorContentEl.innerHTML = '<strong>Author: </strong> ' + resultObj.author; + '<br/>';
+//   //bookCardBody.append(titleEl, authorContentEl, isbnNumEl, bookButtonEl);
 
-  let isbnNumEl = document.createElement('p');
-  isbnNumEl.innerHTML = '<strong>ISBN: </strong> ' + resultObj.isbn; + '<br/>';
-
-  let bookButtonEl = document.createElement('button');
-  bookButtonEl.textContent = 'Add Book to Collection';
-  // bookButtonEl.setAttribute('href', resultObj.url);
-  bookButtonEl.classList.add('btn', 'btn-dark');
-
-  bookCardBody.append(titleEl, authorContentEl, isbnNumEl, bookButtonEl);
-
-  bookContentEl.append(bookCard);
-}
+//   //bookContentEl.append(bookCard);
+// }
 
 function searchBooks(query) {
   let apiQueryUrl = "http://openlibrary.org/search.json?q=";
@@ -58,32 +58,46 @@ function searchBooks(query) {
   //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
   // }
 
-  apiQueryUrl = query;
+  //apiQueryUrl = query;
 
-  fetch(apiQueryUrl)
-    .then(function (res) {
-      if (!response.ok) {
-        throw response.json();
-      }
-
-      return response.json();
-    })
-    .then(function (userFacingResponse) {
-      resultsTextEl.textContent = userFacingResponse.search.query;
+  fetch(apiQueryUrl + document.getElementById("bookGrab").value)
+    .then((res) => res.json())
+    .then((userFacingResponse) => {
+      console.log(userFacingResponse)
+      //resultsTextEl.textContent = userFacingResponse.search.query;
 
       console.log(userFacingResponse);
 
-      if (!userFacingResponse.results.length) {
+      if (!userFacingResponse.docs.length) {
         console.log('No results found.');
-        resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
-      } else {
-        resultsTextEl.textContent = '';
-        for (var i = 0; i < userFacingResponse.results.length; i++) {
-          printBooks(userFacingResponse.results[i]);
-        }
+        return
+        //resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
       }
-    }).catch(function (error) {
-      console.err(err);
+      //resultsTextEl.textContent = '';
+      console.log(output)
+      for (var i = 0; i < userFacingResponse.docs.length; i++) {
+
+        //printBooks(userFacingResponse.docs[i]);
+        output.innerHTML = `
+        <div>
+          <br>
+          <button>&#10133 Add to a Catalog</button>
+          <br>
+          <h1><br><strong>Title:</strong> ${userFacingResponse.docs[i].title}</h1>
+          <br>
+          <h2><strong>Author:</strong> ${userFacingResponse.docs[i].author_name}</h2>
+          <br>
+          <p><strong>ISBN Number:</strong> ${userFacingResponse.docs[i].isbn}</p>
+          <br>
+          </div>
+          <br> 
+        `
+      }
+    })
+    .catch(function (err) {
+      if (err) {
+        console.log(JSON.stringify(err));
+      }
     });
 };
 
@@ -100,9 +114,20 @@ function takeBookForm(e) {
   searchBooks(bookGrabVal);
 };
 
-searchBooksEl.addEventListener('submit', takeBookForm);
+searchBooksEl.addEventListener('click', function (e) {
+  e.preventDefault();
 
-getParams();
+  let bookGrabVal = document.querySelector('#bookGrab').value;
+
+  if (!bookGrabVal) {
+    console.error('No book title entered.');
+    return;
+  }
+
+  searchBooks(bookGrabVal);
+});
+
+//getParams();
 
 
 
