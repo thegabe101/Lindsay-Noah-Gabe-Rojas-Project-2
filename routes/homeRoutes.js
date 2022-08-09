@@ -176,12 +176,16 @@ router.get('/signup', (req, res) => {
 
 // route to the about page
 router.get("/about", (req, res) => {
-    res.render('about');
+    res.render('about', {
+        logged_in: req.session.logged_in
+    });
 });
 
 // route to the contact page
 router.get("/contact", (req, res) => {
-    res.render('contact');
+    res.render('contact', {
+        logged_in: req.session.logged_in
+    });
 });
 
 module.exports = router;
