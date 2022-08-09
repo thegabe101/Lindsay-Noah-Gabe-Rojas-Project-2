@@ -1,63 +1,66 @@
-        <section class="userBanner w-screen p-2">
-            {{!-- {{#each catalog}}
-            {{#log name}}
-            {{/each}} --}}
-            <p class="text-3xl mb-2">
-                Welcome home, {{username}}.
-            </p>
-            <p class="text-xl">
-                Let's make your shelves your safe space.
-            </p>
-        </section>
+<section class="userBanner w-screen p-2">
+    {{!-- {{#each catalog}}
+    {{#log name}}
+    {{/each}} --}}
+    <p class="text-3xl mb-2">
+        Welcome home, {{username}}.
+    </p>
+    <p class="text-xl">
+        Let's make your shelves your safe space.
+    </p>
+</section>
 
 
-        <section class="catalogsHome h-screen p-2">
-            {{#each catalog}}
-            {{log name}}
-            <section class="catalogs p-2 m-5">
-                <ul class="catList flex flex-column" id="catsCats">
-                    <li class="border inline-block rounded-md p-2 w-1/3 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]"
-                    ><a href="#" class="pl-2 block">{{name}}</a></li>
-                </ul>
-            </section>
-            {{/each}}
-        </section>
-            <section class="createCat m-5 p-2">
-                <form id="catName flex flex-col justify-center">
-                    <p class="text-xl pb-4 self-center">Add a catalog to your collection</p>
-                    <label for="catName" class="mb-2">Catalog name</label>
-                    <br>
-                    <!--GMS this will be our input value catch for the logic that renders a cat-->
-                    <input type="text" id="name-input" name="name" class="newCatName border rounded-md mb-3 p-1 text-md focus:border-[#ff4797] w-1/3" placeholder="ex. Vampire Novel Parodies">
-                    <br>
-                    {{!-- <label for="catGenre" class="pb-1">Catalog Type</label>
-                    <br>
-                    <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1"> --}}
-                    <button class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1">Save Catalog</button>
-                </form>
+<section class="catalogsHome p-2 inline-flex flex-col w-1/3">
+    {{#each catalog}}
+    {{log name}}
+    <section class="catalogs p-2 m-5">
+        <ul class="catList flex" id="catsCats">
+            <li
+                class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]">
+                <a href="#" class="pl-2">{{name}}</a><i class="fa-solid fa-ellipsis-vertical pt-1" role="button" onclick=""></i></li>
+        </ul>
+    </section>
+    {{/each}}
+</section>
 
+<section class="createCat m-5 ml-10 p-2 inline-flex">
+    <form id="catName flex flex-col justify-center">
+        <p class="text-xl pb-4 self-center">Add a catalog to your collection</p>
+        <label for="catName" class="mb-2">Catalog name</label>
+        <br>
+        <!--GMS this will be our input value catch for the logic that renders a cat-->
+        <input type="text" id="name-input" name="name"
+            class="newCatName border rounded-md mb-3 p-1 text-md focus:border-[#ff4797]"
+            placeholder="ex. Vampire Novel Parodies">
+        <br>
+        {{!-- <label for="catGenre" class="pb-1">Catalog Type</label>
+        <br>
+        <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1"> --}}
+        <button
+            class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1">Save
+            Catalog</button>
+    </form>
+</section>
 
-            </section>
+<section class="searchBooks">
+    {{!-- <form id="exploreBooks"> --}}
+        <label for="searchBar">
+            Explore the shelves here
+        </label>
+        <br>
+        <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1">
+        <br>
+        <label for="searchAuthor">Search by Author</label>
+        <input type="radio" id="author" name="searchAuthor">
+        <label for="searchTitle">Search by Title</label>
+        <input type="radio" id="book" name="searchTitle">
+        <button onclick="getBooks()">Search</button><br />
+        <section id="output">
+            {{!-- need to add the plus button on this part I think, but where and how???? --}}
         </section>
-        <section class="searchBooks">
-            {{!-- <form id="exploreBooks"> --}}
-                <label for="searchBar">
-                    Explore the shelves here
-                </label>
-                <br>
-                <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1">
-                <br>
-                <label for="searchAuthor">Search by Author</label>
-                <input type="radio" id="author" name="searchAuthor">
-                <label for="searchTitle">Search by Title</label>
-                <input type="radio" id="book" name="searchTitle">
-                <button onclick="getBooks()">Search</button><br/>
-                <section id="output">
-                    {{!-- need to add the plus button on this part I think, but where and how???? --}}
-                </section>
-            </form>
-        </section>
+    </form>
+</section>
 
 <script src="/js/catalogs.js"></script>
 <script src="/js/apiSearch.js"></script>
-
