@@ -117,6 +117,33 @@ function getParams() {
 //     });
 // };
 
+
+// function addToCat(isbn) {
+//   console.log("match to isbn")
+//   isbn = response.docs[i].isbn[0]
+//   const bookObj = {
+//     //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
+//     title: response.docs[i].title,
+//     author: response.docs[i].author_name[0],
+//     isbn_num: response.docs[i].isbn[0],
+//   }
+//   console.log(bookObj);
+//   fetch("/api/catalogs", {
+//     method: "POST",
+//     body: JSON.stringify(bookObj),
+//     headers: {
+//       "Content-Type": "application/json"
+//     }
+//   }).then(res => {
+//     if (res.ok) {
+//       location.replace('/singleBooklist');
+//     } else {
+//       alert("FAILURE");
+//     }
+//   })
+// };
+
+
 function searchBooks() {
   var getAuthor = document.getElementById('author').checked
   document.getElementById('output').innerHTML = "";
@@ -134,7 +161,7 @@ function searchBooks() {
               if (lowerCaseAuthor.indexOf(userInput) != -1) {
                 //document.getElementById("output").innerHTML+="</h2>"+response.docs[i].author_name[0]+"<br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
                 //GMS add to catalog button should display for each book rendered 
-                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button>&#10133 Add to a Catalog</button>`;
+                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button onClick='(${addToCat(response.docs[i].isbn)})'>&#10133 to Catalog</button>`;
                 bookAmount++
               }
             } else {
@@ -142,7 +169,7 @@ function searchBooks() {
               console.log(lowerCaseTitle)
               if (lowerCaseTitle.includes(userInput)) {
                 //GMS add to catalog button should display for each book rendered 
-                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button>&#10133 Add to a Catalog</button>`;
+                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button onClick='(${addToCat(response.docs[i].isbn)}'>&#10133 to Catalog</button>`;
                 bookAmount++
               }
             }
@@ -181,6 +208,29 @@ searchBooksEl.addEventListener('click', function (e) {
 
   searchBooks(bookGrabVal);
 });
+
+
+
+fetch("/api/books", {
+  method: "POST",
+  body: JSON.stringify(bookObj),
+  headers: {
+    "Content-Type": "application/json"
+  }
+}).then(res => {
+  if (res.ok) {
+    location.replace('/singleBooklist');
+  } else {
+    alert("FAILURE");
+  }
+})
+
+
+
+
+
+
+
 
 //getParams();
 
