@@ -52,7 +52,7 @@ router.get('/catalogs', (req, res) => {
                 catalog: catalogs,
                 user: req.session.user,
                 username: req.session.username,
-                // logged_in: req.session.logged_in
+                logged_in: req.session.logged_in
             });
             //GMS some console logs to help me figure out what is going wrong here
             console.log(req.session)
