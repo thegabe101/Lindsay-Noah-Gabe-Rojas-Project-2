@@ -17,6 +17,9 @@
 
 //GMS this will be our perpetual modal logout button shown by lindsays if/else on handlebars. this one needs to be a click, not a submit
 //GMS SHOULD NOT SHOW IF LOGGED OUT!!!
+if(document.querySelector("#logout-button")){
+
+
 document.querySelector("#logout-button").addEventListener("click", e => {
     e.preventDefault();
     //GMSretrieve back destroy route
@@ -33,4 +36,5 @@ document.querySelector("#logout-button").addEventListener("click", e => {
                 alert("Unsuccesful response.")
             }
         });
-});
+})
+}

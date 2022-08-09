@@ -48,18 +48,21 @@
             </section>
         </section>
         <section class="searchBooks">
-            {{!-- <form id="exploreBooks"> --}}
+            <form id="explore">
                 <label for="searchBar">
                     Explore the shelves here
                 </label>
                 <br>
+                <!--GMS input bar for bookGrab in API search logic-->
                 <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1">
                 <br>
+                <!--GMS TODO find out why these don't deselect-->
                 <label for="searchAuthor">Search by Author</label>
                 <input type="radio" id="author" name="searchAuthor">
                 <label for="searchTitle">Search by Title</label>
                 <input type="radio" id="book" name="searchTitle">
-                <button onclick="getBooks()">Search</button><br/>
+                <input id="exploreBooks" type="submit"></input><br/>
+                <!--GMS render section api return passes through-->
                 <section id="output"></section>
             </form>
         </section>

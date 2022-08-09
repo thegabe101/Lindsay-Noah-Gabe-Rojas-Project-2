@@ -102,6 +102,10 @@ router.get('/catalogs/:id', (req, res) => {
 });
 
 
+//GMS going to try writing a book rendering route. this is where the API needs to play in but since we don't have front end for that yet its going to be hard to tie it to the fetched obj. 
+//GMS going to try different strat- lets just do catalog id containing said books. just need to figure out how to render what they contain. 
+
+
 
 
 
