@@ -96,6 +96,8 @@ router.post('/', haveAuth, (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
+    console.log("****************************************this is happening********************************************************")
+    console.log(req.params.id);
     //GMS where the id matches the requested parameters
     Catalog.destroy({
         where: {

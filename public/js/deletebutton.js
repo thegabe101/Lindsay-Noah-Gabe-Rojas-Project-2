@@ -13,9 +13,9 @@
 
 //     console.log("clickity clackity");
 
-//     // const id = window.location.toString().split('/')[
-//     //     window.location.toString().split('/').length - 1
-//     // ];
+// const id = window.location.toString().split('/')[
+//     window.location.toString().split('/').length - 1
+// ];
 
 //     const deadCat = await fetch('/api/catalogs/:id', {
 //         method: 'DELETE',
@@ -35,17 +35,16 @@
 //     }
 // }
 
-const { Catalog } = require("../../models")
-
-async function trashCat() {
+async function trashCat(id) {
     console.log("clickity clackity");
 
-    const deadCat = await fetch('/api/catalogs/:id', {
+    // const id = window.location.toString().split('/')[
+    //     window.location.toString().split('/').length - 1
+    // ];
+
+    const deadCat = await fetch(`/api/catalogs/${id}`, {
         method: 'DELETE',
         body: JSON.stringify({
-            include: {
-                model: Catalog,
-            },
             where: {
                 id: id,
             }
