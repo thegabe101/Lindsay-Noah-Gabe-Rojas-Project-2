@@ -43,19 +43,26 @@
 </section>
 
 <section class="searchBooks m-5 ml-10 p-2 inline-flex border border-2 border-[#ffd166] rounded-md">
-    <form id="explore" class="flex flex-col p-2">
-        <label for="searchBar">
+    <form id="explore" class="flex flex-col p-2 justify-center">
+        <label for="searchBar" class="pb-2 text-xl">
             Explore the shelves
         </label>
-        <br>
-        <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1">
-        <br>
-        <label for="searchAuthor">Search by Author</label>
-        <input type="radio" id="author" name="searchAuthor">
-        <label for="searchTitle">Search by Title</label>
-        <input type="radio" id="book" name="searchTitle">
+        <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1 focus:border-[#fff4797" placeholder="ex. Our Mutual Friend">
+       
+    {{!-- below is the search by author with button bit --}}
+        <section class="pt-2">
+            <label for="searchAuthor">Search by Author</label>
+            <input type="radio" id="author" name="searchAuthor">
+        </section>
+    {{!-- below is search by title --}}
+        <section class="pb-2">
+            <label for="searchTitle">Search by Title</label>
+            <input type="radio" id="book" name="searchTitle">
+        </section>
+       
         {{!-- <input id="exploreBooks" type="submit"> --}}
-        <button onclick="getBooks()">Search</button><br/>
+        <button onclick="getBooks()" class="bg-[#ff4797] border rounded-md mt-3 text-white hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1">Search</button>
+        <br/>
         <section id="output">
             {{!-- need to add the plus button on this part I think, but where and how???? --}}
         </section>
