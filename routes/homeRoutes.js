@@ -190,12 +190,64 @@ router.get("/contact", (req, res) => {
 
 
 //GMS want to render a catalog with its displayed books there 
-router.get("/singleBooklist", (req, res) => {
-    if (req.session.logged_in) {
-        res.render('singleBooklist')
-    } else if (!req.session.logged_in) {
-        throw err
-    };
+// router.get("/singleBooklist", (req, res) => {
+//     if (req.session.logged_in) {
+//         res.render('singleBooklist')
+//     } else if (!req.session.logged_in) {
+//         throw err
+//     };
+// });
+
+router.get('/books', (req, res) => {
+    console.log(req.session);
+    console.log(req.session.user_id);
+    console.log('CATALOG BELOW')
+    console.log({ Catalog })
+    // console.log(req.user.logged_in);
+
+    Book.findAll({
+        attributes: [
+            'id',
+            'title',
+            'author',
+            'isbn_num',
+            'catalog_id'
+        ],
+        include: [
+            {
+                model: Catalog,
+                // attributes: ['id', 'title', 'author', 'isbn_num'],
+            },
+            // {
+            //     model: User,
+            //     attributes: ['username', 'email']
+            // }
+        ],
+        // where: {
+        //     // user_id: req.session.user_id
+        //     user_id: req.session.user_id,
+        // }
+    })
+        .then(bookData => {
+            const books = bookData.map(books => books.get({ plain: true }));
+            res.render('singleBooklist', {
+                book: books,
+                user: req.session.user,
+                username: req.session.username,
+                logged_in: req.session.logged_in
+            });
+            console.log(req.session)
+            console.log(req.session.logged_in);
+            console.log(req.session.username);
+            console.log('THESE IS books!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            console.log({ book: books });
+            console.log(req.session.user_id);
+            console.log(books[0])
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 module.exports = router;

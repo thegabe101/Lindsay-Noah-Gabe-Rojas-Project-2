@@ -12,7 +12,28 @@
 
 {{!-- this section below with the h-screen is just so that I can make the footer stick at the bottom haha --}}
 <section class="h-screen">
-        <!-- GMS NO TOUCHY SECTION ID CATNAME!!!!!!!!-->
+    <section class="catalogsHome p-2 inline-flex flex-col w-1/3 place-content-center">
+        {{#each catalog}}
+        {{log name}}
+        
+        <section class="catalogs p-2 m-2">
+            <ul class="catList flex" id="catsCats">
+                <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]">
+                    <a href="#" class="pl-2">{{name}}</a>
+
+                    {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
+                    <section class="content-end">
+                        <i class="fa-solid fa-pen pt-1 p-1" role="button" onclick="editCat"></i>
+                        <i class="fa-solid fa-trash pt-1 p-1" role="button" onclick= "trashCat({{id}})"></i>
+                    </section>
+                </li>
+            </ul>
+        </section>
+        {{/each}}
+    </section>
+
+    {{!-- shit won't center.... >:[ --}}
+    <!-- GMS NO TOUCHY SECTION ID CATNAME!!!!!!!!-->
     <section id="catName" class="createCat m-5 p-3 inline-flex border border-2 border-[#ffd166] rounded-md justify-items-center">
         <form id="flex flex-col">
             <p class="text-xl pb-2">Create Catalog</p>
@@ -89,5 +110,6 @@
         </section>
     {{!-- id for cat button to add to cat is #addCatBook --}}
 
+<script src="/js/deletebutton.js"></script>
 <script src="/js/catalogs.js"></script>
 <script src="/js/apiSearch.js"></script>
