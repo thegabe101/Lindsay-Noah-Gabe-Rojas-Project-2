@@ -57,3 +57,23 @@ async function trashCat() {
         alert(deadCat.statusText);
     }
 }
+
+// document.querySelector("#trashCat").addEventListener("click", e => {
+//     e.preventDefault();
+//     console.log("been clickethed")
+//     fetch("/api/catalogs/:id", ({
+//         include: {
+//             model: Catalog,
+//         },
+//         where: {
+//             id: id,
+//         }
+//     })
+//     );
+// }).then(res => {
+//     if (res.ok) {
+//         location.reload();
+//     } else {
+//         alert("FAILURE");
+//     }
+// });
