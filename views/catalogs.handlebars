@@ -21,12 +21,10 @@
                     <a href="#" class="pl-2">{{name}}</a>
 
                     {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
-                            <i class="fa-solid fa-ellipsis-vertical pt-1" role="button" onclick="editCat()">
-                                {{!-- <select>
-                                    <option value="Delete">Delete</option>
-                                    <option value="Edit">Edit</option>
-                                </select> --}}
-                            </i>
+                    <section class="content-end">
+                        <i class="fa-solid fa-pen pt-1 p-1" role="button"></i>
+                        <i class="fa-solid fa-trash pt-1 p-1" role="button" onclick="editCat()"></i>
+                    </section>
                 </li>
             </ul>
         </section>
