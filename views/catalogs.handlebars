@@ -24,9 +24,9 @@
 </section>
 
 {{!-- shit won't center.... >:[ --}}
-<section class="createCat m-5 ml-10 p-2 inline-flex border border-2 border-[#ffd166] rounded-md">
-    <form id="catName flex flex-col p-2 justify-center p-2">
-        <p class="text-xl pb-2 self-center">Create Catalog</p>
+<section class="createCat m-5 p-3 inline-flex border border-2 border-[#ffd166] rounded-md justify-items-center">
+    <form id="catName flex flex-col">
+        <p class="text-xl pb-2">Create Catalog</p>
         <label for="catName" class="mb-2">Catalog name</label>
         <br>
         <!--GMS this will be our input value catch for the logic that renders a cat-->
@@ -38,12 +38,12 @@
         <br>
         <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1" placeholder="ex. Sci-Fi">
         <br>
-        <button class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1">Save Catalog</button>
+        <button class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1 w-full">Save Catalog</button>
     </form>
 </section>
 
 <section class="searchBooks m-5 ml-10 p-2 inline-flex border border-2 border-[#ffd166] rounded-md">
-    <form id="explore" class="flex flex-col p-2 justify-center">
+    <form id="explore" class="flex flex-col p-2 content-center">
         <label for="searchBar" class="pb-2 text-xl">
             Explore the shelves
         </label>
