@@ -14,4 +14,4 @@ const Catalog = require("../../models")
         //})
     //})
 //}
-    
+    function editCat()
