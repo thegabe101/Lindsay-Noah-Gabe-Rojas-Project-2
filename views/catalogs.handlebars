@@ -19,12 +19,14 @@
             <ul class="catList flex" id="catsCats">
                 <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]">
                     <a href="#" class="pl-2">{{name}}</a>
-                        <select>
-                            {{!-- <i class="fa-solid fa-ellipsis-vertical pt-1" role="button" onclick="editCat()">
-                            </i> --}}
-                            <option value="Delete">Delete</option>
-                            <option value="Edit">Edit</option>
-                        </select>
+
+                    {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
+                            <i class="fa-solid fa-ellipsis-vertical pt-1" role="button" onclick="editCat()">
+                                {{!-- <select>
+                                    <option value="Delete">Delete</option>
+                                    <option value="Edit">Edit</option>
+                                </select> --}}
+                            </i>
                 </li>
             </ul>
         </section>
