@@ -174,6 +174,9 @@ router.get('/signup', (req, res) => {
 //     res.render("catalogs", req.session.user)
 // })
 
-
+// route to the about page
+router.get("/about", (req, res) => {
+    res.render('about');
+});
 
 module.exports = router;
