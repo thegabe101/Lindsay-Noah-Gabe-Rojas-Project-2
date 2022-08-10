@@ -1,18 +1,41 @@
-<section class="userBanner w-screen p-2">
+<section class="userBanner w-screen p-2 bg-gradient-to-b from-[#ffbad4] pl-4">
     {{!-- {{#each catalog}}
     {{#log name}}
     {{/each}} --}}
-    <p class="text-3xl mb-2">
-        Welcome home, {{username}}.
-    </p>
+    <section class="flex gap-2">
+        <p class="text-3xl mb-2">
+            Welcome home, <p class="animate__animated animate__bounceInRight text-3xl font-['"Dancing Script"', cursive;]">{{username}}</p>.
+        </p>
+    </section>
     <p class="text-xl">
         Let's make your shelves your safe space.
     </p>
 </section>
 
 {{!-- this section below with the h-screen is just so that I can make the footer stick at the bottom haha --}}
-<section class="h-screen">
-    <section class="catalogsHome p-2 inline-flex flex-col w-1/3 place-content-center">
+<section class="h-screen flex justify-evenly">
+    <section>
+        <img src="images/catalogs-sidebar.png" alt="sidebar with flowers, pink catalogs." class="h-screen pb-2">
+    </section>
+    <section class="catalogsHome p-2 inline-flex flex-col w-1/3 justify-center">
+    {{!-- the add cats table below, embedded in the catshome --}}
+        <section id="catName" class="createCat m-5 p-3">
+            <form id="flex flex-col">
+                <p class="text-xl pb-2 center-self">Create Catalog</p>
+                <label for="catName" class="mb-2">Catalog name</label>
+                <br>
+                <!--GMS this will be our input value catch for the logic that renders a cat-->
+                <input type="text" id="name-input" name="name"
+                    class="newCatName w-full border rounded-md mb-3 p-1 focus:outline-[#ff828f]"
+                    placeholder="ex. Vampire Parodies">
+                <br>
+                <label for="catGenre" class="pb-1">Catalog Type</label>
+                <br>
+                <input type="text" id="genre_type-input" name="genre_type" class="newCatName w-full border rounded-md p-1 focus:outline-[#ff828f]" placeholder="ex. Sci-Fi">
+                <br>
+                <button class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1 w-full">Save Catalog</button>
+            </form>
+        </section>
         {{#each catalog}}
         {{log name}}
         
@@ -20,8 +43,6 @@
             <ul class="catList flex" id="catsCats">
                 <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]" onclick="clickCat({{id}})">
                     <a href="#" class="pl-2">{{name}}</a>
-
-                    {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
                     <section class="content-end">
                         <i class="fa-solid fa-pen pt-1 p-1" role="button" onclick="editCat"></i>
                         <i class="fa-solid fa-trash pt-1 p-1" role="button" onclick= "trashCat({{id}})"></i>
@@ -32,42 +53,22 @@
         {{/each}}
     </section>
 
-    {{!-- shit won't center.... >:[ --}}
-    <!-- GMS NO TOUCHY SECTION ID CATNAME!!!!!!!!-->
-    <section id="catName" class="createCat m-5 p-3 inline-flex border border-2 border-[#ffd166] rounded-md justify-items-center">
-        <form id="flex flex-col">
-            <p class="text-xl pb-2">Create Catalog</p>
-            <label for="catName" class="mb-2">Catalog name</label>
-            <br>
-            <!--GMS this will be our input value catch for the logic that renders a cat-->
-            <input type="text" id="name-input" name="name"
-                class="newCatName border rounded-md mb-3 p-1 focus:border-[#ff4797]"
-                placeholder="ex. Vampire Parodies">
-            <br>
-            <label for="catGenre" class="pb-1">Catalog Type</label>
-            <br>
-            <input type="text" id="genre_type-input" name="genre_type" class="newCatName border rounded-md p-1" placeholder="ex. Sci-Fi">
-            <br>
-            <button class="newCat border rounded-md mt-3 text-white bg-[#ff4797] hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1 w-full">Save Catalog</button>
-        </form>
-    </section>
-
-    <section class="searchBooks m-5 ml-10 p-2 inline-flex border border-2 border-[#ffd166] rounded-md">
+    <section class="searchBooks m-5 ml-10 p-2 inline-flex self-center">
         <form id="explore" class="flex flex-col p-2 content-center">
             <label for="searchBar" class="pb-2 text-xl">
                 Explore the shelves
             </label>
-            <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1 focus:border-[#fff4797" placeholder="ex. Our Mutual Friend">
+            <input type="search" id="bookGrab" name="searchBar" class="searchBar border rounded-md p-1 focus:outline-[#ff828f]" placeholder="ex. Our Mutual Friend">
         
         {{!-- below is the search by author with button bit --}}
             <section class="pt-2 flex content-center justify-evenly">
                 <label for="searchAuthor">Search by Author</label>
-                <input type="radio" id="author" name="searchAuthor">
+                <input type="radio" id="author" name="searchAuthor" class="accent-[#ff828f]">
             </section>
         {{!-- below is search by title --}}
             <section class="pb-2 flex content-center justify-around">
                 <label for="searchTitle">Search by Title</label>
-                <input type="radio" id="book" name="searchTitle">
+                <input type="radio" id="book" name="searchTitle" class="accent-[#ff828f]">
             </section>
             <button id="exploreBooks" class="bg-[#ff4797] border rounded-md mt-3 text-white hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2 px-2 py-1">Search</button>
                 <!--GMS render section api return passes through-->
@@ -95,15 +96,17 @@
         </section>
                 <section id="output2" class="flex m-3">
             {{!-- my attempt to organize the data that's coming in from the api --}}
-            <section class="flex-">
-                <h3 id="authorNameoutput" class=""></h3>
-                <h5 id="titleNameoutput"></h5>
+            <section class="flex-column p-3">
+                <h3 id="authorNameoutput" class="text-2xl"></h3>
+                <h5 id="titleNameoutput" class="text-lg"></h5>
             </section>
             
             <img id="coverOutput">
         </section>
+</section>
     {{!-- id for cat button to add to cat is #addCatBook --}}
 
+<script src="/js/style.js"></script>
 <script src="/js/book.js"></script>
 <script src="/js/renderCat.js"></script>
 <script src="/js/deletebutton.js"></script>
