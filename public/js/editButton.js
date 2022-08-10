@@ -14,4 +14,15 @@ const Catalog = require("../../models")
         //})
     //})
 //}
-    function editCat()
+async function updateCato (model, where, newItem) {
+    // First try to find the record
+   const foundItem = await Catalog.findOne({where});
+   if (!foundItem) {
+        // Item not found, create a new one
+        const item = await Catalog.create(newItem)
+        return  {item, created: true};
+    }
+    // Found an item, update it
+    const item = await Catalog.update(newItem, {where});
+    return {item, created: false};
+}
