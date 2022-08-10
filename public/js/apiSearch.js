@@ -101,7 +101,7 @@ function searchBooks(query) {
           output0.innerHTML = `
         <div>
           <br>
-          <button id="stupidButton${i}" style="background-color: black; color: white; height: 75px; width: 150px; margin-top: 300px;">&#10133 to Catalog</button>
+          <button id="stupidButton${i}" class="bg-[#ff4797]" style="color: white; height: 75px; width: 150px; margin-top: 300px;">&#10133 to Catalog</button>
           <br>
           <h1 margin-top: 300px><br><strong>Title:</strong> ${userFacingResponse.docs[0].title}</h1>
           <br>
