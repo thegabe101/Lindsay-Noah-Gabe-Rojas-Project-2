@@ -118,50 +118,92 @@ function getParams() {
 // };
 
 
-function addToCat(isbn) {
-  console.log("match to isbn")
-  isbn = response.docs[i].isbn[0]
-  const bookObj = {
-    //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
-    title: response.docs[i].title,
-    author: response.docs[i].author_name[0],
-    isbn_num: response.docs[i].isbn[0],
-  }
-  console.log(bookObj);
-  fetch("/api/catalogs", {
-    method: "POST",
-    body: JSON.stringify(bookObj),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    if (res.ok) {
-      location.replace('/singleBooklist');
-    } else {
-      alert("FAILURE");
-    }
-  })
-};
+// function addToCat(isbn) {
+//   console.log("match to isbn")
+//   isbn = response.docs[i].isbn[0]
+//   const bookObj = {
+//     //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
+//     title: response.docs[i].title,
+//     author: response.docs[i].author_name[0],
+//     isbn_num: response.docs[i].isbn[0],
+//   }
+//   console.log(bookObj);
+//   fetch("/api/catalogs", {
+//     method: "POST",
+//     body: JSON.stringify(bookObj),
+//     headers: {
+//       "Content-Type": "application/json"
+//     }
+//   }).then(res => {
+//     if (res.ok) {
+//       location.replace('/singleBooklist');
+//     } else {
+//       alert("FAILURE");
+//     }
+//   })
+// };
+
+
+// function searchBooks() {
+//   var getAuthor = document.getElementById('author').checked
+//   document.getElementById('output').innerHTML = "";
+//   fetch("http://openlibrary.org/search.json?q=" + document.getElementById("bookGrab").value)
+//     .then(a => a.json())
+//     .then(response => {
+//       console.log(response);
+//       let userInput = document.getElementById("bookGrab").value.toLowerCase()
+//       let bookAmount = 0
+//       for (var i = 0; i < response.docs.length; i++) {
+//         if (bookAmount < 3) {
+//           try {
+//             if (getAuthor) {
+//               let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
+//               if (lowerCaseAuthor.indexOf(userInput) != -1) {
+//                 //document.getElementById("output").innerHTML+="</h2>"+response.docs[i].author_name[0]+"<br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
+//                 //GMS add to catalog button should display for each book rendered 
+//                 document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button onClick='(${addToCat(response.docs[i].isbn)})'>&#10133 to Catalog</button>`;
+//                 bookAmount++
+//               }
+//             } else {
+//               let lowerCaseTitle = response.docs[i].title.toLowerCase().replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
+//               console.log(lowerCaseTitle)
+//               if (lowerCaseTitle.includes(userInput)) {
+//                 //GMS add to catalog button should display for each book rendered 
+//                 document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button onClick='(${addToCat(response.docs[i].isbn)}'>&#10133 to Catalog</button>`;
+//                 bookAmount++
+//               }
+//             }
+//           } catch (err) {
+//             console.log(err);
+//           }
+//         } else {
+//           break
+//         }
+//       }
+//     })
+// }
 
 
 function searchBooks() {
   var getAuthor = document.getElementById('author').checked
-  document.getElementById('output').innerHTML = "";
+  document.getElementById('output0').innerHTML = "";
+  document.getElementById('output1').innerHTML = "";
+  document.getElementById('output2').innerHTML = "";
   fetch("http://openlibrary.org/search.json?q=" + document.getElementById("bookGrab").value)
     .then(a => a.json())
     .then(response => {
       console.log(response);
       let userInput = document.getElementById("bookGrab").value.toLowerCase()
-      let bookAmount = 0
-      for (var i = 0; i < response.docs.length; i++) {
+      let bookAmount = 0;
+      for (var i = 0; i < 3; i++) {
         if (bookAmount < 3) {
           try {
             if (getAuthor) {
               let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
-              if (lowerCaseAuthor.indexOf(userInput) != -1) {
+              if (lowerCaseAuthor.indexOf(userInput)) {
                 //document.getElementById("output").innerHTML+="</h2>"+response.docs[i].author_name[0]+"<br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
                 //GMS add to catalog button should display for each book rendered 
-                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button onClick='(${addToCat(response.docs[i].isbn)})'>&#10133 to Catalog</button>`;
+                document.getElementById("output" + i).innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button id="stupidButton${i}" onclick='addToCat(${JSON.stringify(response.docs[i])})'>&#10133 to Catalog</button>`;
                 bookAmount++
               }
             } else {
@@ -169,10 +211,12 @@ function searchBooks() {
               console.log(lowerCaseTitle)
               if (lowerCaseTitle.includes(userInput)) {
                 //GMS add to catalog button should display for each book rendered 
-                document.getElementById("output").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button onClick='(${addToCat(response.docs[i].isbn)}'>&#10133 to Catalog</button>`;
+                document.getElementById("output" + i).innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button id="stupidButton${i}" onclick='addToCat(${JSON.stringify(response.docs[i])})'>&#10133 to Catalog</button>`;
                 bookAmount++
               }
             }
+            let stupidButtonCaller = document.getElementById("stupidButton" + i)
+            stupidButtonCaller.addEventListener('click', addToCat(response.docs[i]));
           } catch (err) {
             console.log(err);
           }
@@ -181,7 +225,49 @@ function searchBooks() {
         }
       }
     })
-}
+};
+
+
+function addToCat(response) {
+  console.log("match to isbn")
+
+
+  const pleaseId = window.location.toString().split('/')
+  const id = pleaseId[4];
+
+  const bookObj = {
+    //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
+    title: response.title,
+    author: response.author_name[0],
+    isbn_num: response.isbn[0],
+    catalog_id: id,
+  }
+  console.log(bookObj);
+  fetch(`/api/books/${id}`, {
+    method: "POST",
+    body: JSON.stringify(bookObj),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => {
+    if (res.ok) {
+      console.log('its working!!!')
+    } else {
+      alert("FAILURE");
+    }
+  })
+};
+
+//GMS CLICK CATALOG AND URL AT TOP CHANGES TO CATALOG/:ID
+//WHEN USER CLICKS ADD IT WILL ADD TO THAT CATALOG that has been selected
+
+
+
+
+
+
+
+
 
 function takeBookForm(e) {
   e.preventDefault();
@@ -210,7 +296,7 @@ searchBooksEl.addEventListener('click', function (e) {
 });
 
 
-
+console.log(window.location.toString().split('/'))
 
 
 
