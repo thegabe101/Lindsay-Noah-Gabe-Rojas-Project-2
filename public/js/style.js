@@ -15,12 +15,12 @@ app.get("/static", (req, res) => {
     res.render("static");
 });
 
-app.get("/dynamic", (req, res) => {
+app.get("/catalogs", (req, res) => {
     imageList = [];
-    imageList.push({ src: "icons/catalogs-sidebar.png", name: "sidebar" });
-    imageList.push({ src: "icons/shelfspace.png", name: "shelfspace"});
-    imageList.push({ src: "icons/niceFavicon.png", name: "favicon"});
-    res.render("dynamic", { imageList: imageList });
+    imageList.push({ src: "images/catalogs-sidebar.png", name: "sidebar" });
+    imageList.push({ src: "images/shelfspace.png", name: "shelfspace"});
+    imageList.push({ src: "images/niceFavicon.png", name: "favicon"});
+    res.render("catalogs", { imageList: imageList });
 })
 
 // navbar action
