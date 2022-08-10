@@ -95,4 +95,53 @@ router.post('/', haveAuth, (req, res) => {
         });
 });
 
+router.delete('/:id', (req, res) => {
+    console.log("****************************************this is happening********************************************************")
+    console.log(req.params.id);
+
+    // CHECKO CHECKO CHECKO
+
+    Catalog.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then( catalogToDelete => {
+        catalogToDelete.destroy().then(catData => {
+            //GMS if we do, we destroy userData matching a user with that id parameter
+            res.json(catData);
+        })
+        .catch(err => {
+            // It 
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }).catch(err =>{
+        // It couldn't find the catalog with the given ID
+        console.log(err);
+        res.status(400).json(err);
+    })
+    //END CHECKO
+
+
+    //GMS where the id matches the requested parameters
+    // Catalog.destroy({
+    //     where: {
+    //         id: req.params.id
+    //     }
+    // })
+        //GMS if we dont return anything, we note the error 
+        // .then(catData => {
+        //     if (!catData) {
+        //         res.status(404).json({ message: 'No catalog matching that id was found in our database.' });
+        //         return;
+        //     }
+        //     //GMS if we do, we destroy userData matching a user with that id parameter
+        //     res.json(catData);
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        //     res.status(500).json(err);
+        // });
+});
+
 module.exports = router;
