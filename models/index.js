@@ -13,14 +13,18 @@ User.hasMany(Catalog, {
 
 Catalog.belongsTo(User, {
     foreignKey: 'user_id',
+    onDelete: 'cascade'
 });
 
 Catalog.hasMany(Book, {
-    foreignKey: 'catalog_id'
+    foreignKey: 'catalog_id',
+    onDelete: 'cascade',
+    hooks: true
 })
 
 Book.belongsTo(Catalog, {
     foreignKey: 'catalog_id',
+    onDelete: 'cascade'
 })
 
 //GMS this one im not sure about. Does book need to belong to both user and catalog? 
