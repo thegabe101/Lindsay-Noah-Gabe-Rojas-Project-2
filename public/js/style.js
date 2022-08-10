@@ -20,6 +20,7 @@ app.get("/catalogs", (req, res) => {
     imageList.push({ src: "images/catalogs-sidebar.png", name: "sidebar" });
     imageList.push({ src: "images/shelfspace.png", name: "shelfspace"});
     imageList.push({ src: "images/niceFavicon.png", name: "favicon"});
+    imageList.push({ src: "images/shelfspace-smol.png", name: "smolspace"});
     res.render("catalogs", { imageList: imageList });
 })
 
