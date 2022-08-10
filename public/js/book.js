@@ -21,37 +21,7 @@ fetch(`/api/catalogs/${id}`, {
     } else {
         alert("FAILURE");
     }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 document.querySelector("#addCatBook").addEventListener("submit", e => {
     e.preventDefault();
@@ -61,6 +31,7 @@ document.querySelector("#addCatBook").addEventListener("submit", e => {
         title: response.docs[i].title,
         author: response.docs[i].author_name[0],
         isbn_num: response.docs[i].isbn[0],
+        catalog_id: id,
     }
     console.log(bookObj)
 

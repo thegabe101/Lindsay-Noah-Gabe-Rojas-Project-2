@@ -1,21 +1,26 @@
 //GMS grab our form and define our output div that will render as a template literal upon book query
 
 let searchBooksEl = document.querySelector('#exploreBooks');
-const output = document.getElementById('output');
+const output0 = document.getElementById('output0');
+const output1 = document.getElementById('output1');
+const output2 = document.getElementById('output2');
 // const bookImg = document.getElementById('imgReturn');
 
-function getParams() {
-  let searchParams = document.location.search.split('&');
-  //GMS to try to return the last element from our array of search perams, popping whatever the query is post =
-  let query = searchParams[0].split('=').pop();
+// function getParams() {
+//   let searchParams = document.location.search.split('&');
+//   //GMS to try to return the last element from our array of search perams, popping whatever the query is post =
+//   let query = searchParams[0].split('=').pop();
 
-  //GMS format our query link if it is incomplete
-  // let format = searchParams[1].split('=').pop();
+//   //GMS format our query link if it is incomplete
+//   // let format = searchParams[1].split('=').pop();
 
-  //GMS will accept two values- the query from the users search params and the first formatted value returned 
-  //GMS simplyifying- just call searchBooks, which is our fetch function
-  searchBooks(query);
-};
+//   //GMS will accept two values- the query from the users search params and the first formatted value returned 
+//   //GMS simplyifying- just call searchBooks, which is our fetch function
+//   searchBooks(query);
+// };
+
+
+//<img src= '"http://covers.openlibrary.org/b/isbn/" + ${userFacingResponse.docs[i].isbn} + "-M.jpg"'></img>
 
 // function printBooks(resultObj) {
 //   console.log(resultObj);
@@ -56,66 +61,133 @@ function getParams() {
 // }
 
 //GMS for now will accept an argument but I don't think we will be using it
-// function searchBooks(query) {
-//   //GMS define openlibrary query url 
-//   let apiQueryUrl = "http://openlibrary.org/search.json?q=";
+function searchBooks(query) {
+  //GMS define openlibrary query url 
+  let apiQueryUrl = "http://openlibrary.org/search.json?q=";
 
-//   // if (format) {
-//   //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
-//   // }
+  // if (format) {
+  //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
+  // }
 
-//   //apiQueryUrl = query;
+  //apiQueryUrl = query;
 
-//   //GMS fetch function routes to our URL + query value of the input in the bookGrab field 
-//   fetch(apiQueryUrl + document.getElementById("bookGrab").value)
-//     .then((res) => res.json())
-//     .then((userFacingResponse) => {
-//       console.log(userFacingResponse)
-//       //resultsTextEl.textContent = userFacingResponse.search.query;
+  //GMS fetch function routes to our URL + query value of the input in the bookGrab field 
+  fetch(apiQueryUrl + document.getElementById("bookGrab").value)
+    .then((res) => res.json())
+    .then((userFacingResponse) => {
+      console.log(userFacingResponse)
+      //resultsTextEl.textContent = userFacingResponse.search.query;
 
-//       console.log(userFacingResponse);
-//       //GMS if the array length is <0, notify the user the book isn't found. 
-//       if (!userFacingResponse.docs.length) {
-//         console.log('No results found.');
-//         return;
-//         //resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
-//       }
-//       //resultsTextEl.textContent = '';
-//       //GMS just gonna log our output field to make sure that it is existing as an open section
-//       console.log(output)
+      console.log(userFacingResponse);
+      //GMS if the array length is <0, notify the user the book isn't found. 
+      if (!userFacingResponse.docs.length) {
+        console.log('No results found.');
+        return;
+        //resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
+      }
+      //resultsTextEl.textContent = '';
+      //GMS just gonna log our output field to make sure that it is existing as an open section
+      console.log(output0)
+      console.log(output1)
+      console.log(output2)
 
-//       //GMS realizing the for loop isn't going to render into a template literal this way. 
-//       //GMS will have to figure this out tomorrow 
-//       let booksShown = 0;
+      //GMS realizing the for loop isn't going to render into a template literal this way. 
+      //GMS will have to figure this out tomorrow 
+      let booksShown = 0;
 
-//       for (var i = 0; i < userFacingResponse.docs.length; i++) {
-//         if (booksShown < 3) {
-//           //printBooks(userFacingResponse.docs[i]);
-//           output.innerHTML = `
-//         <div>
-//           <br>
-//           <button>&#10133 Add to a Catalog</button>
-//           <br>
-//           <h1><br><strong>Title:</strong> ${userFacingResponse.docs[i].title}</h1>
-//           <br>
-//           <h2><strong>Author:</strong> ${userFacingResponse.docs[i].author_name}</h2>
-//           <br>
-//           <p><strong>ISBN Number:</strong> ${userFacingResponse.docs[i].isbn}</p>
-//           <br>
-//           </div>
-//           <br> 
-//         `
-//           booksShown++;
-//         }
-//         // bookImg.innerHTML += `<img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>`;
-//         // document.getElementById("bookImg").innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>";
-//       }
-//     }).catch(function (err) {
-//       if (err) {
-//         console.log(JSON.stringify(err));
-//       }
-//     });
+      for (var i = 0; i < userFacingResponse.docs.length; i++) {
+        if (booksShown < 3) {
+          //printBooks(userFacingResponse.docs[i]);
+          output0.innerHTML = `
+        <div>
+          <br>
+          <button id="stupidButton${i}">&#10133 to Catalog</button>
+          <br>
+          <h1><br><strong>Title:</strong> ${userFacingResponse.docs[i].title}</h1>
+          <br>
+          <h2><strong>Author:</strong> ${userFacingResponse.docs[i].author_name}</h2>
+          <br>
+          <p><strong>ISBN Number:</strong> ${userFacingResponse.docs[i].isbn}</p>
+          <br>
+          </div>
+          <br>
+          "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + ${userFacingResponse.docs[i].isbn[0]} + "-M.jpg'><br>"
+        `
+          booksShown++
+        }
+        let stupidButtonCaller = document.getElementById("stupidButton" + i);
+        stupidButtonCaller.addEventListener('click', addToCat(userFacingResponse.docs[i]));
+      }
+    }).catch(function (err) {
+      if (err) {
+        console.log(JSON.stringify(err));
+      }
+    });
+};
+
+
+function addToCat(userFacingResponse) {
+  console.log("match to isbn")
+
+
+  const pleaseId = window.location.toString().split('/')
+  const id = pleaseId[4];
+
+  const bookObj = {
+    //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
+    title: userFacingResponse.title,
+    author: userFacingResponse.author_name[0],
+    isbn_num: userFacingResponse.isbn[0],
+    catalog_id: id,
+  }
+  console.log(bookObj);
+  fetch(`/api/books/${id}`, {
+    method: "POST",
+    body: JSON.stringify(bookObj),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => {
+    if (res.ok) {
+      console.log('its working!!!')
+    } else {
+      alert("FAILURE");
+    }
+  })
+};
+
+// function takeBookForm(e) {
+//   e.preventDefault();
+
+//   let bookGrabVal = document.querySelector('#bookGrab').value;
+
+//   if (!bookGrabVal) {
+//     console.error('No book title entered.');
+//     return;
+//   }
+
+//   searchBooks(bookGrabVal);
 // };
+
+// searchBooksEl.addEventListener('click', function (e) {
+//   e.preventDefault();
+
+//   let bookGrabVal = document.querySelector('#bookGrab').value;
+
+//   if (!bookGrabVal) {
+//     console.error('No book title entered.');
+//     return;
+//   }
+
+//   searchBooks(bookGrabVal);
+// });
+
+
+// console.log(window.location.toString().split('/'))
+
+
+
+
 
 
 // function addToCat(isbn) {
@@ -184,89 +256,84 @@ function getParams() {
 // }
 
 
-function searchBooks() {
-  var getAuthor = document.getElementById('author').checked
-  document.getElementById('output0').innerHTML = "";
-  document.getElementById('output1').innerHTML = "";
-  document.getElementById('output2').innerHTML = "";
-  fetch("http://openlibrary.org/search.json?q=" + document.getElementById("bookGrab").value)
-    .then(a => a.json())
-    .then(response => {
-      console.log(response);
-      let userInput = document.getElementById("bookGrab").value.toLowerCase()
-      let bookAmount = 0;
-      for (var i = 0; i < 3; i++) {
-        if (bookAmount < 3) {
-          try {
-            if (getAuthor) {
-              let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
-              if (lowerCaseAuthor.indexOf(userInput)) {
-                //document.getElementById("output").innerHTML+="</h2>"+response.docs[i].author_name[0]+"<br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
-                //GMS add to catalog button should display for each book rendered 
-                document.getElementById("output" + i).innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button id="stupidButton${i}" onclick='addToCat(${JSON.stringify(response.docs[i])})'>&#10133 to Catalog</button>`;
-                bookAmount++
-              }
-            } else {
-              let lowerCaseTitle = response.docs[i].title.toLowerCase().replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
-              console.log(lowerCaseTitle)
-              if (lowerCaseTitle.includes(userInput)) {
-                //GMS add to catalog button should display for each book rendered 
-                document.getElementById("output" + i).innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button id="stupidButton${i}" onclick='addToCat(${JSON.stringify(response.docs[i])})'>&#10133 to Catalog</button>`;
-                bookAmount++
-              }
-            }
-            let stupidButtonCaller = document.getElementById("stupidButton" + i)
-            stupidButtonCaller.addEventListener('click', addToCat(response.docs[i]));
-          } catch (err) {
-            console.log(err);
-          }
-        } else {
-          break
-        }
-      }
-    })
-};
+
+//this is the working model
+// function searchBooks() {
+//   var getAuthor = document.getElementById('author').checked
+//   document.getElementById('output0').innerHTML = "";
+//   document.getElementById('output1').innerHTML = "";
+//   document.getElementById('output2').innerHTML = "";
+//   fetch("http://openlibrary.org/search.json?q=" + document.getElementById("bookGrab").value)
+//     .then(a => a.json())
+//     .then(response => {
+//       console.log(response);
+//       let userInput = document.getElementById("bookGrab").value.toLowerCase()
+//       let bookAmount = 0;
+//       for (var i = 0; i < 3; i++) {
+//         if (bookAmount < 3) {
+//           try {
+//             if (getAuthor) {
+//               let lowerCaseAuthor = response.docs[i].author_name.map(author => author.toLowerCase())
+//               if (lowerCaseAuthor.indexOf(userInput)) {
+//                 //document.getElementById("output").innerHTML+="</h2>"+response.docs[i].author_name[0]+"<br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
+//                 //GMS add to catalog button should display for each book rendered 
+//                 document.getElementById("output" + i).innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button id="stupidButton${i}">&#10133 to Catalog</button>`;
+//                 bookAmount++
+//               }
+//             } else {
+//               let lowerCaseTitle = response.docs[i].title.toLowerCase().replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
+//               console.log(lowerCaseTitle)
+//               if (lowerCaseTitle.includes(userInput)) {
+//                 //GMS add to catalog button should display for each book rendered 
+//                 document.getElementById("output" + i).innerHTML += "<h3>" + response.docs[i].author_name[0] + "</h3><h5>" + response.docs[i].title + "</h5><br><img src='http://covers.openlibrary.org/b/isbn/" + response.docs[i].isbn[0] + "-M.jpg'><br>" + `<button id="stupidButton${i}">&#10133 to Catalog</button>`;
+//                 bookAmount++
+//               }
+//             }
+//             let stupidButtonCaller = document.getElementById("stupidButton" + i)
+//             stupidButtonCaller.addEventListener('click', addToCat(response.docs[i]));
+//           } catch (err) {
+//             console.log(err);
+//           }
+//         } else {
+//           break
+//         }
+//       }
+//     })
+// };
 
 
-function addToCat(response) {
-  console.log("match to isbn")
+// function addToCat(response) {
+//   console.log("match to isbn")
 
 
-  const pleaseId = window.location.toString().split('/')
-  const id = pleaseId[4];
+//   const pleaseId = window.location.toString().split('/')
+//   const id = pleaseId[4];
 
-  const bookObj = {
-    //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
-    title: response.title,
-    author: response.author_name[0],
-    isbn_num: response.isbn[0],
-    catalog_id: id,
-  }
-  console.log(bookObj);
-  fetch(`/api/books/${id}`, {
-    method: "POST",
-    body: JSON.stringify(bookObj),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    if (res.ok) {
-      console.log('its working!!!')
-    } else {
-      alert("FAILURE");
-    }
-  })
-};
+//   const bookObj = {
+//     //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
+//     title: response.title,
+//     author: response.author_name[0],
+//     isbn_num: response.isbn[0],
+//     catalog_id: id,
+//   }
+//   console.log(bookObj);
+//   fetch(`/api/books/${id}`, {
+//     method: "POST",
+//     body: JSON.stringify(bookObj),
+//     headers: {
+//       "Content-Type": "application/json"
+//     }
+//   }).then(res => {
+//     if (res.ok) {
+//       console.log('its working!!!')
+//     } else {
+//       alert("FAILURE");
+//     }
+//   })
+// };
 
 //GMS CLICK CATALOG AND URL AT TOP CHANGES TO CATALOG/:ID
 //WHEN USER CLICKS ADD IT WILL ADD TO THAT CATALOG that has been selected
-
-
-
-
-
-
-
 
 
 function takeBookForm(e) {
