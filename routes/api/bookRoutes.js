@@ -48,12 +48,19 @@ router.get('/:id', (req, res) => {
 });
 
 //GMS when pressing front end + button, a pop up model comes in asking which catalog we'd like to add to 
-router.post('/', haveAuth, (req, res) => {
+router.post('/:id', haveAuth, (req, res) => {
     Book.create({
+
+        where: {
+            id: req.params.id,
+        },
+
         title: req.body.title,
         author: req.body.author,
         isbn_num: req.body.isbn_num,
         catalog_id: req.body.catalog_id,
+
+
     }).then
         (catData => res.json(catData))
         .catch(err => {
