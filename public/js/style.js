@@ -17,9 +17,10 @@ app.get("/static", (req, res) => {
 
 app.get("/dynamic", (req, res) => {
     imageList = [];
-    imageList.push({
-        src: ""
-    })
+    imageList.push({ src: "icons/catalogs-sidebar.png", name: "sidebar" });
+    imageList.push({ src: "icons/shelfspace.png", name: "shelfspace"});
+    imageList.push({ src: "icons/niceFavicon.png", name: "favicon"});
+    res.render("dynamic", { imageList: imageList });
 })
 
 // navbar action
