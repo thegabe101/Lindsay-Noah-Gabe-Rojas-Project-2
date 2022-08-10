@@ -14,7 +14,10 @@ fetch(`/api/catalogs/${id}`, {
     }
 }).then(res => {
     if (res.ok) {
-        res.render;
+        console.log("nothing for now");
+        res.json().then(response => {
+            console.log(response);
+        });
     } else {
         alert("FAILURE");
     }
