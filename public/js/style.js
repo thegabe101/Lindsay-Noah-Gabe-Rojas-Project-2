@@ -11,7 +11,16 @@ app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 app.use(express.static("images"));
 
+app.get("/static", (req, res) => {
+    res.render("static");
+});
 
+app.get("/dynamic", (req, res) => {
+    imageList = [];
+    imageList.push({
+        src: ""
+    })
+})
 
 // navbar action
 const navBar = () => {
