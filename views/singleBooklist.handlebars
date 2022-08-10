@@ -19,7 +19,8 @@
 <div class="max-w-lg rounded-lg shadow-md shadow-blue-600/50">
   <form action="" class="w-full p-4">
     <div class="mb-2">
-      <label for="comment" class="text-lg text-gray-600" method="post">Add a comment</label>
+      <form for="comment" class="text-lg text-gray-600" action="/revies/comments" method="post">Add a comment</form>
+      <input type="hidden" value="{{review._id}}" name="reviewId">
       <textarea
         class="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
         name="content"
