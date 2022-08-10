@@ -63,7 +63,7 @@ const output2 = document.getElementById('output2');
 //GMS for now will accept an argument but I don't think we will be using it
 function searchBooks(query) {
   //GMS define openlibrary query url 
-  let apiQueryUrl = "http://openlibrary.org/search.json?q=";
+  let apiQueryUrl = "https://openlibrary.org/search.json?q=";
 
   // if (format) {
   //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
