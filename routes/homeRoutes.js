@@ -99,7 +99,7 @@ router.get('/catalogs/:id', (req, res) => {
     })
         .then(bookData => {
             const books = bookData.get({ plain: true });
-            res.render('catalogs', {
+            res.render('singleBooklist', {
                 books: books,
                 logged_in: req.session.logged_in
             });

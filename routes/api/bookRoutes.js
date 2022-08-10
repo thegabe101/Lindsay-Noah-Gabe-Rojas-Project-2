@@ -58,8 +58,7 @@ router.post('/:id', haveAuth, (req, res) => {
         title: req.body.title,
         author: req.body.author,
         isbn_num: req.body.isbn_num,
-        catalog_id: req.body.catalog_id,
-
+        catalog_id: req.body.id,
 
     }).then
         (catData => res.json(catData))

@@ -101,42 +101,25 @@ function searchBooks(query) {
           output0.innerHTML = `
         <div>
           <br>
-          <button id="stupidButton${i}" style="background-color: black; color: white; height: 75px; width: 150px;">&#10133 to Catalog</button>
+          <button id="stupidButton${i}" style="background-color: black; color: white; height: 75px; width: 150px; margin-top: 300px;">&#10133 to Catalog</button>
           <br>
-          <h1><br><strong>Title:</strong> ${userFacingResponse.docs[0].title}</h1>
+          <h1 margin-top: 300px><br><strong>Title:</strong> ${userFacingResponse.docs[0].title}</h1>
           <br>
-          <h2><strong>Author:</strong> ${userFacingResponse.docs[0].author_name[0]}</h2>
+          <h2 margin-top: 300px><strong>Author:</strong> ${userFacingResponse.docs[0].author_name[0]}</h2>
           <br>
-          <p><strong>ISBN Number:</strong> ${userFacingResponse.docs[0].isbn[0]}</p>
+          <p margin-top: 300px><strong>ISBN Number:</strong> ${userFacingResponse.docs[0].isbn[0]}</p>
           <br>
           </div>
           <br>
           <br>
-          <img src='http://covers.openlibrary.org/b/isbn/${userFacingResponse.docs[0].isbn[0]}-M.jpg' style="box-shadow: 10px 10px 10px black; height: 300px; width: 200px; margin-left: 10px; margin-top: 10px;"><br>
+          <img src='http://covers.openlibrary.org/b/isbn/${userFacingResponse.docs[0].isbn[0]}-M.jpg' style="box-shadow: 10px 10px 10px black; height: 300px; width: 200px; margin-left: 10px; margin-top: 300px;"><br>
         `
           booksShown++
-          output1.innerHTML = `
-          <div>
-            <br>
-            <button id="stupidButton${i}" style="background-color: black; color: white; height: 75px; width: 150px;">&#10133 to Catalog</button>
-            <br>
-            <h1><br><strong>Title:</strong> ${userFacingResponse.docs[i].title}</h1>
-            <br>
-            <h2><strong>Author:</strong> ${userFacingResponse.docs[i].author_name[i]}</h2>
-            <br>
-            <p><strong>ISBN Number:</strong> ${userFacingResponse.docs[i].isbn[i]}</p>
-            <br>
-            </div>
-            <br>
-            <br>
-            <img src='http://covers.openlibrary.org/b/isbn/${userFacingResponse.docs[i].isbn[i]}-M.jpg' style="box-shadow: 10px 10px 10px black; height: 300px; width: 200px; margin-left: 10px; margin-top: 10px;"><br>
-          `
         }
+        let stupidButtonCaller = document.getElementById("stupidButton" + i)
+        stupidButtonCaller.addEventListener('click', addToCat(response.docs[i]));
       }
-      function callCat() {
-        let stupidButtonCaller = document.getElementById("stupidButton" + i);
-        stupidButtonCaller.addEventListener('click', addToCat(userFacingResponse.docs[i]));
-      }
+
     }).catch(function (err) {
       if (err) {
         console.log(JSON.stringify(err));
