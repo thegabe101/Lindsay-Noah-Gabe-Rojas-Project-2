@@ -18,7 +18,7 @@
         
         <section class="catalogs p-2 m-2">
             <ul class="catList flex" id="catsCats">
-                <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]">
+                <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]" onclick="clickCat({{id}})">
                     <a href="#" class="pl-2">{{name}}</a>
 
                     {{!-- maybe instead just do two symbols for delete and edit to save some time? --}}
@@ -75,7 +75,25 @@
         </section>
 
 {{!-- this is the section that holds all the books that are searched for --}}
-        <section id="output" class="flex m-3">
+        <section id="output0" class="flex m-3">
+            {{!-- my attempt to organize the data that's coming in from the api --}}
+            <section class="flex-">
+                <h3 id="authorNameoutput" class=""></h3>
+                <h5 id="titleNameoutput"></h5>
+            </section>
+            
+            <img id="coverOutput">
+        </section>
+                <section id="output1" class="flex m-3">
+            {{!-- my attempt to organize the data that's coming in from the api --}}
+            <section class="flex-">
+                <h3 id="authorNameoutput" class=""></h3>
+                <h5 id="titleNameoutput"></h5>
+            </section>
+            
+            <img id="coverOutput">
+        </section>
+                <section id="output2" class="flex m-3">
             {{!-- my attempt to organize the data that's coming in from the api --}}
             <section class="flex-">
                 <h3 id="authorNameoutput" class=""></h3>
@@ -86,6 +104,7 @@
         </section>
     {{!-- id for cat button to add to cat is #addCatBook --}}
 
+<script src="/js/renderCat.js"></script>
 <script src="/js/deletebutton.js"></script>
 <script src="/js/catalogs.js"></script>
 <script src="/js/apiSearch.js"></script>

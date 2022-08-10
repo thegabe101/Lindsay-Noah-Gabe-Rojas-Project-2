@@ -3,6 +3,53 @@
 // const axios = require('axios').default;
 
 //GMS how to grab this button from the template literal...
+const pleaseId = window.location.toString().split('/')
+const id = pleaseId[4];
+
+
+fetch(`/api/catalogs/${id}`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }
+}).then(res => {
+    if (res.ok) {
+        res.render;
+    } else {
+        alert("FAILURE");
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.querySelector("#addCatBook").addEventListener("submit", e => {
     e.preventDefault();
     console.log("seeking book obj")

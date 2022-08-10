@@ -22,6 +22,15 @@ const { Catalog } = require('../models');
 //     })
 // })
 
+router.get('/', (req, res) => {
+    if (req.session.user_id) {
+        res.redirect('/home');
+        return;
+    } else {
+        res.render('login');
+    }
+});
+
 router.get('/catalogs', (req, res) => {
     console.log(req.session);
 
@@ -90,7 +99,7 @@ router.get('/catalogs/:id', (req, res) => {
     })
         .then(bookData => {
             const books = bookData.get({ plain: true });
-            res.render('singleBooklist', {
+            res.render('catalogs', {
                 books: books,
                 logged_in: req.session.logged_in
             });
