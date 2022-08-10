@@ -1,6 +1,28 @@
 // const source = document.querySelector(".goLogin").innerHTML;
 // const template = Handlebars.compile(source);
 // document.body.innerHTML = template()
+import express, { application } from "express"
+import path from "path"
+import exphbs from "express-handlebars"
+
+const app = express();
+
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.set("view engine", "handlebars");
+app.use(express.static("images"));
+
+app.get("/static", (req, res) => {
+    res.render("static");
+});
+
+app.get("/catalogs", (req, res) => {
+    imageList = [];
+    imageList.push({ src: "images/catalogs-sidebar.png", name: "sidebar" });
+    imageList.push({ src: "images/shelfspace.png", name: "shelfspace"});
+    imageList.push({ src: "images/niceFavicon.png", name: "favicon"});
+    imageList.push({ src: "images/shelfspace-smol.png", name: "smolspace"});
+    res.render("catalogs", { imageList: imageList });
+})
 
 // navbar action
 const navBar = () => {
@@ -19,9 +41,4 @@ img.addEventListener("error", function(event) {
     event.onerror = null
 });
 
-// liking a book
 
-// upload avatar
-// const uploadImage = () => {
-//     const data = new profileData 
-// }
