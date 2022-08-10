@@ -42,9 +42,9 @@
         <section class="catalogs p-2 m-2">
             <ul class="catList flex" id="catsCats">
                 <li class="border w-full flex justify-between rounded-md p-2 bg-[#ffd166] hover:bg-white hover:border-2 hover:border-[#ffd166]" onclick="clickCat({{id}})">
-                    <a href="#" class="pl-2">{{name}}</a>
+                    <a href="#" class="pl-2">{{name}} {{genre_type}}</a>
                     <section class="content-end">
-                        <i class="fa-solid fa-pen pt-1 p-1" role="button" onclick="editCat"></i>
+                        <i class="fa-solid fa-pen pt-1 p-1" role="button" onclick="editCat({{id}})"></i>
                         <i class="fa-solid fa-trash pt-1 p-1" role="button" onclick= "trashCat({{id}})"></i>
                     </section>
                 </li>
