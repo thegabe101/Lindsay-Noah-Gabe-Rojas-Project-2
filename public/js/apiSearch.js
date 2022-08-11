@@ -99,9 +99,9 @@ function searchBooks(query) {
         if (booksShown < 3) {
           //printBooks(userFacingResponse.docs[i]);
           output0.innerHTML = `
-        <div>
+        <div class="justify-center">
           <br>
-          <button id="stupidButton${i}" class="bg-[#ff4797]" style="color: white; height: 75px; width: 150px; margin-top: 300px;">&#10133 to Catalog</button>
+          <button id="stupidButton${i}" class="bg-[#ff4797] px-2 py-1 border rounded-md text-white hover:bg-white hover:text-black hover:border-[#ff4797] hover:border-2">&#10133 to Catalog</button>
           <br>
           <h1 margin-top: 300px><br><strong>Title:</strong> ${userFacingResponse.docs[0].title}</h1>
           <br>
