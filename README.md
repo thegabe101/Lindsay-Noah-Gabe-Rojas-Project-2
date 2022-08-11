@@ -4,6 +4,9 @@
 
 Shelfspace is an app designed for the ultimate book worm and avid collector, allowing for the simplification of cataloging their novels, manga, comics, and more. This app is deployed on Heroku, with many ideas in the oven for future improvements.
 
+Check out Shelf Space [here](https://shelf-space.herokuapp.com/).
+
+
 ## table-of-contents
 
 1. [user-story](#user-story)
@@ -132,6 +135,7 @@ List of resources utilized in this project:
 - [Navbar Build](https://www.w3schools.com/howto/howto_js_mobile_navbar.asp)
 - [Canva](https://www.canva.com/)
 - [Favicon Generator](https://favicon.io/favicon-converter/)
+- [Animate.css](https://animate.style/)
 
 ## contributors
 
