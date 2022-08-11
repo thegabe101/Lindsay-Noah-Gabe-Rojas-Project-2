@@ -62,43 +62,43 @@ const output0 = document.getElementById('output0');
 
 //GMS for now will accept an argument but I don't think we will be using it
 function searchBooks(query) {
-  //GMS define openlibrary query url 
-  let apiQueryUrl = "https://openlibrary.org/search.json?q=";
+    //GMS define openlibrary query url 
+    let apiQueryUrl = "https://openlibrary.org/search.json?q=";
 
-  // if (format) {
-  //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
-  // }
+    // if (format) {
+    //   apiQueryUrl = 'http://openlibrary.org/' + format + 'search.json?q=';
+    // }
 
-  //apiQueryUrl = query;
+    //apiQueryUrl = query;
 
-  //GMS fetch function routes to our URL + query value of the input in the bookGrab field 
-  fetch(apiQueryUrl + document.getElementById("bookGrab").value)
-    .then((res) => res.json())
-    .then((userFacingResponse) => {
-      console.log(userFacingResponse)
-      //resultsTextEl.textContent = userFacingResponse.search.query;
+    //GMS fetch function routes to our URL + query value of the input in the bookGrab field 
+    fetch(apiQueryUrl + document.getElementById("bookGrab").value)
+        .then((res) => res.json())
+        .then((userFacingResponse) => {
+            console.log(userFacingResponse)
+            //resultsTextEl.textContent = userFacingResponse.search.query;
 
-      console.log(userFacingResponse);
-      //GMS if the array length is <0, notify the user the book isn't found. 
-      if (!userFacingResponse.docs.length) {
-        console.log('No results found.');
-        return;
-        //resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
-      }
-      //resultsTextEl.textContent = '';
-      //GMS just gonna log our output field to make sure that it is existing as an open section
-      console.log(output0)
-      // console.log(output1)
-      // console.log(output2)
+            console.log(userFacingResponse);
+            //GMS if the array length is <0, notify the user the book isn't found. 
+            if (!userFacingResponse.docs.length) {
+                console.log('No results found.');
+                return;
+                //resultsTextEl.innerHTML = '<h3>No results found in our database.</h3>';
+            }
+            //resultsTextEl.textContent = '';
+            //GMS just gonna log our output field to make sure that it is existing as an open section
+            console.log(output0)
+            // console.log(output1)
+            // console.log(output2)
 
-      //GMS realizing the for loop isn't going to render into a template literal this way. 
-      //GMS will have to figure this out tomorrow 
-      // let booksShown = 0;
+            //GMS realizing the for loop isn't going to render into a template literal this way. 
+            //GMS will have to figure this out tomorrow 
+            // let booksShown = 0;
 
-      // for (var i = 0; i < 1; i++) {
-      // if (booksShown < 3) 
-      //printBooks(userFacingResponse.docs[i]);
-      output0.innerHTML = `
+            // for (var i = 0; i < 1; i++) {
+            // if (booksShown < 3) 
+            //printBooks(userFacingResponse.docs[i]);
+            output0.innerHTML = `
         <div>
           <br>
           <button id="stupidButton0" style="background-color: black; color: white; height: 75px; width: 150px; margin-top: 300px;">&#10133 to Catalog</button>
@@ -114,52 +114,90 @@ function searchBooks(query) {
           <br>
           <img src='http://covers.openlibrary.org/b/isbn/${userFacingResponse.docs[0].isbn[0]}-M.jpg' style="box-shadow: 10px 10px 10px black; height: 300px; width: 200px; margin-left: 10px; margin-top: 300px;"><br>
           `
-      // booksShown++
-      // }
-      setTimeout(function () {
-        let stupidButtonCaller = document.getElementById("stupidButton0");
-        stupidButtonCaller.addEventListener('click', addToCat(userFacingResponse.docs[0]));
-      }, 2000)
+            // booksShown++
+            // }
+            // setTimeout(function () {
+            let stupidButtonCaller = document.getElementById("stupidButton0");
+            stupidButtonCaller.addEventListener('click', function (userFacingResponse) {
 
-    }).catch(function (err) {
-      if (err) {
-        console.log(JSON.stringify(err));
-      }
-    });
-};
+                console.log("match to isbn")
 
 
+                const pleaseId = window.location.toString().split('/')
+                const id = pleaseId[4];
 
-function addToCat(userFacingResponse) {
+                const bookObj = {
+                    //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
+                    title: userFacingResponse.title,
+                    author: userFacingResponse.author_name[0],
+                    isbn_num: userFacingResponse.isbn[0],
+                    catalog_id: id,
+                }
+                console.log(bookObj);
+                fetch(`/api/books/${id}`, {
+                    method: "POST",
+                    body: JSON.stringify(bookObj),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then(res => {
+                    if (res.ok) {
+                        console.log('its working!!!')
+                    } else {
+                        alert("FAILURE");
+                    }
 
-  console.log("match to isbn")
+                })
+            })
+
+        }).catch(function (err) {
+            if (err) {
+                console.log(JSON.stringify(err))
+            }
+        })
+}
 
 
-  const pleaseId = window.location.toString().split('/')
-  const id = pleaseId[4];
-
-  const bookObj = {
-    //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
-    title: userFacingResponse.title,
-    author: userFacingResponse.author_name[0],
-    isbn_num: userFacingResponse.isbn[0],
-    catalog_id: id,
-  }
-  console.log(bookObj);
-  fetch(`/api/books/${id}`, {
-    method: "POST",
-    body: JSON.stringify(bookObj),
-    headers: {
-      "Content-Type": "application/json"
+function superCat() {
+    if (stupidButtonCaller) {
+        stupidButtonCaller.addEventListener('click', addToCat())
     }
-  }).then(res => {
-    if (res.ok) {
-      console.log('its working!!!')
-    } else {
-      alert("FAILURE");
-    }
-  })
-};
+}
+
+
+// function addToCat(userFacingResponse) {
+//   return function () {
+
+
+//     console.log("match to isbn")
+
+
+//     const pleaseId = window.location.toString().split('/')
+//     const id = pleaseId[4];
+
+//     const bookObj = {
+//       //GMS the big question is how to fill this object. It needs to be filled currently with values from template literals but not sure how to do that.
+//       title: userFacingResponse.title,
+//       author: userFacingResponse.author_name[0],
+//       isbn_num: userFacingResponse.isbn[0],
+//       catalog_id: id,
+//     }
+//     console.log(bookObj);
+//     fetch(`/api/books/${id}`, {
+//       method: "POST",
+//       body: JSON.stringify(bookObj),
+//       headers: {
+//         "Content-Type": "application/json"
+//       }
+//     }).then(res => {
+//       if (res.ok) {
+//         console.log('its working!!!')
+//       } else {
+//         alert("FAILURE");
+//       }
+//     })
+//   }
+// };
 
 // function takeBookForm(e) {
 //   e.preventDefault();
@@ -342,29 +380,29 @@ function addToCat(userFacingResponse) {
 
 
 function takeBookForm(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  let bookGrabVal = document.querySelector('#bookGrab').value;
+    let bookGrabVal = document.querySelector('#bookGrab').value;
 
-  if (!bookGrabVal) {
-    console.error('No book title entered.');
-    return;
-  }
+    if (!bookGrabVal) {
+        console.error('No book title entered.');
+        return;
+    }
 
-  searchBooks(bookGrabVal);
+    searchBooks(bookGrabVal);
 };
 
 searchBooksEl.addEventListener('click', function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  let bookGrabVal = document.querySelector('#bookGrab').value;
+    let bookGrabVal = document.querySelector('#bookGrab').value;
 
-  if (!bookGrabVal) {
-    console.error('No book title entered.');
-    return;
-  }
+    if (!bookGrabVal) {
+        console.error('No book title entered.');
+        return;
+    }
 
-  searchBooks(bookGrabVal);
+    searchBooks(bookGrabVal);
 });
 
 
